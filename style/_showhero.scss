@@ -1,0 +1,162 @@
+.show-hero {
+   font-size: 10px;
+   border-radius: 1.6em;
+   overflow: hidden;
+   width: fit-content;
+   height: fit-content;
+   max-width: 30vw;
+   font-family: "Open Sans";
+   height: fit-content;
+   width: fit-content;
+   // background-color: #47545a;
+   background-image: url("../assets/images/herobg.jpg");
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   object-fit: cover;
+   object-position: center;
+   box-shadow: inset 0 50px 150px #000;
+   // border: 12px #ffffff solid;
+   // max-width: 500px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 0;
+   &__hello {
+      opacity: 0;
+      transform: translateY(-100px);
+      color: #fff;
+      mix-blend-mode: difference;
+      user-select: none;
+      opacity: 1;
+      margin-top: 1em;
+      font-size: 3em;
+   }
+   &__title {
+      margin-top: 0.2em;
+      opacity: 0;
+      transform: scale(1.2);
+      padding: 0 0.5em;
+      mix-blend-mode: difference;
+      // mask-image: linear-gradient(to top, transparent 0%, black 90%);
+      user-select: none;
+      line-height: 1em;
+      text-align: center;
+      color: #ffffff;
+      text-shadow: 4px 2px 2px #bebebe;
+      // background-image: linear-gradient(to top, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
+      // color: transparent;
+      // -webkit-background-clip: text;
+      // background-clip: text;
+      white-space: wrap;
+      font-size: 7.5em;
+   }
+   &__video {
+      transform: scale(1.2);
+      opacity: 0;
+      filter: drop-shadow(1.5em 1em 1.5em #000000);
+      // margin-bottom: 1em;
+      user-select: none;
+      pointer-events: none;
+      mask-image: linear-gradient(to top, transparent 1%, black 20%);
+      max-width: 100%;
+      user-select: none;
+      pointer-events: none;
+      position: relative;
+      // &::after {
+      //    content: '';
+      //    position: absolute;
+      //    top: 0;
+      //    left: 0;
+      //    width: 100px;
+      //    height: 100px;
+      //    background-color: #fff;
+      // }
+   }
+
+   .buttons-bar {
+      padding: 1em 1em;
+      font-size: 1em;
+      margin-bottom: 1em;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1em;
+      transform: translateY(10em);
+      
+
+      .button {
+         width: 50%;
+         font-family: 'Tiny5';
+         transition: 0.1s ease;
+         cursor: pointer;
+         // height: 2em;
+         font-size: 2.6em;
+         font-weight: 600;
+         border-radius: 0.55em;
+         &-accept {
+            padding: 0.3em 0.5em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            text-transform: uppercase;
+            background-color: #1fffa9;
+            // box-shadow: inset 0 0 1.3em #0000007c, 0 -0.2em 0.6em rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0.2em 0 #1d816b;
+            display: flex;
+            z-index: 3;
+            color: #000000;
+            &:hover {
+               background-color: #00ffd5;
+               color: rgb(0, 0, 0);
+               
+            }
+            &:active {
+               transform: translateY(0.2em);
+               box-shadow: 0 0 0 #00ff9d;
+               background-color: #00ff9d;
+               color: rgb(0, 0, 0);
+               
+            }
+         }
+         &-retry {
+            padding: 0.3em 0.5em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            text-transform: uppercase;
+            background-color: #00b7ff;
+            // box-shadow: inset 0 0 1.3em #0000007c, 0 -0.2em 0.6em rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0.2em 0 #1d6781;
+            display: flex;
+            z-index: 3;
+            color: #000000;
+            &:hover {
+               background-color: #00a2ff;
+               color: rgb(0, 0, 0);
+               
+            }
+            &:active {
+               transform: translateY(0.2em);
+               box-shadow: 0 0 0 #1d6781;
+               background-color: #00a2ff;
+               color: rgb(0, 0, 0);
+               
+            }
+         }
+      }
+   }
+
+   // .close__button {
+   //    font-size: 2em;
+   //    width: fit-content;
+   //    position: absolute;
+   //    background-color: transparent;
+   //    top: 5px;
+   //    right: 10px;
+   // }
+}

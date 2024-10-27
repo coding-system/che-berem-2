@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="description" content="Выбор рандомного героя Dota 2" />
+      <title>Выбор рандомного героя Dota 2</title>
+      <meta property="og:title" content="Выбор рандомного героя Dota 2" />
+      <meta property="og:type" content="website" />
+      <meta
+         property="og:description"
+         content="Сервис для выбора рандомного героя Dota 2"
+      />
+      <meta
+         property="og:url"
+         content="https://coding-system.github.io/hero-randomizer/"
+      />
+      <meta property="og:image" content="./images/og/png" />
+      <link rel="stylesheet" href="./style/index.css" />
+
+      <link rel="icon" href="./src/assets/icons/favicon.ico" sizes="any" />
+   </head>
+   <body>
+      <div class="wrapper">
+         <header class="header">
+            <h1 class="main-title">Чё берем?</h1>
+         </header>
+
+         <main class="content">
+            <div class="hero-bar">
+               <div class="last-hero_default last-hero-animation">
+                  <span class="last-hero__id">Ну нажми</span>
+                  <span class="last-hero__name">кнопку блять</span>
+               </div>
+
+               <div class="hero-image"></div>
+            </div>
+            <div class="buttons-bar">
+               <button class="button choose-button">Выбрать</button>
+               <button class="button heroes-list-button" type="button">
+                  Список героев
+               </button>
+               <button type="button" class="button reset-button">
+                  Сбросить
+               </button>
+               <input type="checkbox" class="changer-checkbox" />
+            </div>
+         </main>
+         <!-- 
+
+НАЧАЛО 
+
+ДИАЛОГА
+
+ -->
+         <dialog id="heroes-list" class="dialog heroes-list">
+            <h2 class="heroes-list__title">
+               Выберете героев, которые участвуют в отборе
+            </h2>
+            <div class="heroes-list__box">
+               <ul id="heroes-strength" class="heroes-list__group"></ul>
+               <ul id="heroes-agility" class="heroes-list__group"></ul>
+               <ul id="heroes-intelligence" class="heroes-list__group"></ul>
+               <ul id="heroes-universal" class="heroes-list__group"></ul>
+            </div>
+            <button class="button close__button" type="button">Закрыть</button>
+         </dialog>
+
+         <!-- 
+
+КОНЕЦ 
+
+ДИАЛОГА
+
+ -->
+      </div>
+      <!-- Wrapper-->
+      <script type="module" src="./index.js"></script>
+      <script type="module" src="./scripts/random.js"></script>
+      <script type="module" src="./scripts/dialog.js"></script>
+      <template id="card-hero-template">
+         <li class="card-hero-item">
+            <button type="button" class="card-hero-button"></button>
+         </li>
+      </template>
+   </body>
+</html>

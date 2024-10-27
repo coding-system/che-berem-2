@@ -1,0 +1,358 @@
+.last-box {
+   font-size: 10px;
+   // min-height: 51px;
+   // max-width: 100%;
+   // overflow: hidden;
+   transition: transform 0.75s 0s ease, opacity 0.75s 0s ease;
+   &__moved {
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: transform 0.75s 0s ease, opacity 0.75s 0s ease;
+   }
+}
+
+.last-heroes {
+   background-color: rgba(255, 255, 255, 0.05);
+   // box-shadow: inset 0 0 2.5em rgba(255, 255, 255, 0.1);
+   border-radius: 1.6em;
+   overflow: hidden;
+   // background-color: #5a1f1f;
+   display: flex;
+   align-items: center;
+   // min-height: 50.63px;
+   height: fit-content;
+   width: 100%;
+   &__list {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      display: grid;
+      grid-template-columns: repeat(24, 1fr);
+      grid-template-rows: 1;
+      align-items: center;
+      justify-content: center;
+      // border: 2px solid #fff;
+      transition: transform 0.6s ease;
+   }
+   &__item {
+      cursor: pointer;
+      user-select: none;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.6s ease, opacity 0.6s ease, filter 0.2s ease;
+      opacity: 1;
+      // transform: translateX(88px);
+      aspect-ratio: 1.77777;
+      // width: 90px;
+      // height: 35px;
+      background-image: url("../assets/heroes/abyssal_underlord.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      object-fit: cover;
+      object-position: center;
+      pointer-events: all;
+      font-size: 0.66em;
+      // filter: grayscale(0.3) brightness(0.8);
+      // &:hover .last-heroes__delete-hero {
+      //    opacity: 1;
+      // }
+      &:hover .last-heroes__delete-overlay {
+         opacity: 1;
+      }
+      &:hover .deleted-label {
+         background-image: linear-gradient(45deg, #9b9b9b, #636363, #272727);
+         height: 3.2em;
+         width: 8em;
+         top: 50%;
+         right: 50%;
+         transform: translate(50%, -50%);
+      }
+      &:hover .deleted-label::after {
+         opacity: 1;
+      }
+      &:hover .undeleted-label {
+         background-image: linear-gradient(45deg, #9b9b9b, #636363, #272727);
+         height: 3.2em;
+         width: 8em;
+         top: 50%;
+         right: 50%;
+         transform: translate(50%, -50%);
+      }
+      &:hover .undeleted-label::after {
+         opacity: 1;
+      }
+      &:not(.last-heroes__item:hover) .deleted-label {
+         transition: 0.2s ease;
+      }
+      &:not(.last-heroes__item:hover) .undeleted-label {
+         transition: 0.2s ease;
+      }
+      &:not(.last-heroes__item:hover) .deleted-label::after {
+         transition: opacity 0.1s 0s ease;
+      }
+      &:not(.last-heroes__item:hover) .undeleted-label::after {
+         transition: opacity 0.1s 0s ease;
+      }
+   }
+   // transition: opacity 0.1s 0.1s ease;
+   &__delete-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: 0.2s ease;
+      font-size: 1em;
+      width: 100%;
+      height: 100%;
+   }
+   &__delete-hero {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: 0.2s ease;
+      font-size: 2.5em;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &-text {
+         font-family: "Amatic SC";
+         font-weight: 700;
+         text-transform: uppercase;
+         color: rgb(255, 255, 255);
+         z-index: 5;
+      }
+      &::before {
+         z-index: 2;
+         content: "";
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         // box-shadow: inset 0 0 1.8em rgba(255, 0, 0, 0.3);
+         background-color: rgba(53, 0, 0, 0.8);
+      }
+   }
+   &__return-hero {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: 0.2s ease;
+      font-size: 2.5em;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &-text {
+         font-family: "Amatic SC";
+         font-weight: 700;
+         text-transform: uppercase;
+         color: rgb(255, 255, 255);
+         z-index: 5;
+      }
+      &::before {
+         z-index: 2;
+         content: "";
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         // box-shadow: inset 0 0 1.8em #00ff006e, inset 0 0 0.8em #000000;
+         background-color: rgba(0, 0, 0, 0.8);
+      }
+   }
+}
+
+.deleted-label {
+   overflow: hidden;
+   transform: translate(0 0);
+   transform-origin: center;
+   // transition: 0.5s ease;
+   transition: top 0.2s ease, right 0.2s ease, transform 0.2s ease,
+      width 0.3s 0.2s ease, height 0.3s 0.2s ease,
+      background-image 0.3s 0.2s ease;
+   pointer-events: none;
+   user-select: none;
+   // padding: 0px 20px;
+   margin: auto;
+   color: rgb(255, 255, 255);
+   text-align: center;
+   text-transform: uppercase;
+   font-weight: 600;
+   font-size: 1em;
+   position: absolute;
+   top: 0.4em;
+   right: 0.4em;
+   background-image: linear-gradient(45deg, #fd4646, #ff0000, #270c0c);
+   border-radius: 10em;
+   border: 0.1em solid rgb(255, 255, 255);
+   box-shadow: inset 0.1em 0.1em 0.6em rgba(0, 0, 0, 0.4),
+      inset -0.1em -0.1em 2.6em rgba(0, 0, 0, 0.4), 0 0 0.5em rgb(255, 255, 255);
+   width: 1.6em;
+   height: 1.6em;
+   z-index: 4;
+   // Amination
+   animation-name: last-hero-indicator-lightning;
+   animation-duration: 2s;
+   animation-iteration-count: infinite;
+   animation-timing-function: ease-in-out;
+   animation-direction: alternate;
+   // &::before {
+   //    opacity: 1;
+   //    content: "";
+   //    position: absolute;
+   //    top: 50%;
+   //    left: 50%;
+   //    background-color: #fff;
+   //    width: 70%;
+   //    height: 70%;
+   //    border-radius: 50%;
+   //    transform: translate(-50%, -50%);
+   //    z-index: 2;
+   // }
+   // &::after {
+   //    content: '';
+   //    opacity: 1;
+   //    content: "";
+   //    position: absolute;
+   //    top: 50%;
+   //    left: 50%;
+   //    width: 70%;
+   //    height: 10%;
+   //    background-color: #ffffff;
+   //    transform: translate(-50%, -50%) rotate(45deg);
+   //    z-index: 3;
+   // }
+   // &::before {
+   //    content: "";
+   //    opacity: 1;
+   //    content: "";
+   //    position: absolute;
+   //    top: 50%;
+   //    left: 50%;
+   //    width: 60%;
+   //    height: 20%;
+   //    background-color: #ffffff;
+   //    transform: translate(-50%, -50%);
+   //    z-index: 3;
+   // }
+   &::after {
+      // mix-blend-mode: difference;
+      transition: opacity 0.1s 0.2s ease;
+      opacity: 0;
+      content: "ВЕРНУТЬ";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: "Amatic SC";
+      font-size: 2.2em;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.03em;
+      color: #fff;
+   }
+}
+.undeleted-label {
+   overflow: hidden;
+   transform: translate(0 0);
+   transform-origin: right;
+   // transition: 0.5s ease;
+   transition: top 0.2s ease, right 0.2s ease, transform 0.2s ease,
+      width 0.3s 0.2s ease, height 0.3s 0.2s ease,
+      background-image 0.3s 0.2s ease;
+   pointer-events: none;
+   user-select: none;
+   // padding: 0px 20px;
+   margin: auto;
+   color: rgb(255, 255, 255);
+   text-align: center;
+   text-transform: uppercase;
+   font-weight: 600;
+   font-size: 1em;
+   position: absolute;
+   top: 0.4em;
+   right: 0.4em;
+   background-image: linear-gradient(45deg, #46fdb7, #00ff95, #0c271f);
+   border-radius: 10em;
+   border: 0.1em solid rgb(255, 255, 255);
+   box-shadow: inset 0.1em 0.1em 0.6em rgba(0, 0, 0, 0.4),
+      inset -0.1em -0.1em 2.6em rgba(0, 0, 0, 0.4), 0 0 0.5em rgb(255, 255, 255);
+   width: 1.6em;
+   height: 1.6em;
+   z-index: 4;
+   // Amination
+   animation-name: last-hero-indicator-lightning;
+   animation-duration: 2s;
+   animation-iteration-count: infinite;
+   animation-timing-function: ease-in-out;
+   animation-direction: alternate;
+   // transform-origin: center; /* Определяем точку трансформации */
+   &::after {
+      // mix-blend-mode: difference;
+      transition: opacity 0.1s 0.2s ease;
+      opacity: 0;
+      content: "УДАЛИТЬ";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: "Amatic SC";
+      font-size: 2.2em;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.03em;
+      color: #ffffff;
+   }
+}
+
+// .deleted-label {
+//    z-index: 0;
+//    pointer-events: none;
+//    user-select: none;
+//    padding: 0px 20px;
+//    margin: auto;
+//    color: rgb(255, 255, 255);
+//    text-align: center;
+//    text-transform: uppercase;
+//    font-weight: 600;
+//    font-size: 12px;
+//    position: absolute;
+//    top: 0;
+//    right: 0;
+//    width: fit-content;
+//    height: fit-content;
+//    background-image: linear-gradient(to left, #ff0000, #000000);
+//    transform: rotate(45deg) translateX(1.4em) translateY(-1em);
+// }
+
+.deleted-overlay {
+   border-top: 4px solid rgb(255, 0, 0);
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.5);
+   box-shadow: inset 0 0 10px rgba(255, 0, 0, 0.8);
+}
+
+.undeleted-overlay {
+   border-top: 4px solid rgb(0, 255, 0);
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   // background-color: rgba(255, 0, 0, 0.3);
+   // box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.8);
+}

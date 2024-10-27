@@ -1,0 +1,481 @@
+@import "reset.scss";
+@import "fonts.scss";
+@import "vars.scss";
+@import "themes.scss";
+@import "heroeslist.scss";
+@import "checkbox.scss";
+@import "button.scss";
+@import "popup.scss";
+@import "rolling.scss";
+@import "showhero.scss";
+@import "lastheroes.scss";
+@import "songcheckbox.scss";
+@import "logs.scss";
+@import "whatsnew.scss";
+@import "animations.scss";
+@import "portraitslist.scss";
+@import "golast.scss";
+@import "update.scss";
+@import "minigame-pairs.scss";
+@import "loading.scss";
+
+// body {
+
+// }
+
+:root {
+   --extra-width: 44px;
+   --rolling-duration: 6s;
+   --selectable-random-animation-duration: 0.5s;
+   --selectable-cards-transition-duration: 0.5s;
+   --card-border-radius-small: 
+   --card-border-radius-large: 
+}
+
+.global-overlay {
+   display: flex;
+   visibility: hidden;
+   opacity: 0;
+   pointer-events: none;
+   user-select: none;
+   transition: visibility 0s 0.75s, opacity 0.7s;
+   position: absolute;
+   inset: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 0;
+   background-color: rgba(0, 0, 0, 0.5);
+   box-shadow: inset 0 0 25em rgba(0, 0, 0, 1);
+   backdrop-filter: blur(10em);
+   &__visible {
+      display: flex;
+      visibility: visible;
+      opacity: 1;
+      pointer-events: none;
+      user-select: auto;
+      transition: visibility 0s, opacity 0.7s;
+   }
+}
+
+.hello-chat {
+   // animation-name: hello;
+   animation-duration: 2s;
+   animation-iteration-count: infinite;
+   animation-timing-function: linear;
+   animation-direction: alternate;
+   transform-origin: center; /* Определяем точку трансформации */
+   cursor: default;
+   transition: 0.3s ease;
+   opacity: 0.8;
+   padding: 0 10em;
+   transform: translateY(2em) translateX(-10.4em) rotate(-25deg);
+   font-size: 18px;
+   position: absolute;
+   top: 0;
+   left: 0;
+   border: 0.2em solid #1d1611;
+   box-shadow: inset 0 0 2em #00000085, inset 0 0 3em #ff0b0b85,
+      inset 0 0 1em #00000000;
+   background-image: linear-gradient(25deg, #ff1919, #ffd901);
+   width: fit-content;
+   height: fit-content;
+   // &:hover {
+   //    opacity: 1;
+   // }
+   &-text {
+      font-family: "Pacifico";
+      font-weight: 500;
+      background-image: linear-gradient(125deg, #201708, #311b1b);
+      font-size: 1.8em;
+      padding: 0.3em;
+      background-clip: text;
+      color: transparent;
+      text-wrap: nowrap;
+   }
+}
+
+.minigames {
+   display: none;
+   position: absolute;
+   left: 0;
+   top: 50%;
+   transform: translate(-100%, -50%);
+   &__box {
+      position: relative;
+      min-height: 50vh;
+      width: 15em;
+      background-color: #fff;
+      border-top-right-radius: 2em;
+      border-bottom-right-radius: 2em;
+   }
+   &__button {
+      aspect-ratio: 1;
+      height: 2em;
+      // width: 2em;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(100%, -50%);
+      transform-origin: center;
+      // padding: 1em;
+      background: #000;
+      font-size: 2em;
+   }
+}
+
+.new-option {
+   cursor: pointer;
+   position: absolute;
+   top: -100%;
+   left: 0;
+   animation-name: new-option;
+   animation-duration: 3s;
+   animation-iteration-count: infinite;
+   animation-timing-function: linear;
+   animation-direction: alternate;
+   transform-origin: center; /* Определяем точку трансформации */
+   &__button {
+      background: none;
+      text-wrap: nowrap;
+      text-shadow: 0.1em 0.1em 0 #000;
+      color: #fff;
+      font-size: 3em;
+      font-family: "Tiny5";
+   }
+}
+.body {
+   overflow: hidden;
+   width: 100vw;
+   height: 100vh;
+   height: 100vh;
+   position: relative;
+   font-size: 10px;
+   background-image: linear-gradient(#2e2e2e, #111111);
+   // box-shadow: inset 0 0 25px #000;
+   color: $main-text;
+   font-family: "Roboto";
+   &__disabled {
+      pointer-events: none;
+      user-select: none;
+   }
+}
+
+.wrapper {
+   margin: 0 auto;
+   &:has(.header) {
+      max-width: 100%;
+      margin-bottom: 1em;
+   }
+   &:has(.main) {
+      width: 1600px;
+   }
+   &:has(.footer) {
+      max-width: 100%;
+   }
+}
+
+.main-logo {
+   height: fit-content;
+   opacity: 0.2;
+   user-select: none;
+   pointer-events: none;
+   z-index: 0;
+   // overflow: hidden;
+   // max-width: 100%;
+   max-height: fit-content;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   position: fixed;
+   top: -3%;
+   // top: 0;
+   left: 0;
+   &__content {
+      // text-shadow: red 0 0 15px;
+      padding: 0;
+      // opacity: 0.1;
+      // mix-blend-mode: difference;
+      background-image: linear-gradient(
+         to top,
+         rgb(248, 11, 228) 0%,
+         rgb(0, 253, 253) 100%
+      );
+      color: transparent;
+      // color: red;
+      -webkit-background-clip: text;
+      background-clip: text;
+      font-family: "Pacifico";
+      font-size: 26.5em;
+      white-space: nowrap;
+      letter-spacing: -0.009em;
+      word-spacing: 0.1em;
+      text-align: center;
+      filter: blur(5px);
+      width: 100%;
+      animation-name: pulsating;
+      animation-duration: 10s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+      animation-direction: alternate;
+      transform-origin: center; /* Определяем точку трансформации */
+   }
+}
+
+.header {
+   background-image: linear-gradient(#3a3a3a, #242424);
+   font-size: 1em;
+   // max-height: 5vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: $header-bg;
+   padding: 0.5em;
+   transition: 0.75s linear;
+   &__moved {
+      // animation: 1s header-moved linear forwards;
+      transform: translateY(-100%);
+      transition: 0.75s linear;
+   }
+}
+
+.nav {
+   font-size: 1em;
+   color: $major-text;
+   &__list {
+      display: flex;
+      gap: 5.5em; //  БЫЛО 7.5
+   }
+   &__item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 400;
+      font-family: "Roboto";
+      letter-spacing: 0.03em;
+      font-size: 1.8em;
+      padding: 0.2em 0.8em;
+      border-radius: 0.6em;
+      border: #303030 0.15em solid;
+      transition: 0.2s ease;
+      &:hover {
+         cursor: pointer;
+         background-color: #fff;
+         color: #2e2e2e;
+         box-shadow: 0 0 0.27em #ffffff85;
+      }
+   }
+   .portraits-list-button {
+      padding: 0.15em 0.8em;
+      font-weight: 400;
+      scale: 1.2;
+      color: #353535;
+      background-image: linear-gradient(#aaaaaa, #686868);
+      border: #8f8f8f 0.15em solid;
+      &:hover {
+         cursor: pointer;
+         background-color: #ffffff;
+         color: #000000;
+         border-color: #4d4949;
+         box-shadow: 0 0 0.4em #ffffff94;
+      }
+   }
+}
+
+// .update__button {
+//    position: absolute;
+//    right: 1em;
+// }
+
+.main {
+   // margin-top: 20vh;
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+   // background-color: #757575;
+}
+
+.help {
+   // transition: transform 0.5s ease-in-out;
+   // transform: translateY(66px);
+   box-shadow: 0 0 20px #000000, inset 0 0 20px #ffffff17;
+   // border: 2px solid #2f2f2f;
+   padding: 1em 1.5em;
+   // overflow: hidden;
+   // background-color: #181818;
+   backdrop-filter: blur(10px);
+   border-radius: 1.6em;
+   width: 100%;
+   font-size: 10px;
+   // min-height: 51px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   z-index: 2;
+}
+
+.remove-heroes {
+   font-size: 1.8em;
+   position: relative;
+   color: $major-text;
+   // width: 100%;
+   align-items: center;
+   justify-content: start;
+   display: flex;
+   gap: 1.1em;
+}
+
+.remove-heroes__info {
+   text-align: end;
+   user-select: none;
+   // position: relative;
+   &:hover .remove-heroes__question {
+      opacity: 0;
+   }
+   &:hover .remove-heroes__answer {
+      opacity: 1;
+      color: #fff;
+   }
+}
+
+.remove-heroes__question {
+   transition: 0.3s ease;
+   opacity: 1;
+   transform: translateY(-50%);
+}
+
+.remove-heroes__answer {
+   // text-decoration: underline;
+   // text-underline-offset: 5px;
+   transition: 0.5s ease;
+   opacity: 0;
+   transform: translateY(50%);
+   // min-height: 19px;
+}
+
+.reset-button {
+   padding: 0.2em 1.2em;
+   transition: color 0.1s, box-shadow 0.2s, background-color 0.2s ease;
+   background-color: #fff;
+   color: $minor-text;
+   border-radius: 1em;
+   font-size: 1.8em;
+   font-weight: bold;
+   // width: 9em;
+   height: 2em;
+   cursor: pointer;
+   &:hover {
+      color: white;
+      background-color: transparent;
+      box-shadow: 0 0 8px #fff, inset 0 0 10px #fff;
+   }
+}
+
+.choose {
+   font-size: 8px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   // margin-top: 50px;
+}
+
+.confirm {
+   font-size: 10px;
+   display: flex;
+   flex-direction: column;
+   gap: 1em;
+   border-radius: 0.4em;
+   padding: 2em;
+   background-color: #fff;
+   // width: 30vw;
+   height: fit-content;
+   &__text {
+      font-weight: 400;
+      text-align: center;
+      color: rgb(0, 0, 0);
+      font-size: 1.6em;
+      &-special {
+         font-weight: 600;
+         font-size: 1.8em;
+      }
+   }
+   &__buttons {
+      // height: 3em;
+      gap: 1em;
+      display: flex;
+      justify-content: center;
+   }
+   &__button {
+      color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.8em;
+      transition: all 0.2s ease;
+      border-radius: 0.4em;
+      padding: 0.5em 5em;
+      // width: 50%;
+      &:hover {
+         cursor: pointer;
+      }
+   }
+   &__accept {
+      background-color: #b8ffb5;
+      border: 0.1em solid #09ff00;
+      &:hover {
+         background-color: #65ff60;
+      }
+   }
+   &__cancel {
+      background-color: #ffb5b5;
+      border: 0.1em solid #ff0000;
+      &:hover {
+         background-color: rgb(255, 99, 99);
+      }
+   }
+}
+
+.footer {
+   width: 100%;
+}
+
+.powered {
+   position: absolute;
+   bottom: 0.5em;
+   right: 1em;
+}
+
+.powered__text {
+   color: #ffffff;
+   opacity: 0.2;
+   // color: #3a3a3a;
+   font-variation-settings: "wght" 300;
+   font-size: 1.4em;
+   transition: 0.2s ease;
+   pointer-events: none;
+   user-select: none;
+}
+
+.song {
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   width: 0;
+   height: 0;
+   opacity: 1;
+}
+
+// .twist-dance {
+
+// }
+// .overlay {
+//    transition: all 3s ease;
+//    width: 100%;
+//    height: 100%;
+//    position: fixed;
+//    inset: 0;
+//    background-color: rgba(0, 0, 0, 0.5);
+//    z-index: 0;
+// }
+@import "media.scss";

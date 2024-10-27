@@ -1,0 +1,85 @@
+@media (2560px <= width) {
+   :root {
+      --extra-width: 36px;
+    }
+    .body {
+      font-size: 14px;
+    }
+    .last-box {
+      font-size: 13px;
+    }
+    .hello-chat {
+      font-size: 22px;
+    }
+   .wrapper {
+      // margin: 0 auto;
+      &:has(.main) {
+         width: 2250px;
+      }
+   }
+   // .nav {
+   //    &__item {
+   //       font-size: 26px;
+   //    }
+   // }
+   .main {
+      gap: 23px;
+   }
+   // .last-box {
+   //    min-height: 67.5px;
+   // }
+   .last-heroes {
+      // min-height: 67.5px;
+      // &__item {
+      //    width: 120px;
+      // }
+   }
+   .box {
+      height: 400px;
+      padding: 12px;
+   }
+   .window {
+      &__item {
+         width: 458px;
+      }
+      &__pointer {
+         font-size: 13px;
+      }
+   }
+   .show-hero {
+      font-size: 14px;
+   }
+   .whats-new {
+      font-size: 14px;
+   }
+   .help {
+      font-size: 13px;
+   }
+   .portraits-list {
+      font-size: 14px;
+   }
+   .minigame-pairs {
+      font-size: 14px;
+   }
+   .card-portrait-video-name {
+      font-size: 22px;
+   }
+   .loading {
+      font-size: 18px;
+   }
+   .close__button {
+      font-size: 12px;
+   }
+   .custom-border {
+      font-size: 14px;
+   }
+   .choose {
+      font-size: 24px;
+   }
+   .go-last {
+      font-size: 14px;
+   }
+   .update {
+      font-size: 14px;
+   }
+}

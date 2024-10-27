@@ -1,0 +1,258 @@
+.box {
+   font-size: 10px;
+   position: relative;
+   padding: 0.8em;
+   height: 300px;
+   // background-color: #727272;
+   background-image: linear-gradient(#f700ff0c, #d9ff000c);
+   border-radius: 1.6em;
+   box-shadow: inset 0 0 10px #ffffff17;
+}
+
+.roulette {
+   height: 100%;
+   overflow: hidden;
+   position: relative;
+   color: #fff;
+   box-shadow: inset 0 0 60px #000, 0 0   60px #000000;
+   background-color: $blocks;
+   border-radius: 0.8em;
+   // border: 12px solid #fff;
+   &::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      // background-color: #fff;
+      box-shadow: inset 0 0 50px #00000094, inset 0 0 60px #00000094,
+         inset 150px 0 80px #00000094, inset -150px 0 80px #00000094;
+   }
+}
+
+.window {
+   width: fit-content;
+   height: 100%;
+   &__pointer {
+      opacity: 0.8;
+      font-size: 10px;
+      z-index: 5;
+      position: absolute;
+      left: calc(50% - 3em);
+      width: 0;
+      height: 0;
+      width: 6em; /* Ширина треугольника */
+      height: 8em; /* Высота треугольника */
+      background-color: #d10d0d; /* Цвет треугольника */
+      box-shadow: inset 0 -1em 2.5em #000, inset 0 0 2.5em #30161d;
+      // border: 1px solid #6d1010;
+      &-top {
+         top: 0px;
+         clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+         transform: rotate(180deg);
+      }
+      &-bottom {
+         bottom: 0px;
+         clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      }
+   }
+   &__list {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // gap: 35px;
+      // transform: translateX(0);
+      &-animated {
+         transition: all 4s cubic-bezier(0.2, 1, 0.3, 1);
+      }
+   }
+   &__box {
+      padding: 0 17px;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      background: repeating-linear-gradient(
+         90deg,
+         rgba(0, 0, 0, 0.115),
+         rgba(0, 0, 0, 0.115) 6.25%,
+         rgba(255, 0, 0, 0.115) 6.25%,
+         rgba(255, 0, 0, 0.115) 12.5%
+      );
+      // &-odd {
+      //    transition: all 3s ease;
+      //    &:nth-child(odd) {
+      //       background-color: rgba(0, 0, 0, 0.115);
+      //       // box-shadow: inset 0 0 220px #000,inset 0 0 20px #000;
+      //    }
+      //    &:nth-child(even) {
+      //       background-color: rgba(255, 0, 0, 0.115);
+      //       // box-shadow: inset 0 0 220px #000,inset 0 0 20px #000;
+      //    }
+      // }
+      // &-even {
+      //    transition: all 3s ease;
+      //    &:nth-child(odd) {
+      //       background-color: rgba(255, 0, 0, 0.115);
+      //       // box-shadow: inset 0 0 220px #000,inset 0 0 20px #000;
+      //    }
+      //    &:nth-child(even) {
+      //       background-color: rgba(0, 0, 0, 0.115);
+      //       // box-shadow: inset 0 0 220px #000,inset 0 0 20px #000;
+      //    }
+      // }
+   }
+   &__item {
+      background-image: url("../assets/heroes/abyssal_underlord.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      object-fit: cover;
+      object-position: center;
+      // background-color: #fff;
+      border-radius: 16px;
+      width: 344px;
+      // height: 174px;
+      aspect-ratio: 1.77777;
+      // width: 335px;
+      // border: 2px solid #1b1b1b6c;
+      box-shadow: inset 0 0 60px #000000, 0 20px 20px #000000;
+   }
+}
+
+.rolling-animation {
+   animation-name: rolling;
+   animation-duration: var(--rolling-duration);
+   animation-iteration-count: 1;
+   // animation-timing-function: linear;
+   animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+   animation-direction: normal;
+   transform-origin: left; /* Определяем точку трансформации */
+}
+
+.default-animation {
+   animation-name: start;
+   animation-duration: 600s;
+   animation-iteration-count: infinite;
+   animation-timing-function: linear;
+   // animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+   animation-direction: normal;
+   transform-origin: left; /* Определяем точку трансформации */
+}
+
+@keyframes start {
+   0% {
+      transform: translateX(0);
+   }
+   100% {
+      transform: translateX(-42000px);
+   }
+}
+
+.shutter {
+   width: 100%;
+   height: 100%;
+   position: absolute;
+}
+
+
+
+// @keyframes rolling {
+//    0% {
+//       transform: translateX(0);
+//    }
+//    5% {
+//       transform: translateX(0);
+//    }
+//    35% {
+//       transform: translateX(600px);
+//    }
+//    100% {
+//       transform: translateX(-4000px);
+//    }
+// }
+
+///////////////////////////////////////////
+/////////////Это стили без тэга div.box////
+///////////////////////////////////////////
+
+// .roulette {
+//    position: relative;
+//    overflow: hidden;
+//    margin-top: 25px;
+//    color: #fff;
+//    box-shadow: 0 25px 50px #000, inset 0 0 60px #000;
+//    background-color: $blocks;
+//    border-radius: 16px;
+//    border: 12px solid #fff;
+// }
+
+// .window {
+
+//    width: fit-content;
+//    height: 284px;
+//    &__pointer {
+//       z-index: 5;
+//       position: absolute;
+//       left: calc(50% - 30px);
+//       width: 0;
+//       height: 0;
+//       width: 60px; /* Ширина треугольника */
+//       height: 80px; /* Высота треугольника */
+//       background-color: #d10d0d; /* Цвет треугольника */
+//       box-shadow: inset 0 0 25px #000;
+//       &-top {
+//          top: -12px;
+//          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+//          transform: rotate(180deg);
+//       }
+//       &-bottom {
+//          bottom: -12px;
+//          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+//       }
+//    }
+//    &__list {
+//       width: 100%;
+//       height: 100%;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       // gap: 35px;
+//       // transform: translateX(-150px);
+//       &-animated {
+//          transition: all 4s cubic-bezier(0.2, 1, 0.3, 1);
+//       }
+//    }
+//    &__box {
+
+//       padding: 0 17.5px;
+//       display: flex;
+//       align-items: center;
+//       height: 100%;
+//       background-color: #ffffff;
+//       &:nth-child(odd) {
+//          background-color: rgb(68, 70, 73);
+//          // box-shadow: inset 0 0 220px #000,inset 0 0 20px #000;
+//       }
+//       &:nth-child(even) {
+//          background-color: rgb(49, 49, 51);
+//          // box-shadow: inset 0 0 220px #000,inset 0 0 20px #000;
+//       }
+//    }
+//    &__item {
+
+//       background-image: url("../assets/heroes/abyssal_underlord.jpg");
+//       background-position: center;
+//       background-repeat: no-repeat;
+//       background-size: cover;
+//       object-fit: cover;
+//       object-position: center;
+//       // background-color: #fff;
+//       border-radius: 16px;
+//       height: 174px;
+//       aspect-ratio: 1.77777;
+//       // width: 335px;
+//       // border: 3px solid #ffffff;
+//    }
+// }

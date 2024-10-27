@@ -1,0 +1,160 @@
+.minigame-pairs {
+   font-size: 10px;
+   border-radius: 1.6em;
+   overflow: hidden;
+   background: linear-gradient(66deg, #06522e, #0f5458, #122857);
+   // width: 500px;
+   // height: 500px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 2em;
+   padding: 2em;
+   &__header {
+      // font-size: 3em;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0em;
+   }
+   &__steps {
+      &-text {
+         font-size: 5em;
+      }
+   }
+   &__title {
+      &-text {
+         font-size: 3em;
+      }
+   }
+   &__best {
+      &-text {
+         font-size: 3em;
+      }
+   }
+   &__board {
+      transition: opacity 0.3s ease;
+      &-list {
+         // width: 100%;
+         display: grid;
+         grid-template-columns: repeat(4, 1fr);
+         grid-template-rows: repeat(4, 1fr);
+         gap: 2em;
+      }
+      &-item {
+         width: 8em;
+         height: 8em;
+         perspective: 400px;
+         display: inline-block;
+      }
+      &-image {
+         width: 100%;
+         height: 100%;
+         padding: 1em;
+         filter: drop-shadow(0 0.6em 0.2em #000);
+      }
+      &_animated {
+         opacity: 0;
+         pointer-events: none;
+         user-select: none;
+      }
+   }
+   &__reset-button {
+      font-size: 2em;
+      padding: 0.3em 0.5em;
+      background-color: #000;
+      font-family: "Tiny5";
+      transition: 0.1s ease;
+      cursor: pointer;
+      // height: 2em;
+      font-size: 2.6em;
+      font-weight: 600;
+      border-radius: 0.55em;
+      padding: 0.3em 0.5em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      text-transform: uppercase;
+      background-color: #00b7ff;
+      // box-shadow: inset 0 0 1.3em #0000007c, 0 -0.2em 0.6em rgba(0, 0, 0, 0.8);
+      box-shadow: 0 0.2em 0 #1d6781;
+      display: flex;
+      z-index: 3;
+      color: #000000;
+      &:hover {
+         background-color: #00a2ff;
+         color: rgb(0, 0, 0);
+      }
+      &:active {
+         transform: translateY(0.2em);
+         box-shadow: 0 0 0 #1d6781;
+         background-color: #00a2ff;
+         color: rgb(0, 0, 0);
+      }
+   }
+}
+
+/* Общий стиль для карточки */
+.card {
+   user-select: none;
+   position: relative;
+   width: 100%;
+   height: 100%;
+   transform-style: preserve-3d;
+   transition: transform 0.6s ease, scale 0.1s ease;
+   cursor: pointer;
+   &:hover {
+      scale: 1.1;
+   }
+   &:active {
+      transform: rotateY(25deg);
+   }
+   &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: -webkit-linear-gradient(30deg, #08aeea 0%, #2af598 100%);
+      background-image: -moz-linear-gradient(30deg, #08aeea 0%, #2af598 100%);
+      background-image: -o-linear-gradient(30deg, #08aeea 0%, #2af598 100%);
+      background-image: linear-gradient(30deg, #08aeea 0%, #2af598 100%);
+      width: calc(100% + 1em);
+      height: calc(100% + 1em);
+      transform: translate(-0.5em, -0.5em);
+      // z-index: 0;
+      border-radius: 1em;
+   }
+}
+
+/* Добавляем класс при перевороте */
+.card.is-flipped {
+   border-radius: 0.5em;
+   transform: rotateY(180deg);
+   pointer-events: none;
+}
+
+
+/* Лицевая и обратная стороны */
+.card__face {
+   border-radius: 0.5em;
+   background-color: #fff;
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   backface-visibility: hidden; /* Скрыть заднюю сторону при перевороте */
+   z-index: 1;
+   
+}
+
+.card__face--back {
+   background: linear-gradient(66deg, #2b2b2b, #2b2b3d, #2c2c2c);
+   box-shadow: inset 0 0 3em #0000005b;
+}
+
+.card__face--front {
+   transform: rotateY(180deg); /* Лицевая сторона перевернута */
+}
