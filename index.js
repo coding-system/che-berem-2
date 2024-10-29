@@ -6,6 +6,9 @@ import {
    // showHeroes,
    // renderDefaultHeroesList,
    updateOverlayVisibility,
+   hideOverlay,
+   makeDefaultPageElementsStyle,
+   clearHeroStyles,
 } from "./scripts/rolling.js";
 import {
    initializePopups,
@@ -37,8 +40,8 @@ const songChanger = document.querySelector(".song-changer-checkbox");
 const songVolume = document.querySelector(".song-changer-volume");
 const rouletteSong = document.querySelector(".song");
 const globalOverlay = document.querySelector(".global-overlay");
-const headerOfPage = document.querySelector(".header")
-const lastHeroesBox = document.querySelector(".last-box")
+const headerOfPage = document.querySelector(".header");
+const lastHeroesBox = document.querySelector(".last-box");
 
 // Roulette
 const box = document.querySelector(".box");
@@ -149,8 +152,12 @@ chooseButton.addEventListener("click", () => getRandomElement(startHeroes));
 // confirmCancel.addEventListener("click", () => resetHeroes(startHeroes));
 
 showHeroAcceptButton.addEventListener("click", () => {
+   hideOverlay(1000);
+   makeDefaultPageElementsStyle();
+   clearHeroStyles();
    acceptChosenHero();
 });
+
 showHeroRertyButton.addEventListener("click", () => {
    retryChosenHero();
 });
@@ -664,5 +671,5 @@ export {
    globalOverlay,
    headerOfPage,
    lastHeroesBox,
-   portraitsListButtons
+   portraitsListButtons,
 };

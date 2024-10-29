@@ -33,8 +33,8 @@
       // justify-content: center;
       grid-template-rows: repeat(2, 1fr);
       grid-template-columns: repeat(2, 1fr);
-      row-gap: 3em;
-      column-gap: 3.5em;
+      row-gap: 2.3em;
+      // column-gap: 3.5em;
       transition: transform 0.75s linear;
       &__moved {
          transform: scale(1.1) translateY(-5em);
@@ -72,8 +72,8 @@
          max-width: 1.8em;
       }
       &__moved {
-         transition: transform 0.75s linear, opacity 0.75s linear;
-         transform: translateY(100%) scale(0.75);
+         transition: opacity 0.75s linear;
+         // transform: scale(0.75);
          opacity: 0;
       }
    }
@@ -89,12 +89,13 @@
       justify-content: center;
       display: grid;
       row-gap: 1.2em;
-      column-gap: 1em;
+      column-gap: 1.2em;
       grid-template-columns: repeat(11, 1fr);
       grid-template-rows: repeat(auto, 1fr);
       // background-color: #464646;
    }
    &__search {
+      display: none;
       transition: 0.1s ease;
       z-index: 0;
       min-height: 100%;
@@ -145,7 +146,7 @@
    }
    .buttons-bar {
       font-size: 1.4em;
-      box-shadow: inset 0 0 0.5em #00000079;
+      box-shadow: inset 0 0 1.5em #00000079;
       border-radius: 1em;
       padding: 0.625em;
       background-color: #00000054;
@@ -728,10 +729,6 @@
             border-radius: 0.55em;
          }
       }
-      &-retired {
-         filter: contrast(0.8) grayscale(1) brightness(0.5);
-         z-index: 5;
-      }
    }
    &__last {
       &-final {
@@ -846,6 +843,139 @@
                   0.25
                ),
                rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05)
+            );
+            width: calc(100% + 0.5em);
+            height: calc(100% + 0.5em);
+            transform: translate(-0.25em, -0.25em);
+            border-radius: 0.55em;
+         }
+      }
+      &-thinking {
+         pointer-events: none;
+         user-select: none;
+         transform: scale(1.2);
+         transition: transform
+            var(--selectable-random-selectable-cards-transition-duration) linear;
+         // transition: filter 0s 0s linear;
+         // filter: grayscale(0) brightness(1.2);
+         z-index: 6;
+         &-image {
+            filter: grayscale(0) brightness(1.2);
+            transition: opacity
+                  calc(
+                     var(
+                           --selectable-random-selectable-cards-transition-duration
+                        ) / 3
+                  )
+                  linear,
+               filter
+                  calc(
+                     var(
+                           --selectable-random-selectable-cards-transition-duration
+                        ) / 3
+                  )
+                  linear;
+            &__sparking {
+               animation: searched-image-sparking
+                  calc(var(--selectable-random-animation-duration) * 4) linear
+                  infinite alternate;
+            }
+            &__sparking {
+               animation: thinking-image-sparking
+                  calc(var(--selectable-random-animation-duration) * 1) linear
+                  infinite alternate;
+            }
+         }
+         &::before,
+         &::after {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: none;
+            user-select: auto;
+            transition: visibility
+                  var(--selectable-random-selectable-cards-transition-duration)
+                  0s,
+               opacity
+                  var(--selectable-random-selectable-cards-transition-duration);
+            animation: calc(var(--selectable-random-animation-duration) * 3)
+                  searched-light-spinning linear infinite,
+               calc(var(--selectable-random-animation-duration) * 2)
+               thinking-stay-light-colors linear infinite alternate;
+            background: conic-gradient(
+               from var(--angle),
+               rgba(var(--b-first-r), var(--b-first-g), var(--b-first-b), 0.2)
+                  50%,
+               rgba(var(--b-first-r), var(--b-first-g), var(--b-first-b), 0.2),
+               rgba(
+                  var(--b-second-r),
+                  var(--b-second-g),
+                  var(--b-second-b),
+                  0.25
+               ),
+               rgba(var(--b-second-r), var(--b-second-g), var(--b-second-b), 1),
+               rgba(
+                  var(--b-second-r),
+                  var(--b-second-g),
+                  var(--b-second-b),
+                  0.25
+               ),
+               rgba(var(--b-first-r), var(--b-first-g), var(--b-first-b), 0.2)
+            );
+            width: calc(100% + 0.5em);
+            height: calc(100% + 0.5em);
+            transform: translate(-0.25em, -0.25em);
+            border-radius: 0.55em;
+         }
+      }
+      &-retired {
+         pointer-events: none;
+         user-select: none;
+         transform: scale(0.95);
+         transition: transform
+            var(--selectable-random-selectable-cards-transition-duration) linear;
+         z-index: 5;
+         &-image {
+            opacity: 0.75;
+            transition: opacity
+                  calc(
+                     var(
+                           --selectable-random-selectable-cards-transition-duration
+                        ) / 3
+                  )
+                  linear,
+               filter
+                  calc(
+                     var(
+                           --selectable-random-selectable-cards-transition-duration
+                        ) / 3
+                  )
+                  linear;
+            filter: contrast(0.8) grayscale(0.95) brightness(0.5);
+         }
+         &-banned {
+            transition: 0.5s linear;
+            opacity: 0.25;
+            transform: scale(0.9);
+            filter: contrast(0.8) grayscale(1) brightness(0.5);
+         }
+         &::before,
+         &::after {
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            user-select: auto;
+            transition: visibility 0s
+                  var(--selectable-random-selectable-cards-transition-duration),
+               opacity
+                  var(--selectable-random-selectable-cards-transition-duration);
+            animation: var(--selectable-random-animation-duration)
+                  searched-light-spinning linear infinite,
+               1s searched-light-colors linear infinite alternate;
+            background: conic-gradient(
+               from var(--angle),
+               rgba(var(--first-r), var(--first-g), var(--first-b), 0.5),
+               rgba(var(--second-r), var(--second-g), var(--second-b), 0.5),
+               rgba(var(--first-r), var(--first-g), var(--first-b), 0.5)
             );
             width: calc(100% + 0.5em);
             height: calc(100% + 0.5em);

@@ -340,3 +340,80 @@
       --a-second-b: 255;
    }
 }
+
+///Thinking
+/// 
+/// 
+
+@keyframes thinking-image-sparking{
+   0% {
+      filter: brightness(2);
+   }
+   100% {
+      filter: brightness(1);
+   }
+}
+
+@property --b-first-r {
+   syntax: "<number>";
+   initial-value: 255;
+   inherits: false;
+}
+
+@property --b-first-g {
+   syntax: "<number>";
+   initial-value: 0;
+   inherits: false;
+}
+
+@property --b-first-b {
+   syntax: "<number>";
+   initial-value: 255;
+   inherits: false;
+}
+
+@property --b-second-r {
+   syntax: "<number>";
+   initial-value: 0;
+   inherits: false;
+}
+
+@property --b-second-g {
+   syntax: "<number>";
+   initial-value: 255;
+   inherits: false;
+}
+
+@property --b-second-b {
+   syntax: "<number>";
+   initial-value: 221;
+   inherits: false;
+}
+
+@keyframes thinking-stay-light-colors {
+   0% {
+      --b-first-r: 255;
+      --b-first-g: 255;
+      --b-first-b: 255;
+      --b-second-r: 55;
+      --b-second-g: 146;
+      --b-second-b: 239;
+   }
+   50% {
+      --b-first-r: 255;
+      --b-first-g: 255;
+      --b-first-b: 255;
+      --b-second-r: 255;
+      --b-second-g: 0;
+      --b-second-b: 255;
+      
+   }
+   100% {
+      --b-first-r: 255;
+      --b-first-g: 255;
+      --b-first-b: 255;
+      --b-second-r: 236;
+      --b-second-g: 153;
+      --b-second-b: 31;
+   }
+}

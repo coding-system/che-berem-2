@@ -164,7 +164,6 @@
    margin: 0 auto;
    &:has(.header) {
       max-width: 100%;
-      margin-bottom: 1em;
    }
    &:has(.main) {
       width: 1600px;
@@ -448,7 +447,7 @@
 
 .powered__text {
    color: #ffffff;
-   opacity: 0.2;
+   opacity: 0.1;
    // color: #3a3a3a;
    font-variation-settings: "wght" 300;
    font-size: 1.4em;
