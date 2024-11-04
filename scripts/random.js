@@ -35,6 +35,7 @@ import { lastHeroes } from "./lastheroes.js";
 // export let currentSelectableHeroes = []; // Глобальная переменная
 // export let chosenIndex;
 export let chosenHero;
+export let totalTime;
 
 function disableChooseButton() {
    chooseButton.disabled = true;
@@ -80,7 +81,7 @@ function getRandomElement(heroesArray) {
    }
 
    // Выбираем 4 случайных героя
-   const selectedRandomHeroes = getRandomHeroes(selectableHeroes); // Используем отфильтрованных героев
+   const selectedRandomHeroes = getRandomHeroes(selectableHeroes, 4); // Используем отфильтрованных героев
 
    if (!selectedRandomHeroes) {
       console.log("Не удалось выбрать 4 героев.");

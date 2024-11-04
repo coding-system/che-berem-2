@@ -1859,58 +1859,123 @@ ol {
 }
 @property --b-first-r {
   syntax: "<number>";
-  initial-value: 255;
+  initial-value: 251;
   inherits: false;
 }
 @property --b-first-g {
   syntax: "<number>";
-  initial-value: 0;
+  initial-value: 255;
   inherits: false;
 }
 @property --b-first-b {
   syntax: "<number>";
-  initial-value: 255;
+  initial-value: 3;
   inherits: false;
 }
 @property --b-second-r {
   syntax: "<number>";
-  initial-value: 0;
+  initial-value: 142;
   inherits: false;
 }
 @property --b-second-g {
   syntax: "<number>";
-  initial-value: 255;
+  initial-value: 3;
   inherits: false;
 }
 @property --b-second-b {
   syntax: "<number>";
-  initial-value: 221;
+  initial-value: 255;
   inherits: false;
 }
-@keyframes thinking-stay-light-colors {
+@keyframes chosen-light-colors {
   0% {
-    --b-first-r: 255;
+    background-color: rgb(251, 255, 3);
+    background-color: rgb(137, 255, 3);
+    background-color: rgb(255, 154, 3);
+    background-color: rgb(142, 3, 255);
+    background-color: rgb(255, 3, 66);
+    background-color: rgb(255, 3, 171);
+    --b-first-r: 251;
     --b-first-g: 255;
-    --b-first-b: 255;
-    --b-second-r: 55;
-    --b-second-g: 146;
-    --b-second-b: 239;
+    --b-first-b: 3;
+    --b-second-r: 142;
+    --b-second-g: 3;
+    --b-second-b: 255;
   }
   50% {
-    --b-first-r: 255;
+    --b-first-r: 137;
     --b-first-g: 255;
-    --b-first-b: 255;
+    --b-first-b: 3;
     --b-second-r: 255;
-    --b-second-g: 0;
-    --b-second-b: 255;
+    --b-second-g: 3;
+    --b-second-b: 66;
   }
   100% {
     --b-first-r: 255;
-    --b-first-g: 255;
-    --b-first-b: 255;
-    --b-second-r: 236;
-    --b-second-g: 153;
-    --b-second-b: 31;
+    --b-first-g: 154;
+    --b-first-b: 3;
+    --b-second-r: 255;
+    --b-second-g: 3;
+    --b-second-b: 171;
+  }
+}
+@property --c-first-r {
+  syntax: "<number>";
+  initial-value: 255;
+  inherits: false;
+}
+@property --c-first-g {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: false;
+}
+@property --c-first-b {
+  syntax: "<number>";
+  initial-value: 255;
+  inherits: false;
+}
+@property --c-second-r {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: false;
+}
+@property --c-second-g {
+  syntax: "<number>";
+  initial-value: 255;
+  inherits: false;
+}
+@property --c-second-b {
+  syntax: "<number>";
+  initial-value: 221;
+  inherits: false;
+}
+@keyframes retired-light-colors {
+  0% {
+    background-color: rgb(0, 0, 0);
+    --c-first-r: 255;
+    --c-first-g: 255;
+    --c-first-b: 255;
+    --c-second-r: 255;
+    --c-second-g: 255;
+    --c-second-b: 255;
+  }
+  50% {
+    background-color: rgb(0, 0, 0);
+    --c-first-r: 255;
+    --c-first-g: 255;
+    --c-first-b: 255;
+    --c-second-r: 255;
+    --c-second-g: 255;
+    --c-second-b: 255;
+  }
+  100% {
+    background-color: rgb(0, 0, 0);
+    --c-first-r: 255;
+    --c-first-g: 255;
+    --c-first-b: 255;
+    --c-second-r: 255;
+    --c-second-g: 255;
+    --c-second-b: 255;
   }
 }
 .portraits-list {
@@ -1923,12 +1988,12 @@ ol {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  font-family: "Open Sans";
+  font-family: "Roboto";
   font-weight: 700;
 }
 .portraits-list__main-title {
   color: rgba(255, 251, 0, 0.5);
-  font-family: "Open Sans";
+  font-family: "Roboto";
   font-size: 1.5em;
 }
 .portraits-list__box {
@@ -1962,13 +2027,15 @@ ol {
   width: -moz-fit-content;
   width: fit-content;
   z-index: -1;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 1.4em;
   text-transform: uppercase;
   display: flex;
   align-items: center;
   gap: 0.4em;
+  font-family: "Open Sans";
   color: rgb(255, 255, 255);
+  letter-spacing: 0.07em;
 }
 .portraits-list__title__image {
   -webkit-user-select: none;
@@ -2051,9 +2118,8 @@ ol {
 }
 .portraits-list .buttons-bar {
   font-size: 1.4em;
-  box-shadow: inset 0 0 1.5em rgba(0, 0, 0, 0.4745098039);
-  border-radius: 1em;
-  padding: 0.625em;
+  border-radius: 0.7em;
+  padding: 0.5em;
   background-color: rgba(0, 0, 0, 0.3294117647);
   width: 100%;
   display: flex;
@@ -2074,7 +2140,7 @@ ol {
   transition: all 0.1s ease;
   font-family: "Roboto";
   font-weight: 500;
-  border-radius: 0.5em;
+  border-radius: 0.3em;
   padding: 0.2em 0.5em;
   cursor: pointer;
 }
@@ -2155,7 +2221,7 @@ ol {
 }
 
 .card-portrait-item {
-  transition: scale var(--selectable-random-selectable-cards-transition-duration) linear;
+  transition: transform var(--selectable-random-selectable-cards-transition-duration) linear;
   filter: contrast(1) grayscale(0) brightness(1);
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -2320,7 +2386,7 @@ ol {
 }
 
 .card-portrait-image-box {
-  transition: 0.3s ease;
+  transition: opacity calc(var(--selectable-random-selectable-cards-transition-duration) / 3) linear, filter calc(var(--selectable-random-selectable-cards-transition-duration) / 3) linear;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -2492,20 +2558,20 @@ ol {
   transform: translate(-0.25em, -0.25em);
   border-radius: 0.55em;
 }
-.selectable__last-final {
+.selectable__last-chosen {
   pointer-events: none;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  transform: scale(1.05);
+  transform: scale(1.3);
   transition: transform var(--selectable-random-selectable-cards-transition-duration) linear;
-  z-index: 5;
+  z-index: 6;
 }
-.selectable__last-final-image {
+.selectable__last-chosen-image {
   filter: grayscale(0) brightness(1.2);
   transition: opacity calc(var(--selectable-random-selectable-cards-transition-duration) / 3) linear, filter calc(var(--selectable-random-selectable-cards-transition-duration) / 3) linear;
 }
-.selectable__last-final::before, .selectable__last-final::after {
+.selectable__last-chosen::before, .selectable__last-chosen::after {
   visibility: visible;
   opacity: 1;
   pointer-events: none;
@@ -2513,12 +2579,12 @@ ol {
      -moz-user-select: auto;
           user-select: auto;
   transition: visibility var(--selectable-random-selectable-cards-transition-duration) 0s, opacity var(--selectable-random-selectable-cards-transition-duration);
-  animation: var(--selectable-random-animation-duration) searched-light-spinning linear infinite, 1s searched-light-colors linear infinite alternate;
-  background-color: #fff;
-  width: calc(100% + 1em);
-  height: calc(100% + 1em);
-  transform: translate(-0.5em, -0.5em);
-  border-radius: 0.8em;
+  animation: calc(var(--selectable-random-animation-duration) * 20) searched-light-spinning linear infinite, 1s chosen-light-colors linear infinite alternate;
+  background: conic-gradient(from var(--angle), rgba(var(--b-first-r), var(--b-first-g), var(--b-first-b), 1), rgba(var(--b-second-r), var(--b-second-g), var(--b-second-b), 1), rgba(var(--b-second-r), var(--b-second-g), var(--b-second-b), 1), rgba(var(--b-first-r), var(--b-first-g), var(--b-first-b), 1), rgba(var(--b-second-r), var(--b-second-g), var(--b-second-b), 1), rgba(var(--b-second-r), var(--b-second-g), var(--b-second-b), 1), rgba(var(--b-first-r), var(--b-first-g), var(--b-first-b), 1), rgba(var(--b-second-r), var(--b-second-g), var(--b-second-b), 1), rgba(var(--b-second-r), var(--b-second-g), var(--b-second-b), 1), rgba(var(--b-first-r), var(--b-first-g), var(--b-first-b), 1));
+  width: calc(100% + 0.5em);
+  height: calc(100% + 0.5em);
+  transform: translate(-0.25em, -0.25em);
+  border-radius: 0.55em;
 }
 .selectable__last-pre-final {
   pointer-events: none;
@@ -2551,12 +2617,43 @@ ol {
   transform: translate(-0.25em, -0.25em);
   border-radius: 0.55em;
 }
-.selectable__last-thinking {
+.selectable__last-final {
   pointer-events: none;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
   transform: scale(1.2);
+  transition: transform var(--selectable-random-selectable-cards-transition-duration) linear;
+  z-index: 5;
+}
+.selectable__last-final-image {
+  filter: grayscale(0) brightness(1.2);
+  transition: opacity calc(var(--selectable-random-selectable-cards-transition-duration) / 3) linear, filter calc(var(--selectable-random-selectable-cards-transition-duration) / 3) linear;
+}
+.selectable__last-final-image__sparking {
+  animation: searched-image-sparking calc(var(--selectable-random-animation-duration) * 4) linear infinite alternate;
+}
+.selectable__last-final::before, .selectable__last-final::after {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: none;
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+          user-select: auto;
+  transition: visibility var(--selectable-random-selectable-cards-transition-duration) 0s, opacity var(--selectable-random-selectable-cards-transition-duration), background-color var(--selectable-random-selectable-cards-transition-duration);
+  animation: calc(var(--selectable-random-animation-duration) * 5) searched-light-spinning linear infinite, calc(var(--selectable-random-animation-duration) * 2) pre-final-light-colors linear infinite alternate;
+  background-color: #fff;
+  width: calc(100% + 0.5em);
+  height: calc(100% + 0.5em);
+  transform: translate(-0.25em, -0.25em);
+  border-radius: 0.55em;
+}
+.selectable__last-thinking {
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  transform: scale(1.3);
   transition: transform var(--selectable-random-selectable-cards-transition-duration) linear;
   z-index: 6;
 }
@@ -2567,9 +2664,6 @@ ol {
 .selectable__last-thinking-image__sparking {
   animation: searched-image-sparking calc(var(--selectable-random-animation-duration) * 4) linear infinite alternate;
 }
-.selectable__last-thinking-image__sparking {
-  animation: thinking-image-sparking calc(var(--selectable-random-animation-duration) * 1) linear infinite alternate;
-}
 .selectable__last-thinking::before, .selectable__last-thinking::after {
   visibility: visible;
   opacity: 1;
@@ -2577,9 +2671,9 @@ ol {
   -webkit-user-select: auto;
      -moz-user-select: auto;
           user-select: auto;
-  transition: visibility var(--selectable-random-selectable-cards-transition-duration) 0s, opacity var(--selectable-random-selectable-cards-transition-duration);
-  animation: calc(var(--selectable-random-animation-duration) * 3) searched-light-spinning linear infinite, calc(var(--selectable-random-animation-duration) * 2) thinking-stay-light-colors linear infinite alternate;
-  background: conic-gradient(from var(--angle), rgba(var(--b-first-r), var(--b-first-g), var(--b-first-b), 0.2) 50%, rgba(var(--b-first-r), var(--b-first-g), var(--b-first-b), 0.2), rgba(var(--b-second-r), var(--b-second-g), var(--b-second-b), 0.25), rgba(var(--b-second-r), var(--b-second-g), var(--b-second-b), 1), rgba(var(--b-second-r), var(--b-second-g), var(--b-second-b), 0.25), rgba(var(--b-first-r), var(--b-first-g), var(--b-first-b), 0.2));
+  transition: visibility var(--selectable-random-selectable-cards-transition-duration) 0s, opacity var(--selectable-random-selectable-cards-transition-duration), background-color var(--selectable-random-selectable-cards-transition-duration);
+  animation: calc(var(--selectable-random-animation-duration) * 5) searched-light-spinning linear infinite, calc(var(--selectable-random-animation-duration) * 2) pre-final-light-colors linear infinite alternate;
+  background-color: #1eff00;
   width: calc(100% + 0.5em);
   height: calc(100% + 0.5em);
   transform: translate(-0.25em, -0.25em);
@@ -2590,35 +2684,38 @@ ol {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  transform: scale(0.95);
+  transform: scale(1) rotate(5deg);
   transition: transform var(--selectable-random-selectable-cards-transition-duration) linear;
   z-index: 5;
 }
 .selectable__last-retired-image {
-  opacity: 0.75;
+  filter: contrast(1) grayscale(0.75) brightness(0.75);
   transition: opacity calc(var(--selectable-random-selectable-cards-transition-duration) / 3) linear, filter calc(var(--selectable-random-selectable-cards-transition-duration) / 3) linear;
-  filter: contrast(0.8) grayscale(0.95) brightness(0.5);
 }
-.selectable__last-retired-banned {
-  transition: 0.5s linear;
-  opacity: 0.25;
-  transform: scale(0.9);
-  filter: contrast(0.8) grayscale(1) brightness(0.5);
+.selectable__last-retired-image__sparking {
+  animation: searched-image-sparking calc(var(--selectable-random-animation-duration) * 4) linear infinite alternate;
 }
 .selectable__last-retired::before, .selectable__last-retired::after {
-  visibility: hidden;
-  opacity: 0;
+  visibility: visible;
+  opacity: 1;
   pointer-events: none;
   -webkit-user-select: auto;
      -moz-user-select: auto;
           user-select: auto;
-  transition: visibility 0s var(--selectable-random-selectable-cards-transition-duration), opacity var(--selectable-random-selectable-cards-transition-duration);
-  animation: var(--selectable-random-animation-duration) searched-light-spinning linear infinite, 1s searched-light-colors linear infinite alternate;
-  background: conic-gradient(from var(--angle), rgba(var(--first-r), var(--first-g), var(--first-b), 0.5), rgba(var(--second-r), var(--second-g), var(--second-b), 0.5), rgba(var(--first-r), var(--first-g), var(--first-b), 0.5));
+  transition: visibility var(--selectable-random-selectable-cards-transition-duration) 0s, opacity var(--selectable-random-selectable-cards-transition-duration);
+  animation: calc(var(--selectable-random-animation-duration) * 10) searched-light-spinning linear infinite, calc(var(--selectable-random-animation-duration) * 2) retired-light-colors linear infinite alternate;
+  background: conic-gradient(from var(--angle), rgba(var(--c-first-r), var(--c-first-g), var(--c-first-b), 0.25) 50%, rgba(var(--c-first-r), var(--c-first-g), var(--c-first-b), 0.25), rgba(var(--c-second-r), var(--c-second-g), var(--c-second-b), 0.25), rgba(var(--c-second-r), var(--c-second-g), var(--c-second-b), 1), rgba(var(--c-second-r), var(--c-second-g), var(--c-second-b), 0.25), rgba(var(--c-first-r), var(--c-first-g), var(--c-first-b), 0.25));
   width: calc(100% + 0.5em);
   height: calc(100% + 0.5em);
   transform: translate(-0.25em, -0.25em);
   border-radius: 0.55em;
+}
+.selectable__last-retired::after {
+  filter: blur(1em);
+}
+
+.hero-flipped {
+  animation: 2s hero-flipped linear forwards;
 }
 
 .go-last {

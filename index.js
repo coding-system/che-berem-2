@@ -159,6 +159,7 @@ showHeroAcceptButton.addEventListener("click", () => {
 });
 
 showHeroRertyButton.addEventListener("click", () => {
+   clearHeroStyles();
    retryChosenHero();
 });
 // showHeroAcceptAndDelButton.addEventListener("click", () => {
