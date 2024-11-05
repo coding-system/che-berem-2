@@ -241,17 +241,17 @@
 
 @keyframes searched-image-spark {
    0% {
-      filter: brightness(2);
-   }
-   20% {
       filter: brightness(1);
    }
-   100% {
+   20% {
       filter: brightness(2);
+   }
+   100% {
+      filter: brightness(1);
    }
 }
 
-@keyframes searched-image-sparking{
+@keyframes searched-image-sparking {
    0% {
       filter: brightness(2);
    }

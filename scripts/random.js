@@ -81,7 +81,7 @@ function getRandomElement(heroesArray) {
    }
 
    // Выбираем 4 случайных героя
-   const selectedRandomHeroes = getRandomHeroes(selectableHeroes, 4); // Используем отфильтрованных героев
+   const selectedRandomHeroes = getRandomHeroes(selectableHeroes, 8); // Используем отфильтрованных героев
 
    if (!selectedRandomHeroes) {
       console.log("Не удалось выбрать 4 героев.");

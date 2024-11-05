@@ -512,7 +512,12 @@
 
 .green-light-spark {
    display: block;
-   background-color: rgba(0, 255, 0, 0.4);
+   background-image: linear-gradient(
+      70deg,
+      rgba(255, 255, 255, 0.25),
+      rgba(0, 255, 0, 0.5),
+      rgba(255, 255, 255, 0.25)
+   );
    animation-name: light-spark;
    animation-duration: 1s;
    animation-iteration-count: 1;
@@ -523,7 +528,12 @@
 
 .red-light-spark {
    display: block;
-   background-color: rgba(255, 0, 0, 0.4);
+   background-image: linear-gradient(
+      70deg,
+      rgba(255, 255, 255, 0.25),
+      rgba(255, 0, 0, 0.5),
+      rgba(255, 255, 255, 0.25)
+   );
    animation-name: light-spark;
    animation-duration: 1s;
    animation-iteration-count: 1;
@@ -534,7 +544,12 @@
 
 .yellow-light-spark {
    display: block;
-   background-color: rgba(255, 255, 0, 0.4);
+   background-image: linear-gradient(
+      70deg,
+      rgba(255, 255, 255, 0.25),
+      rgba(255, 255, 0, 0.5),
+      rgba(255, 255, 255, 0.25)
+   );
    animation-name: light-spark;
    animation-duration: 1s;
    animation-iteration-count: 1;
@@ -545,7 +560,12 @@
 
 .blue-light-spark {
    display: block;
-   background-color: rgba(0, 0, 255, 0.4);
+   background-image: linear-gradient(
+      70deg,
+      rgba(255, 255, 255, 0.25),
+      rgba(0, 0, 255, 0.3),
+      rgba(255, 255, 255, 0.25)
+   );
    animation-name: light-spark;
    animation-duration: 1s;
    animation-iteration-count: 1;
@@ -626,7 +646,7 @@
       &-involved {
          pointer-events: none;
          user-select: none;
-         transform: scale(1.05);
+         transform: scale(1);
          transition: transform
             var(--selectable-random-selectable-cards-transition-duration) linear;
          // transition: filter 0s 0s linear;
@@ -801,7 +821,7 @@
       &-pre-final {
          pointer-events: none;
          user-select: none;
-         transform: scale(1.05);
+         transform: scale(1);
          transition: transform
             var(--selectable-random-selectable-cards-transition-duration) linear;
          // transition: filter 0s 0s linear;
@@ -873,7 +893,7 @@
       &-final {
          pointer-events: none;
          user-select: none;
-         transform: scale(1.2);
+         transform: scale(1);
          transition: transform
             var(--selectable-random-selectable-cards-transition-duration) linear;
          // transition: filter 0s 0s linear;
@@ -914,11 +934,11 @@
                   var(--selectable-random-selectable-cards-transition-duration),
                background-color
                   var(--selectable-random-selectable-cards-transition-duration);
-            animation: calc(var(--selectable-random-animation-duration) * 5)
+            animation: calc(var(--selectable-random-animation-duration) * 2)
                   searched-light-spinning linear infinite,
                calc(var(--selectable-random-animation-duration) * 2)
                   pre-final-light-colors linear infinite alternate;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.25);
             width: calc(100% + 0.5em);
             height: calc(100% + 0.5em);
             transform: translate(-0.25em, -0.25em);
@@ -928,7 +948,8 @@
       &-thinking {
          pointer-events: none;
          user-select: none;
-         transform: scale(1.3);
+         // transform: scale(1.3);
+         transform: translateY(-0.5em);
          transition: transform
             var(--selectable-random-selectable-cards-transition-duration) linear;
          // transition: filter 0s 0s linear;
@@ -969,11 +990,12 @@
                   var(--selectable-random-selectable-cards-transition-duration),
                background-color
                   var(--selectable-random-selectable-cards-transition-duration);
-            animation: calc(var(--selectable-random-animation-duration) * 5)
+            animation: calc(var(--selectable-random-animation-duration) * 2)
                   searched-light-spinning linear infinite,
                calc(var(--selectable-random-animation-duration) * 2)
                   pre-final-light-colors linear infinite alternate;
-            background-color: #1eff00;
+            // background-color: #1eff00;
+            background-color: rgba(255, 255, 255, 0.8);
             width: calc(100% + 0.5em);
             height: calc(100% + 0.5em);
             transform: translate(-0.25em, -0.25em);
@@ -983,12 +1005,18 @@
       &-retired {
          pointer-events: none;
          user-select: none;
-         transform: scale(1) rotate(5deg);
-         transition: transform
-            var(--selectable-random-selectable-cards-transition-duration) linear;
+         // transform: scale(1) rotate(5deg);
+         transform: scale(0.8) rotate(5deg);
+         transition: opacity
+               var(--selectable-random-selectable-cards-transition-duration)
+               linear,
+            transform
+               var(--selectable-random-selectable-cards-transition-duration)
+               linear;
          // transition: filter 0s 0s linear;
          // filter: grayscale(0) brightness(1.2);
          z-index: 5;
+         opacity: 0;
          &-image {
             filter: contrast(1) grayscale(0.75) brightness(0.75);
             transition: opacity
