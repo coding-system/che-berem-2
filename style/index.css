@@ -2654,7 +2654,7 @@ ol {
      -moz-user-select: none;
           user-select: none;
   transform: translateY(-0.5em);
-  transition: transform var(--selectable-random-selectable-cards-transition-duration) linear;
+  transition: transform calc(var(--selectable-random-selectable-cards-transition-duration) / 5) linear;
   z-index: 6;
 }
 .selectable__last-thinking-image {

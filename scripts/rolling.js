@@ -172,7 +172,7 @@ export function animateHeroSelection() {
 }
 
 let totalDuration; // Глобальная переменная для общей длительности
-export const showHeroWindowDelay = 12550; // 5750
+export const showHeroWindowDelay = 1232550; // 5750
 export const addShowHeroDataDelay = 5000; // 5750
 export const enableChooseButtonDelay = 8000;
 
@@ -475,7 +475,7 @@ function clearRandomHeroes(heroes) {
          }
          if (imageBox && imageBox.classList.contains('selectable__last-pre-final-image')) {
             imageBox.classList.remove('selectable__last-pre-final-image');
-            // imageBox.classList.remove('selectable__last-pre-final-image__sparking');
+            imageBox.classList.remove('selectable__last-pre-final-image__sparking');
             imageBox.classList.add('selectable__last-thinking-image');
             // imageBox.classList.add('selectable__last-thinking__bang');
             // imageBox.classList.add('selectable__last-thinking-image__sparking');
@@ -546,6 +546,44 @@ export async function runFinalPhase(cycles, phaseDuration, remainingHeroes, hero
    return remainingHeroes.filter(hero => hero.name !== heroToRemove.name);
 }
 
+// Функция для поочередного скрытия случайных элементов из массива, кроме chosenHero
+async function hideHeroesRandomly(heroesArray, delayBetweenHides, chosenHero, initialDelay) {
+   // Ждем начальную задержку перед началом скрытия
+   await new Promise((resolve) => setTimeout(resolve, initialDelay));
+
+   // Копируем массив и отфильтровываем выбранного героя, чтобы он не скрывался
+   let remainingHeroes = heroesArray.filter(hero => hero.name !== chosenHero.name);
+
+   while (remainingHeroes.length > 0) {
+      // Случайный индекс для выбора героя
+      const randomIndex = Math.floor(Math.random() * remainingHeroes.length);
+      const hero = remainingHeroes[randomIndex];
+
+      // Находим элементы героя и imageBox на странице
+      const heroElement = portraitsListBox.querySelector(
+         `[data-hero-name="${hero.name}"]`
+      );
+      const imageBox = heroElement?.querySelector(".card-portrait-image-box");
+
+      // Проверяем, что элементы найдены
+      if (heroElement && imageBox) {
+         // Добавляем классы для скрытия героя и imageBox
+         heroElement.classList.add("selectable__last-retired");
+         imageBox.classList.add("selectable__last-retired-image");
+
+         // Убираем текущего героя из массива, чтобы он больше не скрывался
+         remainingHeroes.splice(randomIndex, 1);
+      } else {
+         console.warn(`Hero element or image box not found for hero: ${hero.name}`);
+      }
+
+      // Ждем указанное время перед скрытием следующего героя
+      await new Promise((resolve) => setTimeout(resolve, delayBetweenHides));
+   }
+}
+
+
+
 
 
 
@@ -612,73 +650,76 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
 
    // await runPhase(selectedHeroes, 15, 5, 100); // Фаза 1
    // await runPhase(selectedHeroes, 12, 3, 167); // Фаза 1
-   await runPhase(selectedHeroes, 1, 1, 1000, true, randomHeroes[0]);
+   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[0]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[0].name
    );
-   await runPhase(selectedHeroes, 1, 1, 1000, true, randomHeroes[1]);
+   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[1]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[1].name
    );
-   await runPhase(selectedHeroes, 1, 1, 1000, true, randomHeroes[2]);
+   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[2]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[2].name
    );
-   await runPhase(selectedHeroes, 1, 1, 1000, true, randomHeroes[3]);
+   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[3]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[3].name
    );
-   await runPhase(selectedHeroes, 1, 1, 1000, true, randomHeroes[4]);
+   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[4]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[4].name
    );
-   await runPhase(selectedHeroes, 1, 1, 1000, true, randomHeroes[5]);
+   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[5]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[5].name
    );
-   await runPhase(selectedHeroes, 1, 1, 1000, true, randomHeroes[6]);
+   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[6]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[6].name
    );
-   await runPhase(selectedHeroes, 1, 1, 1000, true, randomHeroes[7]);
+   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[7]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[7].name
    );
 
    clearRandomHeroes(randomHeroes);
 
-   // Создаем массив героев, которые будут удаляться
-   let heroesToRemove = randomHeroes.filter(hero => hero.name !== chosenHero.name);
+   // // Создаем массив героев, которые будут удаляться
+   // let heroesToRemove = randomHeroes.filter(hero => hero.name !== chosenHero.name);
 
-   let remainingHeroes;
+   // let remainingHeroes;
 
-   setAnimationDuration(1750/4);
-   setTransitionDuration(1750/4);
-   remainingHeroes = await runFinalPhase(4, 2400, randomHeroes, heroesToRemove[0], chosenHero);
+   // setAnimationDuration(1750/4);
+   // setTransitionDuration(1750/4);
+   // remainingHeroes = await runFinalPhase(4, 2000, randomHeroes, heroesToRemove[0], chosenHero);
    
-   setAnimationDuration(2000/4);
-   setTransitionDuration(2000/4);
-   remainingHeroes = await runFinalPhase(4, 2400, remainingHeroes, heroesToRemove[1], chosenHero);
+   // setAnimationDuration(2000/4);
+   // setTransitionDuration(2000/4);
+   // remainingHeroes = await runFinalPhase(4, 2000, remainingHeroes, heroesToRemove[1], chosenHero);
    
-   setAnimationDuration(2600/4);
-   setTransitionDuration(2600/4);
-   remainingHeroes = await runFinalPhase(4, 2400, remainingHeroes, heroesToRemove[2], chosenHero);
+   // setAnimationDuration(2600/4);
+   // setTransitionDuration(2600/4);
+   // remainingHeroes = await runFinalPhase(4, 2000, remainingHeroes, heroesToRemove[2], chosenHero);
 
-   setAnimationDuration(2600/4);
-   setTransitionDuration(2600/4);
-   remainingHeroes = await runFinalPhase(4, 2400, remainingHeroes, heroesToRemove[3], chosenHero);
+   // setAnimationDuration(2600/4);
+   // setTransitionDuration(2600/4);
+   // remainingHeroes = await runFinalPhase(4, 2000, remainingHeroes, heroesToRemove[3], chosenHero);
 
-   setAnimationDuration(2600/4);
-   setTransitionDuration(2600/4);
-   remainingHeroes = await runFinalPhase(4, 2400, remainingHeroes, heroesToRemove[4], chosenHero);
+   // setAnimationDuration(2600/4);
+   // setTransitionDuration(2600/4);
+   // remainingHeroes = await runFinalPhase(4, 2000, remainingHeroes, heroesToRemove[4], chosenHero);
 
-   setAnimationDuration(2600/4);
-   setTransitionDuration(2600/4);
-   remainingHeroes = await runFinalPhase(4, 2400, remainingHeroes, heroesToRemove[5], chosenHero);
+   // setAnimationDuration(2600/4);
+   // setTransitionDuration(2600/4);
+   // remainingHeroes = await runFinalPhase(4, 2000, remainingHeroes, heroesToRemove[5], chosenHero);
 
-   setAnimationDuration(2600/4);
-   setTransitionDuration(2600/4);
-   remainingHeroes = await runFinalPhase(4, 2400, remainingHeroes, heroesToRemove[6], chosenHero);
+   // setAnimationDuration(2600/4);
+   // setTransitionDuration(2600/4);
+   // remainingHeroes = await runFinalPhase(4, 2000, remainingHeroes, heroesToRemove[6], chosenHero);
+
+   // Вызываем функцию для поочередного скрытия героев из randomHeroes, кроме chosenHero
+   await hideHeroesRandomly(randomHeroes, 1000, chosenHero, 1000); // 1000 ms задержка между скрытиями, 3000 ms перед первым скрытием
 
    // Запуск финальной фазы с выбранным героем
    await runFinalHero(chosenHero, 123000); // Длительность подсветки финального героя
