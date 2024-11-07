@@ -2571,6 +2571,9 @@ ol {
   filter: grayscale(0) brightness(1.2);
   transition: opacity calc(var(--selectable-random-selectable-cards-transition-duration) / 3) linear, filter calc(var(--selectable-random-selectable-cards-transition-duration) / 3) linear;
 }
+.selectable__last-chosen-image__sparking {
+  animation: searched-image-sparking calc(var(--selectable-random-animation-duration) * 4) linear infinite alternate;
+}
 .selectable__last-chosen::before, .selectable__last-chosen::after {
   visibility: visible;
   opacity: 1;
@@ -2622,7 +2625,7 @@ ol {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  transform: scale(1);
+  transform: scale(1.05);
   transition: transform var(--selectable-random-selectable-cards-transition-duration) linear;
   z-index: 5;
 }
@@ -2642,7 +2645,7 @@ ol {
           user-select: auto;
   transition: visibility var(--selectable-random-selectable-cards-transition-duration) 0s, opacity var(--selectable-random-selectable-cards-transition-duration), background-color var(--selectable-random-selectable-cards-transition-duration);
   animation: calc(var(--selectable-random-animation-duration) * 2) searched-light-spinning linear infinite, calc(var(--selectable-random-animation-duration) * 2) pre-final-light-colors linear infinite alternate;
-  background-color: rgba(255, 255, 255, 0.25);
+  background: conic-gradient(from var(--angle), rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05) 50%, rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05), rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 0.25), rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 1), rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 0.25), rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05));
   width: calc(100% + 0.5em);
   height: calc(100% + 0.5em);
   transform: translate(-0.25em, -0.25em);

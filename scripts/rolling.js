@@ -476,7 +476,7 @@ function clearRandomHeroes(heroes) {
          if (imageBox && imageBox.classList.contains('selectable__last-pre-final-image')) {
             imageBox.classList.remove('selectable__last-pre-final-image');
             imageBox.classList.remove('selectable__last-pre-final-image__sparking');
-            imageBox.classList.add('selectable__last-thinking-image');
+            imageBox.classList.add('selectable__last-final-image');
             // imageBox.classList.add('selectable__last-thinking__bang');
             // imageBox.classList.add('selectable__last-thinking-image__sparking');
          }
@@ -611,6 +611,7 @@ async function runFinalHero(chosenHero, highlightDuration) {
          imageBox.classList.remove("selectable__random-not-involved-image");
          imageBox.classList.remove("selectable__last-final-image");
          imageBox.classList.add("selectable__last-chosen-image");
+         imageBox.classList.add("selectable__last-chosen-image__sparking");
       }
 
       // Убираем подсветку через указанное время
@@ -682,6 +683,14 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[7].name
    );
+   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[8]);
+   selectedHeroes = selectedHeroes.filter(
+      (hero) => hero.name !== randomHeroes[8].name
+   );
+   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[9]);
+   selectedHeroes = selectedHeroes.filter(
+      (hero) => hero.name !== randomHeroes[9].name
+   );
 
    clearRandomHeroes(randomHeroes);
 
@@ -719,7 +728,7 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
    // remainingHeroes = await runFinalPhase(4, 2000, remainingHeroes, heroesToRemove[6], chosenHero);
 
    // Вызываем функцию для поочередного скрытия героев из randomHeroes, кроме chosenHero
-   await hideHeroesRandomly(randomHeroes, 1000, chosenHero, 1000); // 1000 ms задержка между скрытиями, 3000 ms перед первым скрытием
+   await hideHeroesRandomly(randomHeroes, 800, chosenHero, 1000);
 
    // Запуск финальной фазы с выбранным героем
    await runFinalHero(chosenHero, 123000); // Длительность подсветки финального героя
