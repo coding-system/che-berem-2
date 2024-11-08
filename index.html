@@ -38,11 +38,13 @@
                   <li class="nav__item show-hero-button">Последний герой</li>
                   <li class="nav__item whats-new-button">Как пользоваться</li>
                   <li class="nav__item go-last-button">GO LAST</li>
-                  <button type="button" class="reset-button">
+                  <button type="button" class="nav__item reset-button">
                      Сбросить всё
                   </button>
-                  <button class="buttonss update__button">Patch notes</button>
-                  <button class="new-option__button">НАЖМИ НА МЕНЯ</button>
+                  <button class="nav__item update__button">Patch notes</button>
+                  <button class="nav__item new-option__button">
+                     Мини-игры
+                  </button>
                   <li class="song-changer">
                      <label class="container">
                         <input
@@ -100,22 +102,22 @@
                   <div class="light-spark"></div>
                   <div class="overlayz"></div>
                   <div class="portraits-list__search-data"></div>
-                  <div class="last-box">
-                     <div class="last-heroes">
-                        <ul class="last-heroes__list"></ul>
+                  <!-- <div class="panel"> -->
+                     <div class="last-box">
+                        <div class="last-heroes">
+                           <ul class="last-heroes__list"></ul>
+                        </div>
                      </div>
-                  </div>
-                  <div class="buttons-bar">
-                     <div class="buttons-bar__group">
-                        <button type="button" class="button select-all">
-                           Выбрать всех
-                        </button>
-                        <button type="button" class="button ban-all">
-                           Забанить всех
-                        </button>
-                        
-                     </div>
-                     <!-- <div class="choose">
+                     <div class="buttons-bar">
+                        <div class="buttons-bar__group">
+                           <button type="button" class="button select-all">
+                              Выбрать всех
+                           </button>
+                           <button type="button" class="button ban-all">
+                              Забанить всех
+                           </button>
+                        </div>
+                        <!-- <div class="choose">
                         <button type="button" class="choose-button btn">
                            <div class="btn-top">
                               <span class="btn-top-text">ROLL</span>
@@ -124,25 +126,26 @@
                            <div class="btn-base"></div>
                         </button>
                      </div> -->
-                     <input
-                        type="text"
-                        class="portraits-list__search"
-                        placeholder="Введите имя героя"
-                        pattern="^[A-Za-zА-Яа-яЁё]*(?<![ЁёЖжхъюэ])$"
-                     />
-                     <div class="buttons-bar__group">
-                        <button type="button" class="button save-bans">
-                           Сохранить баны
-                        </button>
-                        <button type="button" class="button load-bans">
-                           Мои баны
-                        </button>
-                        <button type="button" class="button choose-button">
-                           Roll
-                        </button>
+                        <input
+                           type="text"
+                           class="portraits-list__search"
+                           placeholder="Введите имя героя"
+                           pattern="^[A-Za-zА-Яа-яЁё]*(?<![ЁёЖжхъюэ])$"
+                        />
+                        <div class="buttons-bar__group">
+                           <button type="button" class="button save-bans">
+                              Сохранить баны
+                           </button>
+                           <button type="button" class="button load-bans">
+                              Мои баны
+                           </button>
+                           <button type="button" class="button choose-button">
+                              Roll
+                           </button>
+                        </div>
                      </div>
-                  </div>
-                  
+                  <!-- </div> -->
+
                   <div class="portraits-list__box">
                      <div class="portraits-list__attribute">
                         <h3 class="portraits-list__title">

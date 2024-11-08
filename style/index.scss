@@ -124,23 +124,8 @@
 }
 
 .new-option {
-   cursor: pointer;
-   position: absolute;
-   top: -100%;
-   left: 0;
-   animation-name: new-option;
-   animation-duration: 3s;
-   animation-iteration-count: infinite;
-   animation-timing-function: linear;
-   animation-direction: alternate;
-   transform-origin: center; /* Определяем точку трансформации */
    &__button {
       background: none;
-      text-wrap: nowrap;
-      text-shadow: 0.1em 0.1em 0 #000;
-      color: #fff;
-      font-size: 3em;
-      font-family: "Tiny5";
    }
 }
 .body {
@@ -282,10 +267,11 @@
    }
 }
 
-// .update__button {
-//    position: absolute;
-//    right: 1em;
-// }
+.update__button {
+   position: absolute;
+   right: 1em;
+   background: none;
+}
 
 .main {
    // margin-top: 20vh;
@@ -354,21 +340,22 @@
 }
 
 .reset-button {
-   padding: 0.2em 1.2em;
-   transition: color 0.1s, box-shadow 0.2s, background-color 0.2s ease;
-   background-color: #fff;
-   color: $minor-text;
-   border-radius: 1em;
-   font-size: 1.8em;
-   font-weight: bold;
-   // width: 9em;
-   height: 2em;
-   cursor: pointer;
-   &:hover {
-      color: white;
-      background-color: transparent;
-      box-shadow: 0 0 8px #fff, inset 0 0 10px #fff;
-   }
+   background: none;
+   // padding: 0.2em 1.2em;
+   // transition: color 0.1s, box-shadow 0.2s, background-color 0.2s ease;
+   // background-color: #fff;
+   // color: $minor-text;
+   // border-radius: 1em;
+   // font-size: 1.8em;
+   // font-weight: bold;
+   // // width: 9em;
+   // height: 2em;
+   // cursor: pointer;
+   // &:hover {
+   //    color: white;
+   //    background-color: transparent;
+   //    box-shadow: 0 0 8px #fff, inset 0 0 10px #fff;
+   // }
 }
 
 .choose {

@@ -172,7 +172,7 @@ export function animateHeroSelection() {
 }
 
 let totalDuration; // Глобальная переменная для общей длительности
-export const showHeroWindowDelay = 1232550; // 5750
+export const showHeroWindowDelay = 12550; // 5750
 export const addShowHeroDataDelay = 5000; // 5750
 export const enableChooseButtonDelay = 8000;
 
@@ -190,6 +190,7 @@ export function clearHeroStyles() {
          "selectable__last-final",
          "selectable__last-retired",
          "selectable__last-thinking",
+         "selectable__last-chosen"
       );
 
       // Находим элемент с классом .card-portrait-image-box и удаляем классы
@@ -205,6 +206,8 @@ export function clearHeroStyles() {
             "selectable__last-final-image",
             "selectable__last-retired-image",
             "selectable__last-thinking-image",
+            "selectable__last-chosen-image",
+            "selectable__last-chosen-image__sparking"
          );
       }
 
@@ -649,8 +652,8 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
    markAllHeroesNotInvolved(heroesList);
 
 
-   // await runPhase(selectedHeroes, 15, 5, 100); // Фаза 1
-   // await runPhase(selectedHeroes, 12, 3, 167); // Фаза 1
+   // await runPhase(selectedHeroes, 5, 1, 250); // Фаза 1
+   // await runPhase(selectedHeroes, 3, 1, 300); // Фаза 1
    await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[0]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[0].name
@@ -728,14 +731,14 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
    // remainingHeroes = await runFinalPhase(4, 2000, remainingHeroes, heroesToRemove[6], chosenHero);
 
    // Вызываем функцию для поочередного скрытия героев из randomHeroes, кроме chosenHero
-   await hideHeroesRandomly(randomHeroes, 800, chosenHero, 1000);
+   await hideHeroesRandomly(randomHeroes, 700, chosenHero, 1000);
 
    // Запуск финальной фазы с выбранным героем
-   await runFinalHero(chosenHero, 123000); // Длительность подсветки финального героя
+   await runFinalHero(chosenHero, 1000); // Длительность подсветки финального героя
 
-   // hideOverlay(1000);
-   // makeDefaultPageElementsStyle();
-   // clearHeroStyles();
+   hideOverlay(1000);
+   makeDefaultPageElementsStyle();
+   clearHeroStyles();
 
    console.log("Общая длительность всех фаз: ", totalDuration);
 }

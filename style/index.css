@@ -949,7 +949,7 @@ ol {
 }
 
 .last-box {
-  font-size: 10px;
+  font-size: 1.4em;
   transition: transform 0.75s 0s ease, opacity 0.75s 0s ease;
 }
 .last-box__moved {
@@ -960,7 +960,7 @@ ol {
 
 .last-heroes {
   background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 1.6em;
+  border-radius: 0.7em;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -998,7 +998,7 @@ ol {
   -o-object-position: center;
      object-position: center;
   pointer-events: all;
-  font-size: 0.66em;
+  font-size: 0.46em;
 }
 .last-heroes__item:hover .last-heroes__delete-overlay {
   opacity: 1;
@@ -2142,6 +2142,7 @@ ol {
   font-weight: 500;
   border-radius: 0.3em;
   padding: 0.2em 0.5em;
+  transform: translateY(-0.1em);
   cursor: pointer;
 }
 .portraits-list .buttons-bar .button:hover {
@@ -2150,7 +2151,7 @@ ol {
 }
 .portraits-list .buttons-bar .button:active {
   transition: all 0.1s ease;
-  transform: translateY(0.2em);
+  transform: translateY(0em);
   box-shadow: 0 0px 0px rgba(255, 255, 255, 0);
 }
 .portraits-list .buttons-bar .choose-button {
@@ -2563,7 +2564,7 @@ ol {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  transform: scale(1.3);
+  transform: scale(1.25);
   transition: transform var(--selectable-random-selectable-cards-transition-duration) linear;
   z-index: 6;
 }
@@ -2626,7 +2627,7 @@ ol {
      -moz-user-select: none;
           user-select: none;
   transform: scale(1.05);
-  transition: transform var(--selectable-random-selectable-cards-transition-duration) linear;
+  transition: transform calc(var(--selectable-random-selectable-cards-transition-duration) * 2) linear;
   z-index: 5;
 }
 .selectable__last-final-image {
@@ -2644,8 +2645,8 @@ ol {
      -moz-user-select: auto;
           user-select: auto;
   transition: visibility var(--selectable-random-selectable-cards-transition-duration) 0s, opacity var(--selectable-random-selectable-cards-transition-duration), background-color var(--selectable-random-selectable-cards-transition-duration);
-  animation: calc(var(--selectable-random-animation-duration) * 2) searched-light-spinning linear infinite, calc(var(--selectable-random-animation-duration) * 2) pre-final-light-colors linear infinite alternate;
-  background: conic-gradient(from var(--angle), rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05) 50%, rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05), rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 0.25), rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 1), rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 0.25), rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05));
+  animation: calc(var(--selectable-random-animation-duration) * 5) searched-light-spinning linear infinite, calc(var(--selectable-random-animation-duration) * 2) pre-final-light-colors linear infinite alternate;
+  background: conic-gradient(from var(--angle), rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05) 40%, rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05), rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 0.25), rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 1), rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 0.25), rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05));
   width: calc(100% + 0.5em);
   height: calc(100% + 0.5em);
   transform: translate(-0.25em, -0.25em);
@@ -2688,7 +2689,7 @@ ol {
      -moz-user-select: none;
           user-select: none;
   transform: scale(0.8) rotate(5deg);
-  transition: opacity var(--selectable-random-selectable-cards-transition-duration) linear, transform var(--selectable-random-selectable-cards-transition-duration) linear;
+  transition: opacity var(--selectable-random-selectable-cards-transition-duration) linear, transform calc(var(--selectable-random-selectable-cards-transition-duration) * 2) linear;
   z-index: 5;
   opacity: 0;
 }
@@ -3552,25 +3553,8 @@ ol {
   font-size: 2em;
 }
 
-.new-option {
-  cursor: pointer;
-  position: absolute;
-  top: -100%;
-  left: 0;
-  animation-name: new-option;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-direction: alternate;
-  transform-origin: center; /* Определяем точку трансформации */
-}
 .new-option__button {
   background: none;
-  text-wrap: nowrap;
-  text-shadow: 0.1em 0.1em 0 #000;
-  color: #fff;
-  font-size: 3em;
-  font-family: "Tiny5";
 }
 
 .body {
@@ -3704,6 +3688,12 @@ ol {
   box-shadow: 0 0 0.4em rgba(255, 255, 255, 0.5803921569);
 }
 
+.update__button {
+  position: absolute;
+  right: 1em;
+  background: none;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -3761,20 +3751,7 @@ ol {
 }
 
 .reset-button {
-  padding: 0.2em 1.2em;
-  transition: color 0.1s, box-shadow 0.2s, background-color 0.2s ease;
-  background-color: #fff;
-  color: #313131;
-  border-radius: 1em;
-  font-size: 1.8em;
-  font-weight: bold;
-  height: 2em;
-  cursor: pointer;
-}
-.reset-button:hover {
-  color: white;
-  background-color: transparent;
-  box-shadow: 0 0 8px #fff, inset 0 0 10px #fff;
+  background: none;
 }
 
 .choose {

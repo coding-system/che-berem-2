@@ -315,6 +315,13 @@ export const initialHeroes = [
       selected: true,
    },
    {
+      name: "Kez",
+      image: "kez.jpg",
+      id: 126,
+      attribute: "agility",
+      selected: true,
+   },
+   {
       name: "Kunkka",
       image: "kunkka.jpg",
       id: 46,

@@ -174,6 +174,7 @@
          font-weight: 500;
          border-radius: 0.3em;
          padding: 0.2em 0.5em;
+         transform: translateY(-0.1em);
          // box-shadow: 0 0.125em 0.2em #000000, inset 0 0 0.3em #000000a8;
          cursor: pointer;
          &:hover {
@@ -182,7 +183,7 @@
          }
          &:active {
             transition: all 0.1s ease;
-            transform: translateY(0.2em);
+            transform: translateY(0em);
             box-shadow: 0 0px 0px #ffffff00;
          }
       }
@@ -762,7 +763,7 @@
       &-chosen {
          pointer-events: none;
          user-select: none;
-         transform: scale(1.3);
+         transform: scale(1.25);
          transition: transform
             var(--selectable-random-selectable-cards-transition-duration) linear;
          // transition: filter 0s 0s linear;
@@ -900,7 +901,10 @@
          user-select: none;
          transform: scale(1.05);
          transition: transform
-            var(--selectable-random-selectable-cards-transition-duration) linear;
+            calc(
+               var(--selectable-random-selectable-cards-transition-duration) * 2
+            )
+            linear;
          // transition: filter 0s 0s linear;
          // filter: grayscale(0) brightness(1.2);
          z-index: 5;
@@ -939,30 +943,30 @@
                   var(--selectable-random-selectable-cards-transition-duration),
                background-color
                   var(--selectable-random-selectable-cards-transition-duration);
-            animation: calc(var(--selectable-random-animation-duration) * 2)
+            animation: calc(var(--selectable-random-animation-duration) * 5)
                   searched-light-spinning linear infinite,
                calc(var(--selectable-random-animation-duration) * 2)
                   pre-final-light-colors linear infinite alternate;
-                  background: conic-gradient(
-                     from var(--angle),
-                     rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05)
-                        50%,
-                     rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05),
-                     rgba(
-                        var(--a-second-r),
-                        var(--a-second-g),
-                        var(--a-second-b),
-                        0.25
-                     ),
-                     rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 1),
-                     rgba(
-                        var(--a-second-r),
-                        var(--a-second-g),
-                        var(--a-second-b),
-                        0.25
-                     ),
-                     rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05)
-                  );
+            background: conic-gradient(
+               from var(--angle),
+               rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05)
+                  40%,
+               rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05),
+               rgba(
+                  var(--a-second-r),
+                  var(--a-second-g),
+                  var(--a-second-b),
+                  0.25
+               ),
+               rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 1),
+               rgba(
+                  var(--a-second-r),
+                  var(--a-second-g),
+                  var(--a-second-b),
+                  0.25
+               ),
+               rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05)
+            );
             width: calc(100% + 0.5em);
             height: calc(100% + 0.5em);
             transform: translate(-0.25em, -0.25em);
@@ -1038,7 +1042,10 @@
                var(--selectable-random-selectable-cards-transition-duration)
                linear,
             transform
-               var(--selectable-random-selectable-cards-transition-duration)
+               calc(
+                  var(--selectable-random-selectable-cards-transition-duration) *
+                     2
+               )
                linear;
          // transition: filter 0s 0s linear;
          // filter: grayscale(0) brightness(1.2);
