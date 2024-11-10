@@ -80,6 +80,7 @@ const portraitsListButtons = portraitsList.querySelector(".buttons-bar");
 
 // Show hero Popup
 const showHeroBox = document.querySelector(".popup__show-hero");
+const showHeroBackground = showHeroBox.querySelector(".show-hero__background");
 const showHeroBoxButtons = showHeroBox.querySelector(".buttons-bar");
 const showHeroButton = document.querySelector(".show-hero-button");
 const showHeroAcceptButton = showHeroBox.querySelector(".button-accept");
@@ -653,6 +654,7 @@ export {
    lastHeroTemplate,
    showHeroBox,
    showHeroBoxButtons,
+   showHeroBackground,
    // showHeroRertyButton,
    startHeroes,
    helpBox,

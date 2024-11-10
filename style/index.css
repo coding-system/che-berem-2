@@ -666,8 +666,8 @@ ol {
 
 .custom-border {
   font-size: 10px;
-  padding: 1em;
-  border-radius: 2.6em;
+  padding: 1.2em;
+  border-radius: 2.8em;
   position: relative;
 }
 .custom-border:has(.minigame-pairs) {
@@ -684,7 +684,17 @@ ol {
   background-image: linear-gradient(-20deg, #2c493b, #503232);
 }
 .custom-border:has(.show-hero) {
-  background-image: linear-gradient(#67679e, #a88484);
+  filter: blur(0) brightness(1) contrast(1);
+  background-image: var(--showhero-data-background);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  position: relative;
+  z-index: 12;
 }
 .custom-border:has(.go-last) {
   background-image: linear-gradient(90deg, #39396d, #5a3b66);
@@ -831,11 +841,11 @@ ol {
   position: relative;
 }
 .show-hero__background {
-  filter: blur(0.4em);
+  filter: blur(0.6em) brightness(0.3) contrast(0.9);
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../assets/heroes/loadout/loadout_bg_field_001.jpg");
+  width: calc(100% + 2.1em);
+  height: calc(100% + 2.1em);
+  background-image: var(--showhero-data-background);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -873,7 +883,6 @@ ol {
   font-size: 7.5em;
 }
 .show-hero__video {
-  transform: scale(1.2);
   opacity: 0;
   filter: drop-shadow(1.5em 1em 1.5em #000000);
   -webkit-user-select: none;
@@ -883,9 +892,16 @@ ol {
   -webkit-mask-image: linear-gradient(to top, transparent 1%, black 20%);
           mask-image: linear-gradient(to top, transparent 1%, black 20%);
   max-width: 100%;
-  user-select: none;
-  pointer-events: none;
   position: relative;
+}
+.show-hero__video::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
 }
 .show-hero .buttons-bar {
   padding: 1em 1em;
@@ -914,11 +930,11 @@ ol {
   align-items: center;
   text-align: center;
   text-transform: uppercase;
-  background-color: #1fffa9;
+  background-color: rgba(31, 255, 169, 0.4392156863);
   box-shadow: 0 0.2em 0 #1d816b;
   display: flex;
   z-index: 3;
-  color: #000000;
+  color: rgba(0, 0, 0, 0.7725490196);
 }
 .show-hero .buttons-bar .button-accept:hover {
   background-color: #00ffd5;
@@ -937,11 +953,11 @@ ol {
   align-items: center;
   text-align: center;
   text-transform: uppercase;
-  background-color: #00b7ff;
+  background-color: rgba(0, 183, 255, 0.4392156863);
   box-shadow: 0 0.2em 0 #1d6781;
   display: flex;
   z-index: 3;
-  color: #000000;
+  color: rgba(0, 0, 0, 0.7725490196);
 }
 .show-hero .buttons-bar .button-retry:hover {
   background-color: #00a2ff;
@@ -965,7 +981,6 @@ ol {
 }
 
 .last-heroes {
-  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 0.7em;
   overflow: hidden;
   display: flex;
@@ -2013,7 +2028,7 @@ ol {
   transition: transform 0.75s linear;
 }
 .portraits-list__box__moved {
-  transform: scale(1.1) translateY(-5em);
+  transform: scale(1.15) translateY(-5em);
   place-content: center;
   transition: transform 0.75s linear;
 }
@@ -2031,7 +2046,7 @@ ol {
 .portraits-list__title {
   width: -moz-fit-content;
   width: fit-content;
-  z-index: -1;
+  z-index: 0;
   font-weight: 400;
   font-size: 1.4em;
   text-transform: uppercase;
@@ -2047,7 +2062,7 @@ ol {
      -moz-user-select: none;
           user-select: none;
   pointer-events: none;
-  max-width: 1.8em;
+  max-width: 1.7em;
 }
 .portraits-list__title__moved {
   transition: opacity 0.75s linear;
@@ -2123,9 +2138,10 @@ ol {
 }
 .portraits-list .buttons-bar {
   font-size: 1.4em;
+  -webkit-backdrop-filter: blur(1em) brightness(1.5);
+          backdrop-filter: blur(1em) brightness(1.5);
   border-radius: 0.7em;
   padding: 0.5em;
-  background-color: rgba(0, 0, 0, 0.2);
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -3462,8 +3478,9 @@ ol {
   --rolling-duration: 6s;
   --selectable-random-animation-duration: 0.5s;
   --selectable-cards-transition-duration: 0.5s;
-  --card-border-radius-small:
-  --card-border-radius-large: ;
+  --card-border-radius-small: 1;
+  --card-border-radius-large: 1;
+  --showhero-data-background: "../assets/heroes/loadout/loadout_bg_field_001.jpg";
 }
 
 .global-overlay {
@@ -3569,9 +3586,38 @@ ol {
   height: 100vh;
   position: relative;
   font-size: 10px;
-  background-image: linear-gradient(#2e2e2e, #111111);
   color: #fff;
   font-family: "Roboto";
+}
+.body::before {
+  filter: blur(0.5em) brightness(0.5);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% + 4em);
+  height: calc(100% + 4em);
+  transform: translate(-2em, -2em);
+  z-index: -1;
+  background-image: url("../assets/images/dashboard_backround.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% + 4em);
+  height: calc(100% + 4em);
+  transform: translate(-2em, -2em);
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0);
 }
 .body__disabled {
   pointer-events: none;
@@ -3587,7 +3633,7 @@ ol {
   max-width: 100%;
 }
 .wrapper:has(.main) {
-  width: 1600px;
+  width: 1620px;
 }
 .wrapper:has(.footer) {
   max-width: 100%;
@@ -3636,12 +3682,12 @@ ol {
 }
 
 .header {
-  background-image: linear-gradient(#3a3a3a, #242424);
+  -webkit-backdrop-filter: blur(1.5em) brightness(2);
+          backdrop-filter: blur(1.5em) brightness(2);
   font-size: 1em;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #242424;
   padding: 0.5em;
   transition: 0.75s linear;
 }
@@ -3668,7 +3714,7 @@ ol {
   font-size: 1.6em;
   padding: 0.2em 0.8em;
   border-radius: 0.6em;
-  border: #303030 0.15em solid;
+  border: #b1b1b1 0.15em solid;
   transition: 0.2s ease;
 }
 .nav__item:hover {

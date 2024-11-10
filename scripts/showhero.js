@@ -7,6 +7,7 @@ import {
    saveLastHeroesToLocalStorage,
    saveStartHeroesToLocalStorage,
    showHeroBoxButtons,
+   showHeroBackground,
 } from "../index.js";
 import {
    // currentSelectableHeroes,
@@ -24,15 +25,17 @@ import { updatePortraits } from "./portraits.js";
 
 export function addShowHeroData() {
    // console.log(chosenHero);
-   const chosenHeroImage = chosenHero.image.replace(
-      ".jpg",
-      ""
-   );
+   const chosenHeroImage = chosenHero.image.replace(".jpg", "");
    const showHeroTitle = showHeroBox.querySelector(".show-hero__title");
    const showHeroVideo = showHeroBox.querySelector(".show-hero__video");
 
    showHeroTitle.textContent = chosenHero.name;
-   
+
+   // Обновляем значение переменной CSS
+   document.documentElement.style.setProperty(
+      "--showhero-data-background",
+      `url("../assets/heroes/loadout/${chosenHero.loadout}")`
+   );
 
    // Обновить атрибуты poster, src для <video> и <source> тегов
    showHeroVideo.poster = `https://cdn.akamai.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/${chosenHeroImage}.png`;

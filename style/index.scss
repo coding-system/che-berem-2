@@ -28,8 +28,9 @@
    --rolling-duration: 6s;
    --selectable-random-animation-duration: 0.5s;
    --selectable-cards-transition-duration: 0.5s;
-   --card-border-radius-small: 
-   --card-border-radius-large: 
+   --card-border-radius-small: 1;
+   --card-border-radius-large: 1;
+   --showhero-data-background: "../assets/heroes/loadout/loadout_bg_field_001.jpg";
 }
 
 .global-overlay {
@@ -135,10 +136,38 @@
    height: 100vh;
    position: relative;
    font-size: 10px;
-   background-image: linear-gradient(#2e2e2e, #111111);
+   // background-image: linear-gradient(#2e2e2e, #111111);
    // box-shadow: inset 0 0 25px #000;
    color: $main-text;
    font-family: "Roboto";
+   &::before {
+      filter: blur(0.5em) brightness(0.5);
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(100% + 4em);
+      height: calc(100% + 4em);
+      transform: translate(-2em, -2em);
+      z-index: -1;
+      background-image: url("../assets/images/dashboard_backround.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      object-fit: cover;
+      object-position: center;
+   }
+   &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(100% + 4em);
+      height: calc(100% + 4em);
+      transform: translate(-2em, -2em);
+      z-index: -1;
+      background-color: rgba(0, 0, 0, 0.0);
+   }
    &__disabled {
       pointer-events: none;
       user-select: none;
@@ -151,7 +180,7 @@
       max-width: 100%;
    }
    &:has(.main) {
-      width: 1600px;
+      width: 1620px;
    }
    &:has(.footer) {
       max-width: 100%;
@@ -208,13 +237,15 @@
 }
 
 .header {
-   background-image: linear-gradient(#3a3a3a, #242424);
+   // background-image: linear-gradient(#3a3a3a, #242424);
+   backdrop-filter: blur(1.5em) brightness(2);
+   // background-color: #0000002a;
    font-size: 1em;
    // max-height: 5vh;
    display: flex;
    justify-content: center;
    align-items: center;
-   background-color: $header-bg;
+   // background-color: $header-bg;
    padding: 0.5em;
    transition: 0.75s linear;
    &__moved {
@@ -241,7 +272,7 @@
       font-size: 1.6em;
       padding: 0.2em 0.8em;
       border-radius: 0.6em;
-      border: #303030 0.15em solid;
+      border: #b1b1b1 0.15em solid;
       transition: 0.2s ease;
       &:hover {
          cursor: pointer;
@@ -333,7 +364,6 @@
       color: #fff;
    }
 }
-
 
 .remove-heroes__question {
    transition: 0.3s ease;

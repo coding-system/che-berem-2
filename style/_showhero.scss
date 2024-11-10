@@ -17,7 +17,7 @@
    // object-position: center;
    // box-shadow: inset 0 50px 150px #000;
    // border: 12px #ffffff solid;
-   // max-width: 500px;
+   // max-width: 25vw;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -25,11 +25,12 @@
    gap: 0;
    position: relative;
    &__background {
-      filter: blur(0.4em);
+      // box-shadow: inset 0 0 5em #ffffff;
+      filter: blur(0.6em) brightness(0.3) contrast(0.9);
       position: absolute;
-      width: 100%;
-      height: 100%;
-      background-image: url("../assets/heroes/loadout/loadout_bg_field_001.jpg");
+      width: calc(100% + 2.1em);
+      height: calc(100% + 2.1em);
+      background-image: var(--showhero-data-background);
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -66,7 +67,7 @@
       font-size: 7.5em;
    }
    &__video {
-      transform: scale(1.2);
+      // transform: scale(2);
       opacity: 0;
       filter: drop-shadow(1.5em 1em 1.5em #000000);
       // margin-bottom: 1em;
@@ -74,18 +75,16 @@
       pointer-events: none;
       mask-image: linear-gradient(to top, transparent 1%, black 20%);
       max-width: 100%;
-      user-select: none;
-      pointer-events: none;
       position: relative;
-      // &::after {
-      //    content: '';
-      //    position: absolute;
-      //    top: 0;
-      //    left: 0;
-      //    width: 100px;
-      //    height: 100px;
-      //    background-color: #fff;
-      // }
+      &::after {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100px;
+         height: 100px;
+         background-color: #fff;
+      }
    }
 
    .buttons-bar {
@@ -115,12 +114,12 @@
             align-items: center;
             text-align: center;
             text-transform: uppercase;
-            background-color: #1fffa9;
+            background-color: #1fffa970;
             // box-shadow: inset 0 0 1.3em #0000007c, 0 -0.2em 0.6em rgba(0, 0, 0, 0.8);
             box-shadow: 0 0.2em 0 #1d816b;
             display: flex;
             z-index: 3;
-            color: #000000;
+            color: #000000c5;
             &:hover {
                background-color: #00ffd5;
                color: rgb(0, 0, 0);
@@ -139,12 +138,12 @@
             align-items: center;
             text-align: center;
             text-transform: uppercase;
-            background-color: #00b7ff;
+            background-color: #00b7ff70;
             // box-shadow: inset 0 0 1.3em #0000007c, 0 -0.2em 0.6em rgba(0, 0, 0, 0.8);
             box-shadow: 0 0.2em 0 #1d6781;
             display: flex;
             z-index: 3;
-            color: #000000;
+            color: #000000c5;
             &:hover {
                background-color: #00a2ff;
                color: rgb(0, 0, 0);
