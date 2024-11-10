@@ -5,6 +5,7 @@ export const initialHeroes = [
       id: 1,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_outworld_003.jpg",
    },
    {
       name: "Underlord",
@@ -12,6 +13,7 @@ export const initialHeroes = [
       id: 2,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_outworld_002.jpg",
    },
    {
       name: "Alchemist",
@@ -19,6 +21,7 @@ export const initialHeroes = [
       id: 3,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_rocky_001.jpg",
    },
    {
       name: "Ancient Apparition",
@@ -26,6 +29,7 @@ export const initialHeroes = [
       id: 4,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_ice_001.jpg",
    },
    {
       name: "Antimage",
@@ -33,6 +37,7 @@ export const initialHeroes = [
       id: 5,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_outworld_001.jpg",
    },
    {
       name: "Arc Warden",
@@ -40,6 +45,7 @@ export const initialHeroes = [
       id: 6,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_outworld_004.jpg",
    },
    {
       name: "Axe",
@@ -47,6 +53,7 @@ export const initialHeroes = [
       id: 7,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_rocky_001.jpg",
    },
    {
       name: "Bane",
@@ -54,6 +61,7 @@ export const initialHeroes = [
       id: 8,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_outworld_003.jpg",
    },
    {
       name: "Batrider",
@@ -61,6 +69,7 @@ export const initialHeroes = [
       id: 9,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_forest_004.jpg",
    },
    {
       name: "Beastmaster",
@@ -68,6 +77,7 @@ export const initialHeroes = [
       id: 10,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_rocky_004.jpg",
    },
    {
       name: "Bloodseeker",
@@ -75,6 +85,7 @@ export const initialHeroes = [
       id: 11,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_fire_001.jpg",
    },
    {
       name: "Bounty Hunter",
@@ -82,6 +93,7 @@ export const initialHeroes = [
       id: 12,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_jungle_001.jpg",
    },
    {
       name: "Brewmaster",
@@ -89,6 +101,7 @@ export const initialHeroes = [
       id: 13,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_forest_001.jpg",
    },
    {
       name: "Bristleback",
@@ -96,6 +109,7 @@ export const initialHeroes = [
       id: 14,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_forest_004.jpg",
    },
    {
       name: "Broodmother",
@@ -103,6 +117,7 @@ export const initialHeroes = [
       id: 15,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_forest_003.jpg",
    },
    {
       name: "Centaur Warrunner",
@@ -110,6 +125,7 @@ export const initialHeroes = [
       id: 16,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_rocky_004.jpg",
    },
    {
       name: "Chaos Knight",
@@ -117,6 +133,7 @@ export const initialHeroes = [
       id: 17,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_rocky_003.jpg",
    },
    {
       name: "Chen",
@@ -124,6 +141,7 @@ export const initialHeroes = [
       id: 18,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_rocky_002.jpg",
    },
    {
       name: "Clinkz",
@@ -131,6 +149,7 @@ export const initialHeroes = [
       id: 19,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_fire_004.jpg",
    },
    {
       name: "Crystal Maiden",
@@ -138,6 +157,7 @@ export const initialHeroes = [
       id: 20,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_ice_003.jpg",
    },
    {
       name: "Dark Seer",
@@ -145,6 +165,7 @@ export const initialHeroes = [
       id: 21,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_outworld_004.jpg",
    },
    {
       name: "Dark Willow",
@@ -152,6 +173,7 @@ export const initialHeroes = [
       id: 22,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_field_002.jpg",
    },
    {
       name: "Dawnbreaker",
@@ -159,6 +181,7 @@ export const initialHeroes = [
       id: 23,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_field_002.jpg",
    },
    {
       name: "Dazzle",
@@ -166,6 +189,7 @@ export const initialHeroes = [
       id: 24,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_outworld_002.jpg",
    },
    {
       name: "Death Prophet",
@@ -173,6 +197,7 @@ export const initialHeroes = [
       id: 25,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_outworld_001.jpg",
    },
    {
       name: "Disruptor",
@@ -180,6 +205,7 @@ export const initialHeroes = [
       id: 26,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_field_003.jpg",
    },
    {
       name: "Doom",
@@ -187,6 +213,7 @@ export const initialHeroes = [
       id: 27,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_fire_003.jpg",
    },
    {
       name: "Dragon Knight",
@@ -194,6 +221,7 @@ export const initialHeroes = [
       id: 28,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_rocky_002.jpg",
    },
    {
       name: "Drow Ranger",
@@ -201,6 +229,7 @@ export const initialHeroes = [
       id: 29,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_ice_002.jpg",
    },
    {
       name: "Earth Spirit",
@@ -208,6 +237,7 @@ export const initialHeroes = [
       id: 30,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_forest_002.jpg",
    },
    {
       name: "Earthshaker",
@@ -215,6 +245,7 @@ export const initialHeroes = [
       id: 31,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_forest_001.jpg",
    },
    {
       name: "Elder Titan",
@@ -222,6 +253,7 @@ export const initialHeroes = [
       id: 32,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_rocky_004.jpg",
    },
    {
       name: "Ember Spirit",
@@ -229,6 +261,7 @@ export const initialHeroes = [
       id: 33,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_fire_002.jpg",
    },
    {
       name: "Enchantress",
@@ -236,6 +269,7 @@ export const initialHeroes = [
       id: 34,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_field_001.jpg",
    },
    {
       name: "Enigma",
@@ -243,6 +277,7 @@ export const initialHeroes = [
       id: 35,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_outworld_004.jpg",
    },
    {
       name: "Faceless Void",
@@ -250,6 +285,7 @@ export const initialHeroes = [
       id: 36,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_outworld_003.jpg",
    },
    {
       name: "Nature's Prophet",
@@ -257,6 +293,7 @@ export const initialHeroes = [
       id: 37,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_forest_004.jpg",
    },
    {
       name: "Grimstroke",
@@ -264,6 +301,7 @@ export const initialHeroes = [
       id: 38,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_outworld_003.jpg",
    },
    {
       name: "Gyrocopter",
@@ -271,6 +309,7 @@ export const initialHeroes = [
       id: 39,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_sky_004.jpg",
    },
    {
       name: "Hoodwink",
@@ -278,6 +317,7 @@ export const initialHeroes = [
       id: 40,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_field_004.jpg",
    },
    {
       name: "Huskar",
@@ -285,6 +325,7 @@ export const initialHeroes = [
       id: 41,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_rocky_001.jpg",
    },
    {
       name: "Invoker",
@@ -292,6 +333,7 @@ export const initialHeroes = [
       id: 42,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_sky_004.jpg",
    },
    {
       name: "Jakiro",
@@ -299,6 +341,7 @@ export const initialHeroes = [
       id: 43,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_ice_004.jpg",
    },
    {
       name: "Juggernaut",
@@ -306,6 +349,7 @@ export const initialHeroes = [
       id: 44,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_sky_003.jpg",
    },
    {
       name: "Keeper of the light",
@@ -313,6 +357,7 @@ export const initialHeroes = [
       id: 45,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_field_002.jpg",
    },
    {
       name: "Kez",
@@ -320,6 +365,7 @@ export const initialHeroes = [
       id: 126,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_sky_002.jpg",
    },
    {
       name: "Kunkka",
@@ -327,6 +373,7 @@ export const initialHeroes = [
       id: 46,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_water_004.jpg",
    },
    {
       name: "Legion Commander",
@@ -334,6 +381,7 @@ export const initialHeroes = [
       id: 47,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_rocky_003.jpg",
    },
    {
       name: "Leshrac",
@@ -341,6 +389,7 @@ export const initialHeroes = [
       id: 48,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_ice_001.jpg",
    },
    {
       name: "Lich",
@@ -348,6 +397,7 @@ export const initialHeroes = [
       id: 49,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_ice_002.jpg",
    },
    {
       name: "Lifestealer",
@@ -355,6 +405,7 @@ export const initialHeroes = [
       id: 50,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_rocky_004.jpg",
    },
    {
       name: "Lina",
@@ -362,6 +413,7 @@ export const initialHeroes = [
       id: 51,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_fire_001.jpg",
    },
    {
       name: "Lion",
@@ -369,6 +421,7 @@ export const initialHeroes = [
       id: 52,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_forest_003.jpg",
    },
    {
       name: "Lone Druid",
@@ -376,6 +429,7 @@ export const initialHeroes = [
       id: 53,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_jungle_003.jpg",
    },
    {
       name: "Luna",
@@ -383,6 +437,7 @@ export const initialHeroes = [
       id: 54,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_ice_003.jpg",
    },
    {
       name: "Lycan",
@@ -390,6 +445,7 @@ export const initialHeroes = [
       id: 55,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_forest_003.jpg",
    },
    {
       name: "Magnus",
@@ -397,6 +453,7 @@ export const initialHeroes = [
       id: 56,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_forest_002.jpg",
    },
    {
       name: "Marci",
@@ -404,6 +461,7 @@ export const initialHeroes = [
       id: 57,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_field_003.jpg",
    },
    {
       name: "Mars",
@@ -411,6 +469,7 @@ export const initialHeroes = [
       id: 58,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_rocky_002.jpg",
    },
    {
       name: "Medusa",
@@ -418,6 +477,7 @@ export const initialHeroes = [
       id: 59,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_jungle_004.jpg",
    },
    {
       name: "Meepo",
@@ -425,6 +485,7 @@ export const initialHeroes = [
       id: 60,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_field_001.jpg",
    },
    {
       name: "Mirana",
@@ -432,6 +493,7 @@ export const initialHeroes = [
       id: 61,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_ice_004.jpg",
    },
    {
       name: "Monkey King",
@@ -439,6 +501,7 @@ export const initialHeroes = [
       id: 62,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_jungle_002.jpg",
    },
    {
       name: "Morphling",
@@ -446,6 +509,7 @@ export const initialHeroes = [
       id: 63,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_water_003.jpg",
    },
    {
       name: "Muerta",
@@ -453,6 +517,7 @@ export const initialHeroes = [
       id: 64,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_outworld_001.jpg",
    },
    {
       name: "Naga Siren",
@@ -460,6 +525,7 @@ export const initialHeroes = [
       id: 65,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_water_001.jpg",
    },
    {
       name: "Necrophos",
@@ -467,6 +533,7 @@ export const initialHeroes = [
       id: 66,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_outworld_002.jpg",
    },
    {
       name: "Shadow Fiend",
@@ -474,6 +541,7 @@ export const initialHeroes = [
       id: 67,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_fire_004.jpg",
    },
    {
       name: "Night Stalker",
@@ -481,6 +549,7 @@ export const initialHeroes = [
       id: 68,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_outworld_002.jpg",
    },
    {
       name: "Nyx",
@@ -488,6 +557,7 @@ export const initialHeroes = [
       id: 69,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_sky_003.jpg",
    },
    {
       name: "Outworld Destroyer",
@@ -495,6 +565,7 @@ export const initialHeroes = [
       id: 70,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_outworld_001.jpg",
    },
    {
       name: "Ogre Magi",
@@ -502,6 +573,7 @@ export const initialHeroes = [
       id: 71,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_forest_002.jpg",
    },
    {
       name: "Omniknight",
@@ -509,6 +581,7 @@ export const initialHeroes = [
       id: 72,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_field_001.jpg",
    },
    {
       name: "Oracle",
@@ -516,6 +589,7 @@ export const initialHeroes = [
       id: 73,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_sky_002.jpg",
    },
    {
       name: "Pangolier",
@@ -523,6 +597,7 @@ export const initialHeroes = [
       id: 74,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_forest_001.jpg",
    },
    {
       name: "Phantom Assassin",
@@ -530,6 +605,7 @@ export const initialHeroes = [
       id: 75,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_outworld_002.jpg",
    },
    {
       name: "Phantom Lancer",
@@ -537,6 +613,7 @@ export const initialHeroes = [
       id: 76,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_jungle_001.jpg",
    },
    {
       name: "Phoenix",
@@ -544,6 +621,7 @@ export const initialHeroes = [
       id: 77,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_sky_003.jpg",
    },
    {
       name: "Primal Beast",
@@ -551,6 +629,7 @@ export const initialHeroes = [
       id: 78,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_rocky_003.jpg",
    },
    {
       name: "Puck",
@@ -558,6 +637,7 @@ export const initialHeroes = [
       id: 79,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_outworld_001.jpg",
    },
    {
       name: "Pudge",
@@ -565,6 +645,7 @@ export const initialHeroes = [
       id: 80,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_jungle_004.jpg",
    },
    {
       name: "Pugna",
@@ -572,6 +653,7 @@ export const initialHeroes = [
       id: 81,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_outworld_004.jpg",
    },
    {
       name: "Queen of pain",
@@ -579,6 +661,7 @@ export const initialHeroes = [
       id: 82,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_fire_003.jpg",
    },
    {
       name: "Clockwerk",
@@ -586,6 +669,7 @@ export const initialHeroes = [
       id: 83,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_field_004.jpg",
    },
    {
       name: "Razor",
@@ -593,6 +677,7 @@ export const initialHeroes = [
       id: 84,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_sky_002.jpg",
    },
    {
       name: "Riki",
@@ -600,6 +685,7 @@ export const initialHeroes = [
       id: 85,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_outworld_004.jpg",
    },
    {
       name: "Ringmaster",
@@ -607,6 +693,7 @@ export const initialHeroes = [
       id: 125,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_field_003.jpg",
    },
    {
       name: "Rubick",
@@ -614,6 +701,7 @@ export const initialHeroes = [
       id: 86,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_outworld_003.jpg",
    },
    {
       name: "Sand King",
@@ -621,6 +709,7 @@ export const initialHeroes = [
       id: 87,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_rocky_003.jpg",
    },
    {
       name: "Shadow Demon",
@@ -628,6 +717,7 @@ export const initialHeroes = [
       id: 88,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_fire_002.jpg",
    },
    {
       name: "Shadow Shaman",
@@ -635,6 +725,7 @@ export const initialHeroes = [
       id: 89,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_rocky_002.jpg",
    },
    {
       name: "Timbersaw",
@@ -642,6 +733,7 @@ export const initialHeroes = [
       id: 90,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_field_002.jpg",
    },
    {
       name: "Silencer",
@@ -649,6 +741,7 @@ export const initialHeroes = [
       id: 91,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_sky_001.jpg",
    },
    {
       name: "Wraith king",
@@ -656,6 +749,7 @@ export const initialHeroes = [
       id: 92,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_outworld_002.jpg",
    },
    {
       name: "Skywrath Mage",
@@ -663,6 +757,7 @@ export const initialHeroes = [
       id: 93,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_sky_001.jpg",
    },
    {
       name: "Slardar",
@@ -670,6 +765,7 @@ export const initialHeroes = [
       id: 94,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_water_001.jpg",
    },
    {
       name: "Slark",
@@ -677,6 +773,7 @@ export const initialHeroes = [
       id: 95,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_water_001.jpg",
    },
    {
       name: "Snapfire",
@@ -684,6 +781,7 @@ export const initialHeroes = [
       id: 96,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_field_003.jpg",
    },
    {
       name: "Sniper",
@@ -691,6 +789,7 @@ export const initialHeroes = [
       id: 97,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_field_001.jpg",
    },
    {
       name: "Spectre",
@@ -698,6 +797,7 @@ export const initialHeroes = [
       id: 98,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_outworld_001.jpg",
    },
    {
       name: "Spirit Breaker",
@@ -705,6 +805,7 @@ export const initialHeroes = [
       id: 99,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_rocky_001.jpg",
    },
    {
       name: "Storm Spirit",
@@ -712,6 +813,7 @@ export const initialHeroes = [
       id: 100,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_sky_002.jpg",
    },
    {
       name: "Sven",
@@ -719,6 +821,7 @@ export const initialHeroes = [
       id: 101,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_ice_001.jpg",
    },
    {
       name: "Techies",
@@ -726,6 +829,7 @@ export const initialHeroes = [
       id: 102,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_field_001.jpg",
    },
    {
       name: "Templar Assassin",
@@ -733,6 +837,7 @@ export const initialHeroes = [
       id: 103,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_outworld_004.jpg",
    },
    {
       name: "Terrorblade",
@@ -740,6 +845,7 @@ export const initialHeroes = [
       id: 104,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_outworld_003.jpg",
    },
    {
       name: "Tidehunter",
@@ -747,6 +853,7 @@ export const initialHeroes = [
       id: 105,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_water_002.jpg",
    },
    {
       name: "Tinker",
@@ -754,6 +861,7 @@ export const initialHeroes = [
       id: 106,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_field_003.jpg",
    },
    {
       name: "Tiny",
@@ -761,6 +869,7 @@ export const initialHeroes = [
       id: 107,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_forest_004.jpg",
    },
    {
       name: "Treant Protector",
@@ -768,6 +877,7 @@ export const initialHeroes = [
       id: 108,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_forest_003.jpg",
    },
    {
       name: "Troll Warlord",
@@ -775,6 +885,7 @@ export const initialHeroes = [
       id: 109,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_forest_002.jpg",
    },
    {
       name: "Tusk",
@@ -782,6 +893,7 @@ export const initialHeroes = [
       id: 110,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_ice_002.jpg",
    },
    {
       name: "Undying",
@@ -789,6 +901,7 @@ export const initialHeroes = [
       id: 111,
       attribute: "strength",
       selected: true,
+      loadout: "loadout_bg_rocky_001.jpg",
    },
    {
       name: "Ursa",
@@ -796,6 +909,7 @@ export const initialHeroes = [
       id: 112,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_forest_001.jpg",
    },
    {
       name: "Vengeful Spirit",
@@ -803,6 +917,7 @@ export const initialHeroes = [
       id: 113,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_sky_001.jpg",
    },
    {
       name: "Venomancer",
@@ -810,6 +925,7 @@ export const initialHeroes = [
       id: 114,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_jungle_003.jpg",
    },
    {
       name: "Viper",
@@ -817,6 +933,7 @@ export const initialHeroes = [
       id: 115,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_jungle_001.jpg",
    },
    {
       name: "Visage",
@@ -824,6 +941,7 @@ export const initialHeroes = [
       id: 116,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_ice_003.jpg",
    },
    {
       name: "Void Spirit",
@@ -831,6 +949,7 @@ export const initialHeroes = [
       id: 117,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_outworld_002.jpg",
    },
    {
       name: "Warlock",
@@ -838,6 +957,7 @@ export const initialHeroes = [
       id: 118,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_fire_001.jpg",
    },
    {
       name: "Weaver",
@@ -845,6 +965,7 @@ export const initialHeroes = [
       id: 119,
       attribute: "agility",
       selected: true,
+      loadout: "loadout_bg_jungle_002.jpg",
    },
    {
       name: "Windranger",
@@ -852,6 +973,7 @@ export const initialHeroes = [
       id: 120,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_field_004.jpg",
    },
    {
       name: "Winter Wyvern",
@@ -859,6 +981,7 @@ export const initialHeroes = [
       id: 121,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_ice_004.jpg",
    },
    {
       name: "IO",
@@ -866,6 +989,7 @@ export const initialHeroes = [
       id: 122,
       attribute: "universal",
       selected: true,
+      loadout: "loadout_bg_sky_004.jpg",
    },
    {
       name: "Witch Doctor",
@@ -873,6 +997,7 @@ export const initialHeroes = [
       id: 123,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_jungle_001.jpg",
    },
    {
       name: "Zeus",
@@ -880,5 +1005,6 @@ export const initialHeroes = [
       id: 124,
       attribute: "intelligence",
       selected: true,
+      loadout: "loadout_bg_outworld_001.jpg",
    },
 ];

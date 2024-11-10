@@ -654,43 +654,43 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
 
    // await runPhase(selectedHeroes, 5, 1, 250); // Фаза 1
    // await runPhase(selectedHeroes, 3, 1, 300); // Фаза 1
-   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[0]);
+   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[0]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[0].name
    );
-   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[1]);
+   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[1]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[1].name
    );
-   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[2]);
+   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[2]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[2].name
    );
-   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[3]);
+   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[3]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[3].name
    );
-   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[4]);
+   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[4]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[4].name
    );
-   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[5]);
+   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[5]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[5].name
    );
-   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[6]);
+   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[6]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[6].name
    );
-   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[7]);
+   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[7]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[7].name
    );
-   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[8]);
+   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[8]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[8].name
    );
-   await runPhase(selectedHeroes, 1, 1, 300, true, randomHeroes[9]);
+   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[9]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[9].name
    );

@@ -823,7 +823,19 @@ ol {
   font-family: "Open Sans";
   height: fit-content;
   width: fit-content;
-  background-image: url("../assets/images/herobg.jpg");
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+}
+.show-hero__background {
+  filter: blur(0.4em);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/heroes/loadout/loadout_bg_field_001.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -831,12 +843,6 @@ ol {
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
-  box-shadow: inset 0 50px 150px #000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
 }
 .show-hero__hello {
   opacity: 0;
@@ -959,7 +965,7 @@ ol {
 }
 
 .last-heroes {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 0.7em;
   overflow: hidden;
   display: flex;
@@ -1235,7 +1241,7 @@ ol {
   align-items: center;
   position: relative;
   cursor: pointer;
-  font-size: 2em;
+  font-size: 1.4em;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -1275,6 +1281,7 @@ ol {
 }
 
 .song-changer-volume {
+  font-size: 0.8em;
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -1285,8 +1292,7 @@ ol {
   transition: 0.8s ease;
   opacity: 0;
   position: absolute; /* или fixed, в зависимости от ваших нужд */
-  top: 0.45em;
-  left: 3.2em;
+  left: 3.8em;
 }
 .song-changer-volume::before {
   box-shadow: inset 0.2em 0 0.2em rgba(0, 0, 0, 0.2588235294), inset 0.1em 0.2em 0.3em rgba(0, 0, 0, 0.2588235294), inset 0.2em 0.1em 0.5em rgba(0, 0, 0, 0.2588235294), -0.2em -0.2em 0.4em rgba(0, 0, 0, 0.2588235294);
@@ -1998,7 +2004,6 @@ ol {
 }
 .portraits-list__box {
   transform: scale(1);
-  padding-top: 1em;
   height: 100%;
   width: 100%;
   display: grid;
@@ -2120,7 +2125,7 @@ ol {
   font-size: 1.4em;
   border-radius: 0.7em;
   padding: 0.5em;
-  background-color: rgba(0, 0, 0, 0.3294117647);
+  background-color: rgba(0, 0, 0, 0.2);
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -3660,7 +3665,7 @@ ol {
   font-weight: 400;
   font-family: "Roboto";
   letter-spacing: 0.03em;
-  font-size: 1.8em;
+  font-size: 1.6em;
   padding: 0.2em 0.8em;
   border-radius: 0.6em;
   border: #303030 0.15em solid;
@@ -3698,6 +3703,16 @@ ol {
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+
+.panel {
+  font-size: 1em;
+  border-radius: 1.2em;
+  background-color: rgba(0, 0, 0, 0.3411764706);
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 .help {

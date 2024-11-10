@@ -9,7 +9,7 @@
    align-items: center;
    position: relative;
    cursor: pointer;
-   font-size: 2em;
+   font-size: 1.4em;
    user-select: none;
    fill: $major-text;
    &:hover {
@@ -46,6 +46,7 @@
 }
 
 .song-changer-volume {
+   font-size: 0.8em;
    cursor: pointer;
    -webkit-appearance: none;
    appearance: none;
@@ -56,8 +57,8 @@
    transition: 0.8s ease; // Убираем яйца
    opacity: 0;
    position: absolute; /* или fixed, в зависимости от ваших нужд */
-   top: 0.45em;
-   left: 3.2em; // Убираем яйца
+   // top: 0.45em;
+   left: 3.8em; // Убираем яйца
    // left: 2.6em;
    // transform: translate(-50%, -50%);
    &::before { // Убираем яйца

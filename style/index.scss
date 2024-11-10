@@ -238,7 +238,7 @@
       font-weight: 400;
       font-family: "Roboto";
       letter-spacing: 0.03em;
-      font-size: 1.8em;
+      font-size: 1.6em;
       padding: 0.2em 0.8em;
       border-radius: 0.6em;
       border: #303030 0.15em solid;
@@ -279,6 +279,16 @@
    flex-direction: column;
    gap: 15px;
    // background-color: #757575;
+}
+
+.panel {
+   font-size: 1em;
+   border-radius: 1.2em;
+   background-color: #00000057;
+   padding: 0.5em;
+   display: flex;
+   flex-direction: column;
+   gap: 1em;
 }
 
 .help {
@@ -323,6 +333,7 @@
       color: #fff;
    }
 }
+
 
 .remove-heroes__question {
    transition: 0.3s ease;
