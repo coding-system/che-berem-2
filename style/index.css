@@ -3947,7 +3947,7 @@ ol {
     font-size: 14px;
   }
   .portraits-list__box__moved {
-    transform: scale(1.1) translateY(-2em);
+    transform: scale(1.1) translateY(-8em);
   }
   .minigame-pairs {
     font-size: 14px;
