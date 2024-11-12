@@ -3581,7 +3581,7 @@ ol {
   display: grid;
   grid-template-rows: auto 1fr auto;
   overflow: hidden;
-  width: 100vw;
+  min-width: 100vw;
   min-height: 100vh;
   position: relative;
   font-size: 10px;
