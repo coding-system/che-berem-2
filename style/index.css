@@ -974,7 +974,7 @@ ol {
 .last-box__moved {
   transform: translateY(-100%);
   opacity: 0;
-  transition: transform 0.75s 0s ease, opacity 0.75s 0s ease;
+  transition: transform 0.5s 0s ease, opacity 0.5s 0s ease;
 }
 
 .last-heroes {
@@ -2027,7 +2027,7 @@ ol {
 .portraits-list__box__moved {
   transform: scale(1.15) translateY(-5em);
   place-content: center;
-  transition: transform 0.75s linear;
+  transition: transform 0.5s linear;
 }
 .portraits-list__attribute {
   display: flex;
@@ -2062,7 +2062,7 @@ ol {
   max-width: 1.7em;
 }
 .portraits-list__title__moved {
-  transition: opacity 0.75s linear;
+  transition: opacity 0.5s linear;
   opacity: 0;
 }
 .portraits-list__group {
@@ -2147,7 +2147,7 @@ ol {
 .portraits-list .buttons-bar__moved {
   transform: translateY(-200%);
   opacity: 0;
-  transition: transform 0.75s linear, opacity 0.75s linear;
+  transition: transform 0.5s linear, opacity 0.5s linear;
 }
 .portraits-list .buttons-bar__group {
   display: flex;
@@ -3578,15 +3578,17 @@ ol {
 }
 
 .body {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
   overflow: hidden;
-  min-width: 100vw;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  height: 100vh;
   position: relative;
   font-size: 10px;
   color: #fff;
   font-family: "Roboto";
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .body::before {
   filter: blur(0.5em) brightness(0.5);
@@ -3629,13 +3631,13 @@ ol {
   margin: 0 auto;
 }
 .wrapper:has(.header) {
-  max-width: 100%;
+  min-width: 100%;
 }
 .wrapper:has(.main) {
   width: 1620px;
 }
 .wrapper:has(.footer) {
-  max-width: 100%;
+  min-width: 100%;
 }
 
 .main-logo {
@@ -3675,6 +3677,7 @@ ol {
 }
 
 .header {
+  width: 100%;
   -webkit-backdrop-filter: blur(1em) brightness(0.5);
           backdrop-filter: blur(1em) brightness(0.5);
   font-size: 1em;
@@ -3686,7 +3689,7 @@ ol {
 }
 .header__moved {
   transform: translateY(-100%);
-  transition: 0.75s linear;
+  transition: 0.5s linear;
 }
 
 .nav {
@@ -3822,24 +3825,26 @@ ol {
   gap: 1em;
   border-radius: 0.4em;
   padding: 2em;
-  background-color: #fff;
+  background-color: #e8e8e8;
   height: -moz-fit-content;
   height: fit-content;
 }
 .confirm__text {
   font-weight: 400;
   text-align: center;
-  color: rgb(0, 0, 0);
+  color: rgb(145, 141, 150);
   font-size: 1.6em;
+  color: #090909;
 }
 .confirm__text-special {
   font-weight: 600;
   font-size: 1.8em;
 }
 .confirm__buttons {
+  margin-top: 2em;
   gap: 1em;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 .confirm__button {
   color: #000;
@@ -3847,36 +3852,36 @@ ol {
   justify-content: center;
   align-items: center;
   font-size: 1.8em;
-  transition: all 0.2s ease;
+  transition: all 0.1s ease;
   border-radius: 0.4em;
   padding: 0.5em 5em;
+  width: 40%;
+  padding: 0.6em 4em;
+  font-size: 1.8em;
+  border-radius: 0.5em;
+  background: #e8e8e8;
+  cursor: pointer;
+  border: 1px solid #e8e8e8;
+  transition: all 0.1s;
+  box-shadow: 3px 3px 6px #c5c5c5, -3px -3px 6px #ffffff;
+  cursor: pointer;
 }
 .confirm__button:hover {
   cursor: pointer;
+  box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
 }
-.confirm__accept {
-  background-color: #b8ffb5;
-  border: 0.1em solid #09ff00;
+.confirm__button:active {
+  color: #666;
+  box-shadow: inset 2px 2px 8px #c5c5c5, inset -2px -2px 8px #ffffff;
 }
-.confirm__accept:hover {
-  background-color: #65ff60;
-}
-.confirm__cancel {
-  background-color: #ffb5b5;
-  border: 0.1em solid #ff0000;
-}
-.confirm__cancel:hover {
-  background-color: rgb(255, 99, 99);
-}
-
 .footer {
   width: 100%;
+  -webkit-backdrop-filter: blur(1em) brightness(0.5);
+          backdrop-filter: blur(1em) brightness(0.5);
 }
 
 .powered {
-  position: absolute;
-  bottom: 0.5em;
-  right: 1em;
+  position: relative;
 }
 
 .powered__text {
