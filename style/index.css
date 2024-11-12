@@ -3578,10 +3578,11 @@ ol {
 }
 
 .body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   overflow: hidden;
   width: 100vw;
-  height: 100vh;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   font-size: 10px;
   color: #fff;
@@ -3648,7 +3649,7 @@ ol {
   z-index: 0;
   max-height: -moz-fit-content;
   max-height: fit-content;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;

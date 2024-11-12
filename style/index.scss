@@ -130,10 +130,11 @@
    }
 }
 .body {
+   display: grid;
+   grid-template-rows: auto 1fr auto;
    overflow: hidden;
    width: 100vw;
-   height: 100vh;
-   height: 100vh;
+   min-height: 100vh;
    position: relative;
    font-size: 10px;
    // background-image: linear-gradient(#2e2e2e, #111111);
@@ -196,7 +197,7 @@
    // overflow: hidden;
    // max-width: 100%;
    max-height: fit-content;
-   display: flex;
+   display: none;
    flex-direction: column;
    justify-content: center;
    align-items: center;
