@@ -825,14 +825,11 @@ ol {
   font-size: 10px;
   border-radius: 1.6em;
   overflow: hidden;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 30vw;
   height: -moz-fit-content;
   height: fit-content;
   max-width: 30vw;
   font-family: "Open Sans";
-  height: fit-content;
-  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -891,7 +888,7 @@ ol {
   pointer-events: none;
   -webkit-mask-image: linear-gradient(to top, transparent 1%, black 20%);
           mask-image: linear-gradient(to top, transparent 1%, black 20%);
-  max-width: 100%;
+  width: 80%;
   position: relative;
 }
 .show-hero__video::after {
@@ -2425,14 +2422,15 @@ ol {
 .light-spark {
   opacity: 0;
   pointer-events: none;
-  display: none;
+  display: block;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 255, 0, 0.2);
   border-radius: inherit;
-  z-index: 6;
+  z-index: 10;
 }
 
 .green-light-spark {
@@ -2616,7 +2614,7 @@ ol {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  transform: scale(1);
+  transform: scale(0.95);
   transition: transform var(--selectable-random-selectable-cards-transition-duration) linear;
   z-index: 5;
 }
@@ -2635,7 +2633,7 @@ ol {
      -moz-user-select: auto;
           user-select: auto;
   transition: visibility var(--selectable-random-selectable-cards-transition-duration) 0s, opacity var(--selectable-random-selectable-cards-transition-duration);
-  animation: calc(var(--selectable-random-animation-duration) * 5) searched-light-spinning linear infinite, calc(var(--selectable-random-animation-duration) * 2) pre-final-light-colors linear infinite alternate;
+  animation: 1s searched-light-spinning linear infinite, calc(var(--selectable-random-animation-duration) * 2) pre-final-light-colors linear infinite alternate;
   background: conic-gradient(from var(--angle), rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05) 50%, rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05), rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 0.25), rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 1), rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 0.25), rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05));
   width: calc(100% + 0.5em);
   height: calc(100% + 0.5em);
@@ -2666,7 +2664,7 @@ ol {
      -moz-user-select: auto;
           user-select: auto;
   transition: visibility var(--selectable-random-selectable-cards-transition-duration) 0s, opacity var(--selectable-random-selectable-cards-transition-duration), background-color var(--selectable-random-selectable-cards-transition-duration);
-  animation: calc(var(--selectable-random-animation-duration) * 5) searched-light-spinning linear infinite, calc(var(--selectable-random-animation-duration) * 2) pre-final-light-colors linear infinite alternate;
+  animation: 1s searched-light-spinning linear infinite, calc(var(--selectable-random-animation-duration) * 2) pre-final-light-colors linear infinite alternate;
   background: conic-gradient(from var(--angle), rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05) 40%, rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05), rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 0.25), rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 1), rgba(var(--a-second-r), var(--a-second-g), var(--a-second-b), 0.25), rgba(var(--a-first-r), var(--a-first-g), var(--a-first-b), 0.05));
   width: calc(100% + 0.5em);
   height: calc(100% + 0.5em);
@@ -2710,13 +2708,13 @@ ol {
      -moz-user-select: none;
           user-select: none;
   transform: scale(0.8) rotate(5deg);
-  transition: opacity var(--selectable-random-selectable-cards-transition-duration) linear, transform calc(var(--selectable-random-selectable-cards-transition-duration) * 2) linear;
+  transition: opacity var(--selectable-random-selectable-cards-transition-duration) ease-out, transform calc(var(--selectable-random-selectable-cards-transition-duration) * 1) ease-out;
   z-index: 5;
   opacity: 0;
 }
 .selectable__last-retired-image {
   filter: contrast(1) grayscale(0.75) brightness(0.75);
-  transition: opacity calc(var(--selectable-random-selectable-cards-transition-duration) / 3) linear, filter calc(var(--selectable-random-selectable-cards-transition-duration) / 3) linear;
+  transition: opacity calc(var(--selectable-random-selectable-cards-transition-duration) / 3) ease-in-out, filter calc(var(--selectable-random-selectable-cards-transition-duration) / 3) ease-in-out;
 }
 .selectable__last-retired-image__sparking {
   animation: searched-image-sparking calc(var(--selectable-random-animation-duration) * 4) linear infinite alternate;
@@ -2729,7 +2727,7 @@ ol {
      -moz-user-select: auto;
           user-select: auto;
   transition: visibility var(--selectable-random-selectable-cards-transition-duration) 0s, opacity var(--selectable-random-selectable-cards-transition-duration);
-  animation: calc(var(--selectable-random-animation-duration) * 10) searched-light-spinning linear infinite, calc(var(--selectable-random-animation-duration) * 2) retired-light-colors linear infinite alternate;
+  animation: 1s searched-light-spinning linear infinite, calc(var(--selectable-random-animation-duration) * 2) retired-light-colors linear infinite alternate;
   background: conic-gradient(from var(--angle), rgba(var(--c-first-r), var(--c-first-g), var(--c-first-b), 0.25) 50%, rgba(var(--c-first-r), var(--c-first-g), var(--c-first-b), 0.25), rgba(var(--c-second-r), var(--c-second-g), var(--c-second-b), 0.25), rgba(var(--c-second-r), var(--c-second-g), var(--c-second-b), 1), rgba(var(--c-second-r), var(--c-second-g), var(--c-second-b), 0.25), rgba(var(--c-first-r), var(--c-first-g), var(--c-first-b), 0.25));
   width: calc(100% + 0.5em);
   height: calc(100% + 0.5em);
@@ -3497,7 +3495,7 @@ ol {
   width: 100%;
   height: 100%;
   z-index: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.75);
   box-shadow: inset 0 0 25em rgb(0, 0, 0);
   -webkit-backdrop-filter: blur(10em);
           backdrop-filter: blur(10em);
@@ -3617,7 +3615,7 @@ ol {
   height: calc(100% + 4em);
   transform: translate(-2em, -2em);
   z-index: -1;
-  background-color: rgba(0, 0, 0, 0);
+  background-image: linear-gradient(rgba(46, 46, 46, 0.4196078431), #111111);
 }
 .body__disabled {
   pointer-events: none;
@@ -3656,7 +3654,7 @@ ol {
   align-items: center;
   width: 100%;
   position: fixed;
-  top: -3%;
+  top: 0;
   left: 0;
 }
 .main-logo__content {
@@ -3666,29 +3664,23 @@ ol {
   -webkit-background-clip: text;
   background-clip: text;
   font-family: "Pacifico";
-  font-size: 26.5em;
+  font-size: 6.5em;
   white-space: nowrap;
   letter-spacing: -0.009em;
   word-spacing: 0.1em;
   text-align: center;
   filter: blur(5px);
   width: 100%;
-  animation-name: pulsating;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  animation-direction: alternate;
-  transform-origin: center; /* Определяем точку трансформации */
 }
 
 .header {
-  -webkit-backdrop-filter: blur(1.5em) brightness(2);
-          backdrop-filter: blur(1.5em) brightness(2);
+  -webkit-backdrop-filter: blur(1em) brightness(0.5);
+          backdrop-filter: blur(1em) brightness(0.5);
   font-size: 1em;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5em;
+  padding: 1em;
   transition: 0.75s linear;
 }
 .header__moved {
@@ -3698,11 +3690,10 @@ ol {
 
 .nav {
   font-size: 1em;
-  color: #b0b0b0;
 }
 .nav__list {
   display: flex;
-  gap: 5.5em;
+  gap: 5em;
 }
 .nav__item {
   display: flex;
@@ -3714,8 +3705,9 @@ ol {
   font-size: 1.6em;
   padding: 0.2em 0.8em;
   border-radius: 0.6em;
-  border: #b1b1b1 0.15em solid;
+  border: rgba(255, 255, 255, 0.1) 0.15em solid;
   transition: 0.2s ease;
+  color: rgba(255, 255, 255, 0.5);
 }
 .nav__item:hover {
   cursor: pointer;
@@ -3947,6 +3939,9 @@ ol {
   }
   .portraits-list {
     font-size: 14px;
+  }
+  .portraits-list__box__moved {
+    transform: scale(1.1) translateY(-2em);
   }
   .minigame-pairs {
     font-size: 14px;

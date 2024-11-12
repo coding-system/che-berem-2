@@ -57,6 +57,11 @@
    }
    .portraits-list {
       font-size: 14px;
+      &__box {
+         &__moved {
+            transform: scale(1.1) translateY(-2em);
+         }
+      }
    }
    .minigame-pairs {
       font-size: 14px;

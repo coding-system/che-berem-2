@@ -172,7 +172,7 @@ export function animateHeroSelection() {
 }
 
 let totalDuration; // Глобальная переменная для общей длительности
-export const showHeroWindowDelay = 12550; // 5750
+export const showHeroWindowDelay = 12500; // 5750
 export const addShowHeroDataDelay = 5000; // 5750
 export const enableChooseButtonDelay = 8000;
 
@@ -550,14 +550,30 @@ export async function runFinalPhase(cycles, phaseDuration, remainingHeroes, hero
 }
 
 // Функция для поочередного скрытия случайных элементов из массива, кроме chosenHero
-async function hideHeroesRandomly(heroesArray, delayBetweenHides, chosenHero, initialDelay) {
+async function hideHeroesRandomly(
+   heroesArray,
+   delaysArray,
+   chosenHero,
+   initialDelay
+) {
    // Ждем начальную задержку перед началом скрытия
    await new Promise((resolve) => setTimeout(resolve, initialDelay));
 
    // Копируем массив и отфильтровываем выбранного героя, чтобы он не скрывался
-   let remainingHeroes = heroesArray.filter(hero => hero.name !== chosenHero.name);
+   let remainingHeroes = heroesArray.filter(
+      (hero) => hero.name !== chosenHero.name
+   );
 
-   while (remainingHeroes.length > 0) {
+   // Проверяем, что длина delaysArray соответствует количеству оставшихся героев
+   if (delaysArray.length !== remainingHeroes.length) {
+      console.warn(
+         "Количество задержек не совпадает с количеством оставшихся героев."
+      );
+   }
+
+   let i = 0; // Счетчик для индекса задержки
+
+   while (remainingHeroes.length > 0 && i < delaysArray.length) {
       // Случайный индекс для выбора героя
       const randomIndex = Math.floor(Math.random() * remainingHeroes.length);
       const hero = remainingHeroes[randomIndex];
@@ -577,11 +593,20 @@ async function hideHeroesRandomly(heroesArray, delayBetweenHides, chosenHero, in
          // Убираем текущего героя из массива, чтобы он больше не скрывался
          remainingHeroes.splice(randomIndex, 1);
       } else {
-         console.warn(`Hero element or image box not found for hero: ${hero.name}`);
+         console.warn(
+            `Hero element or image box not found for hero: ${hero.name}`
+         );
       }
 
-      // Ждем указанное время перед скрытием следующего героя
-      await new Promise((resolve) => setTimeout(resolve, delayBetweenHides));
+      // Изменяем длительность transition для текущего героя
+      setTransitionDuration(delaysArray[i]);
+      setAnimationDuration(delaysArray[i]); // Устанавливаем длительность анимации
+
+      // Ждем время, указанное для текущего элемента в delaysArray
+      await new Promise((resolve) => setTimeout(resolve, delaysArray[i]));
+
+      // Увеличиваем счетчик для задержек
+      i++;
    }
 }
 
@@ -731,7 +756,15 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
    // remainingHeroes = await runFinalPhase(4, 2000, remainingHeroes, heroesToRemove[6], chosenHero);
 
    // Вызываем функцию для поочередного скрытия героев из randomHeroes, кроме chosenHero
-   await hideHeroesRandomly(randomHeroes, 700, chosenHero, 1000);
+   // await hideHeroesRandomly(randomHeroes, 700, chosenHero, 1000);
+   const delaysArray = [700, 700, 700, 730, 770, 820, 900, 1000, 1200]; // для каждого героя своя задержка
+   const initialDelay = 800; // Начальная задержка перед началом скрытия героев
+   await hideHeroesRandomly(
+      randomHeroes,
+      delaysArray,
+      chosenHero,
+      initialDelay
+   );
 
    // Запуск финальной фазы с выбранным героем
    await runFinalHero(chosenHero, 1000); // Длительность подсветки финального героя

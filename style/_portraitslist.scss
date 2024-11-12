@@ -512,15 +512,15 @@
 .light-spark {
    opacity: 0;
    pointer-events: none;
-   display: none;
+   display: block;
    position: absolute;
    top: 0;
    left: 0;
    width: 100%;
    height: 100%;
-   // background-color: rgba(0, 255, 0, 0.2);
+   background-color: rgba(0, 255, 0, 0.2);
    border-radius: inherit;
-   z-index: 6;
+   z-index: 10;
 }
 
 .green-light-spark {
@@ -839,7 +839,7 @@
       &-pre-final {
          pointer-events: none;
          user-select: none;
-         transform: scale(1);
+         transform: scale(0.95);
          transition: transform
             var(--selectable-random-selectable-cards-transition-duration) linear;
          // transition: filter 0s 0s linear;
@@ -878,7 +878,7 @@
                   0s,
                opacity
                   var(--selectable-random-selectable-cards-transition-duration);
-            animation: calc(var(--selectable-random-animation-duration) * 5)
+            animation: 1s
                   searched-light-spinning linear infinite,
                calc(var(--selectable-random-animation-duration) * 2)
                   pre-final-light-colors linear infinite alternate;
@@ -955,7 +955,7 @@
                   var(--selectable-random-selectable-cards-transition-duration),
                background-color
                   var(--selectable-random-selectable-cards-transition-duration);
-            animation: calc(var(--selectable-random-animation-duration) * 5)
+            animation: 1s
                   searched-light-spinning linear infinite,
                calc(var(--selectable-random-animation-duration) * 2)
                   pre-final-light-colors linear infinite alternate;
@@ -1052,13 +1052,13 @@
          transform: scale(0.8) rotate(5deg);
          transition: opacity
                var(--selectable-random-selectable-cards-transition-duration)
-               linear,
+               ease-out,
             transform
                calc(
                   var(--selectable-random-selectable-cards-transition-duration) *
-                     2
+                     1
                )
-               linear;
+               ease-out;
          // transition: filter 0s 0s linear;
          // filter: grayscale(0) brightness(1.2);
          z-index: 5;
@@ -1071,14 +1071,14 @@
                            --selectable-random-selectable-cards-transition-duration
                         ) / 3
                   )
-                  linear,
+                  ease-in-out,
                filter
                   calc(
                      var(
                            --selectable-random-selectable-cards-transition-duration
                         ) / 3
                   )
-                  linear;
+                  ease-in-out;
             &__sparking {
                animation: searched-image-sparking
                   calc(var(--selectable-random-animation-duration) * 4) linear
@@ -1096,7 +1096,7 @@
                   0s,
                opacity
                   var(--selectable-random-selectable-cards-transition-duration);
-            animation: calc(var(--selectable-random-animation-duration) * 10)
+            animation: 1s
                   searched-light-spinning linear infinite,
                calc(var(--selectable-random-animation-duration) * 2)
                   retired-light-colors linear infinite alternate;
@@ -1192,3 +1192,97 @@
 //       max-width: 1.8em;
 //    }
 // }
+
+
+// /////
+// /// 
+// /// 
+// /// 
+// .buttons-bar {
+//    font-size: 1.4em;
+//    backdrop-filter: blur(1em) brightness(1.5);
+//    border-radius: 0.7em;
+//    padding: 0.5em;
+//    background-color: #e8e8e8; 
+//    width: 100%;
+//    display: flex;
+//    justify-content: space-between;
+//    transition: transform 0.75s linear, opacity 0.75s linear;
+//    &__moved {
+//       transform: translateY(-200%);
+//       opacity: 0;
+//       transition: transform 0.75s linear, opacity 0.75s linear;
+//    }
+//    &__group {
+//       display: flex;
+//       gap: 1em;
+//    }
+
+//    .button {
+//       color: #090909;
+// padding: 0.3em 1.7em;
+// font-size: 1em;
+// border-radius: 0.5em;
+// background: #e8e8e8;
+// cursor: pointer;
+// border: 1px solid #e8e8e8;
+// transition: all 0.3s;
+// box-shadow: 3px 3px 6px #c5c5c5, -3px -3px 6px #ffffff;
+//       cursor: pointer;
+//       &:hover {
+//          transition: all 0.1s ease;
+//          color: #ffffff;
+//       }
+//       &:active {
+//          color: #666;
+// box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+//       }
+//    }
+
+//    .choose-button {
+//       // box-shadow: 0 0.2em 0 #ea00ff2d;
+//       // background-color: #ea00ff56;
+//       // font-weight: 500;
+//       // padding: 0 3.5em;
+//       // &:hover {
+//       //    background-color: #ea00ff9a;
+//       // }
+//    }
+
+//    .select-all {
+//       // box-shadow: 0 0.2em 0 #0084ff2d;
+//       // background-color: #0084ff56;
+//       // font-weight: 500;
+//       // &:hover {
+//       //    background-color: #0084ff9a;
+//       // }
+//    }
+
+//    .ban-all {
+//       // box-shadow: 0 0.2em 0 #ff00002d;
+//       // background-color: #ff000056;
+//       // font-weight: 500;
+//       // &:hover {
+//       //    background-color: #ff00009a;
+//       // }
+//    }
+//    .save-bans {
+//       // box-shadow: 0 0.2em 0 #51ff002d;
+//       // // display: none;
+//       // background-color: #51ff0056;
+//       // font-weight: 500;
+//       // &:hover {
+//       //    background-color: #51ff009a;
+//       // }
+//    }
+//    .load-bans {
+//       // box-shadow: 0 0.2em 0 #ff66002d;
+//       // // display: none;
+//       // background-color: #ff660056;
+//       // font-weight: 500;
+//       // &:hover {
+//       //    background-color: #ff66009a;
+//       // }
+//    }
+// }
+// ///

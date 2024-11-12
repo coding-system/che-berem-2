@@ -63,3 +63,42 @@ async function hideHeroesRandomly(
       i++;
    }
 }
+
+/////// Оригинальный код
+// Функция для поочередного скрытия случайных элементов из массива, кроме chosenHero
+async function hideHeroesRandomly(heroesArray, delayBetweenHides, chosenHero, initialDelay) {
+   // Ждем начальную задержку перед началом скрытия
+   await new Promise((resolve) => setTimeout(resolve, initialDelay));
+
+   // Копируем массив и отфильтровываем выбранного героя, чтобы он не скрывался
+   let remainingHeroes = heroesArray.filter(hero => hero.name !== chosenHero.name);
+
+   while (remainingHeroes.length > 0) {
+      // Случайный индекс для выбора героя
+      const randomIndex = Math.floor(Math.random() * remainingHeroes.length);
+      const hero = remainingHeroes[randomIndex];
+
+      // Находим элементы героя и imageBox на странице
+      const heroElement = portraitsListBox.querySelector(
+         `[data-hero-name="${hero.name}"]`
+      );
+      const imageBox = heroElement?.querySelector(".card-portrait-image-box");
+
+      // Проверяем, что элементы найдены
+      if (heroElement && imageBox) {
+         // Добавляем классы для скрытия героя и imageBox
+         heroElement.classList.add("selectable__last-retired");
+         imageBox.classList.add("selectable__last-retired-image");
+
+         // Убираем текущего героя из массива, чтобы он больше не скрывался
+         remainingHeroes.splice(randomIndex, 1);
+      } else {
+         console.warn(`Hero element or image box not found for hero: ${hero.name}`);
+      }
+
+      // Ждем указанное время перед скрытием следующего героя
+      await new Promise((resolve) => setTimeout(resolve, delayBetweenHides));
+   }
+}
+
+await hideHeroesRandomly(randomHeroes, 700, chosenHero, 1000);
