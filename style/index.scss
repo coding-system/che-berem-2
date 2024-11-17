@@ -17,6 +17,7 @@
 @import "golast.scss";
 @import "update.scss";
 @import "minigame-pairs.scss";
+@import "minigame-quiz.scss";
 @import "loading.scss";
 
 // body {
@@ -132,7 +133,6 @@
 .body {
    overflow: hidden;
    width: 100vw;
-   height: 100vh;
    height: 100vh;
    position: relative;
    font-size: 10px;

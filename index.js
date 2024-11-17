@@ -219,7 +219,7 @@ function preloadImages(imagesArray) {
       const img = new Image();
       img.src = `./assets/heroes/${imageObj.image}`;
    });
-   console.log("Картинки героев загружены");
+   console.debug("Картинки героев загружены");
    console.timeEnd("preloadImages"); // Конец отсчета времени выполнения и вывод результата в консоль
 }
 
@@ -231,7 +231,7 @@ function preloadVideos(heroesArray) {
       const video = document.createElement("video");
       video.src = `./assets/heroes/portraits/npc_dota_hero_${videoSrc}`;
    });
-   console.log("Портреты героев загружены");
+   console.debug("Портреты героев загружены");
    console.timeEnd("preloadVideos"); // Конец отсчета времени выполнения и вывод результата в консоль
 }
 
@@ -242,7 +242,7 @@ function preloadPictures(imagesArray) {
       const img = new Image();
       img.src = `./assets/heroes/pictures/npc_dota_hero_${imageSrc}.jpg`;
    });
-   console.log("Картинки героев загружены");
+   console.debug("Картинки героев загружены");
    console.timeEnd("preloadImages"); // Конец отсчета времени выполнения и вывод результата в консоль
 }
 
@@ -341,7 +341,7 @@ function loadChosenIndexFromLocalStorage() {
 
    if (savedHero !== null) {
       const hero = JSON.parse(savedHero); // Преобразуем JSON-строку обратно в объект героя
-      console.log(`Последний выбранный герой — ${hero.name}`);
+      console.debug(`Последний выбранный герой — ${hero.name}`);
 
       // Здесь можно использовать свойства героя, например:
       const chosenHeroImage = hero.image.replace(".jpg", "");
@@ -361,7 +361,7 @@ function loadChosenIndexFromLocalStorage() {
       // Перезагрузка видео
       showHeroVideo.load();
    } else {
-      console.log("Нет сохраненного героя.");
+      console.debug("Нет сохраненного героя.");
    }
 }
 
@@ -387,11 +387,11 @@ function loadLastHeroesFromLocalStorage() {
       currentLastHeroes.push(...loadedHeroes);
 
       // Выводим загруженный массив в консоль
-      console.log("Это currentLastHeroes");
-      console.log("Сохраненные последние герои", currentLastHeroes);
+      console.debug("Это currentLastHeroes");
+      console.debug("Сохраненные последние герои", currentLastHeroes);
    } else {
       // Если данных нет, выводим сообщение в консоль
-      console.log("Нет сохраненных последних героев");
+      console.debug("Нет сохраненных последних героев");
    }
 }
 
@@ -437,7 +437,7 @@ function renderLastHeroesFromLocalStorage() {
 function saveStartHeroesToLocalStorage() {
    const startHeroesString = JSON.stringify(startHeroes);
    localStorage.setItem("startHeroes", startHeroesString);
-   console.log("Массив startHeroes сохранен в localStorage.");
+   console.debug("Массив startHeroes сохранен в localStorage.");
 }
 
 function loadStartHeroesFromLocalStorage() {
@@ -454,11 +454,11 @@ function loadStartHeroesFromLocalStorage() {
       startHeroes.push(...loadedStartHeroes);
 
       // Выводим загруженный массив в консоль для проверки
-      console.log("Массив startHeroes загружен из localStorage.");
-      console.log(startHeroes);
+      console.debug("Массив startHeroes загружен из localStorage.");
+      console.debug(startHeroes);
    } else {
       // Если данных нет, выводим сообщение в консоль
-      console.log("Нет сохраненных данных для startHeroes в localStorage.");
+      console.debug("Нет сохраненных данных для startHeroes в localStorage.");
    }
 }
 
@@ -466,7 +466,7 @@ function loadStartHeroesFromLocalStorage() {
 // function saveMyBansToLocalStorage() {
 //    const myBansString = JSON.stringify(startHeroes);
 //    localStorage.setItem("myBans", myBansString);
-//    console.log("Массив startHeroes сохранен как 'мои баны' в localStorage.");
+//    console.debug("Массив startHeroes сохранен как 'мои баны' в localStorage.");
 // }
 
 // // Функция для загрузки массива "мои баны" из localStorage
@@ -481,12 +481,12 @@ function loadStartHeroesFromLocalStorage() {
 //       startHeroes.length = 0;
 //       startHeroes.push(...loadedMyBans);
 
-//       console.log(
+//       console.debug(
 //          "Массив startHeroes обновлен с данными из 'моих банов' из localStorage."
 //       );
-//       console.log(startHeroes);
+//       console.debug(startHeroes);
 //    } else {
-//       console.log("Нет сохраненных данных для 'моих банов' в localStorage.");
+//       console.debug("Нет сохраненных данных для 'моих банов' в localStorage.");
 //    }
 // }
 
@@ -498,7 +498,7 @@ function saveMyBansToLocalStorage() {
    // Сохраняем этот массив в localStorage
    const myBansString = JSON.stringify(myBans);
    localStorage.setItem("myBans", myBansString);
-   console.log("Герои с selected = false сохранены в localStorage.");
+   console.debug("Герои с selected = false сохранены в localStorage.");
 }
 
 // Функция для загрузки данных из localStorage и обновления selected
@@ -517,12 +517,12 @@ function loadMyBansFromLocalStorage() {
          }
       });
 
-      console.log(
+      console.debug(
          "Массив startHeroes обновлен с данными из 'моих банов' из localStorage."
       );
-      console.log(loadedMyBans);
+      console.debug(loadedMyBans);
    } else {
-      console.log("Нет сохраненных данных для 'моих банов' в localStorage.");
+      console.debug("Нет сохраненных данных для 'моих банов' в localStorage.");
    }
 }
 
@@ -547,14 +547,14 @@ function showPopupIfNeeded(popupName, popupElement) {
    const currentContent = getUpdateContent();
    const storedContent = localStorage.getItem("updatePopupContent");
    if (popupName === "whatsNewPopup" && isNewUser()) {
-      console.log("Текущее содержимое h4:", currentContent); // Выводим содержимое h4 в консоль
+      console.debug("Текущее содержимое h4:", currentContent); // Выводим содержимое h4 в консоль
       // Новый пользователь - показываем только "What's New" попап
       openPopup(popupElement);
       saveUpdateContent(currentContent);
       markUserAsVisited(); // Сохраняем, что пользователь заходил
    } else if (popupName === "UpdatePopup" && !isNewUser()) {
       if (currentContent) {
-         console.log("Текущее содержимое h4:", currentContent); // Выводим содержимое h4 в консоль
+         console.debug("Текущее содержимое h4:", currentContent); // Выводим содержимое h4 в консоль
       }
 
       if (currentContent && currentContent !== storedContent) {

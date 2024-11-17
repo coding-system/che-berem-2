@@ -91,7 +91,7 @@ function getRandomElement(heroesArray) {
    // Теперь выбираем финального героя из этих 4
    const randomHero = chooseFinalHero(selectedRandomHeroes);
 
-   console.log(`Имя выбранного финального героя`, randomHero.name);
+   console.debug(`Имя выбранного финального героя`, randomHero.name);
 
    saveChosenIndexToLocalStorage(randomHero);
 

@@ -74,8 +74,8 @@ export function handleHeroClick(lastHeroUl) {
       hero.selected = !currentLastHero.deleted;
 
       // Выводим новое значение selected в консоль для проверки
-      console.log("Selected в startHeroes:", hero.selected);
-      console.log("Deleted в currentLastHeroes:", currentLastHero.deleted);
+      console.debug("Selected в startHeroes:", hero.selected);
+      console.debug("Deleted в currentLastHeroes:", currentLastHero.deleted);
 
       // Обновляем видимость оверлеев в зависимости от состояния selected
       updateOverlayVisibility(lastHeroUl, hero.selected);
@@ -177,7 +177,7 @@ export function animateHeroSelection() {
 }
 
 let totalDuration; // Глобальная переменная для общей длительности
-export const showHeroWindowDelay = 12500; // 5750
+export const showHeroWindowDelay = 13500; // 5750
 export const addShowHeroDataDelay = 5000; // 5750
 export const enableChooseButtonDelay = 8000;
 
@@ -643,7 +643,7 @@ async function hideHeroesRandomly(
 async function runFinalHero(chosenHero, highlightDuration) {
    let phaseDuration = highlightDuration;
 
-   // console.log(`Подсвечиваем выбранного героя: ${chosenHero.name}`);
+   // console.debug(`Подсвечиваем выбранного героя: ${chosenHero.name}`);
 
    // Подсвечиваем выбранного героя
    const heroElement = portraitsListBox.querySelector(
@@ -682,7 +682,7 @@ async function runFinalHero(chosenHero, highlightDuration) {
 
    // Добавляем длительность текущей фазы в глобальную переменную
    totalDuration += phaseDuration;
-   // console.log(
+   // console.debug(
    //    `Финальная фаза завершена. Текущая суммарная длительность: ${totalDuration}`
    // );
 }
@@ -784,8 +784,8 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
 
    // Вызываем функцию для поочередного скрытия героев из randomHeroes, кроме chosenHero
    // await hideHeroesRandomly(randomHeroes, 700, chosenHero, 1000);
-   const delaysArray = [800, 800, 800, 800, 800, 800, 1000, 1200, 1500]; // для каждого героя своя задержка
-   const initialDelay = 800; // Начальная задержка перед началом скрытия героев
+   const delaysArray = [845, 845, 845, 845, 845, 845, 1650, 1650, 1650]; // для каждого героя своя задержка
+   const initialDelay = 850; // Начальная задержка перед началом скрытия героев
    await hideHeroesRandomly(
       randomHeroes,
       delaysArray,
@@ -800,7 +800,7 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
    makeDefaultPageElementsStyle();
    clearHeroStyles();
 
-   console.log("Общая длительность всех фаз: ", totalDuration);
+   console.debug("Общая длительность всех фаз: ", totalDuration);
 }
 
 export function filterSelectedHeroes(heroesList) {
@@ -814,7 +814,7 @@ function showOverlay() {
 
 export function hideOverlay(extraTime) {
    setTimeout(() => {
-      console.log(`Оверлей скрыт через ${extraTime} миллисекунд`);
+      console.debug(`Оверлей скрыт через ${extraTime} миллисекунд`);
       globalOverlay.classList.remove("global-overlay__visible");
    }, extraTime);
 }
@@ -825,7 +825,7 @@ export function hideOverlay(extraTime) {
 
 export function getRandomHeroes(selectedHeroes, heroesCount) {
    if (selectedHeroes.length < heroesCount) {
-      console.log("Недостаточно героев для выбора.");
+      console.debug("Недостаточно героев для выбора.");
       return null; // Если героев меньше 4, завершаем выполнение
    }
 
@@ -841,8 +841,8 @@ export function getRandomHeroes(selectedHeroes, heroesCount) {
       }
    }
 
-   console.log(
-      "Выбранные героb:",
+   console.debug(
+      "Выбранные герои:",
       selectedRandomHeroes.map((hero) => hero.name).join(", ")
    );
    return selectedRandomHeroes; // Возвращаем массив из 4 выбранных героев
@@ -850,7 +850,7 @@ export function getRandomHeroes(selectedHeroes, heroesCount) {
 
 export function chooseFinalHero(selectedRandomHeroes) {
    if (!selectedRandomHeroes || selectedRandomHeroes.length === 0) {
-      console.log("Не удалось выбрать финального героя.");
+      console.debug("Не удалось выбрать финального героя.");
       return null;
    }
 
@@ -860,7 +860,7 @@ export function chooseFinalHero(selectedRandomHeroes) {
    );
    const finalHero = selectedRandomHeroes[finalHeroIndex];
 
-   console.log("Финальный герой:", finalHero.name);
+   console.debug("Финальный герой:", finalHero.name);
    return finalHero; // Возвращаем финального героя
 }
 
