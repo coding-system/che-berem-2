@@ -106,7 +106,7 @@ function getRandomElement(heroesArray) {
    setTimeout(() => playAudio(), 500);
    // playAudio();
 }
-
+// sdfsdfs
 function playAudio() {
    // if (songChanger.checked) {
    //    rouletteSong.volume = 0.5;

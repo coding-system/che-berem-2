@@ -274,7 +274,7 @@ function renderPortraits(heroes) {
             break;
       }
    });
-
+// sdfsdf
    const selectAllButton = portraitsList.querySelector(".select-all");
    const banAllButton = portraitsList.querySelector(".ban-all");
    const saveMyBansButton = portraitsList.querySelector(".save-bans");
