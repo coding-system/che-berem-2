@@ -13,8 +13,12 @@ import {
    globalOverlay,
    portraitsListBox,
    headerOfPage,
+   footerOfPage,
    lastHeroesBox,
    portraitsListButtons,
+   clickSound,
+   poofSound,
+   rouletteSong
 } from "../index.js";
 import { showHeroBox } from "../index.js";
 import { openPopup, closePopup } from "./modal.js";
@@ -156,6 +160,7 @@ export function animateHeroSelection() {
    markAllHeroesNotInvolved(startHeroes);
    // chooseFinalHero(startHeroes);
    movePageElement(headerOfPage, "header__moved");
+   movePageElement(footerOfPage, "footer__moved");
    movePageElement(lastHeroesBox, "last-box__moved");
    movePageElement(portraitsListButtons, "buttons-bar__moved");
    movePageElement(portraitsListBox, "portraits-list__box__moved");
@@ -261,6 +266,7 @@ function markAllHeroesNotInvolved(heroesList) {
 
 export function makeDefaultPageElementsStyle() {
    returnPageElement(headerOfPage, "header__moved", 0);
+   returnPageElement(footerOfPage, "footer__moved", 0);
    returnPageElement(lastHeroesBox, "last-box__moved", 0);
    returnPageElement(portraitsListButtons, "buttons-bar__moved", 0);
    returnPageElement(portraitsListBox, "portraits-list__box__moved", 0);
@@ -407,6 +413,17 @@ async function runPhase(
    if (hasChosenHero && randomHero) {
       // Очищаем последний пакет и добавляем только randomHero
       heroPackages[heroPackages.length - 1] = [randomHero];
+   }
+   clickSound.volume = rouletteSong.volume / 3;
+
+   for (let i = 0; i < packetCount; i++) {
+      setTimeout(() => {
+         // Воспроизведение звука
+         clickSound.currentTime = 0; // Сброс времени для повторного проигрывания
+         clickSound.play();
+
+         highlightHeroPacket(heroPackages[i], highlightDuration, randomHero); // Передаем randomHero
+      }, i * packetInterval); // Каждый пакет через равные промежутки времени
    }
 
    for (let i = 0; i < packetCount; i++) {
@@ -592,15 +609,20 @@ async function hideHeroesRandomly(
 
          // Убираем текущего героя из массива, чтобы он больше не скрывался
          remainingHeroes.splice(randomIndex, 1);
+
+         // Воспроизводим звук клика для текущего героя
+         poofSound.volume = rouletteSong.volume / 3;
+         poofSound.currentTime = 0; // Сброс времени для повторного проигрывания
+         poofSound.play();
       } else {
          console.warn(
             `Hero element or image box not found for hero: ${hero.name}`
          );
       }
 
-      // Изменяем длительность transition для текущего героя
-      setTransitionDuration(delaysArray[i]);
-      setAnimationDuration(delaysArray[i]); // Устанавливаем длительность анимации
+      // // Изменяем длительность transition для текущего героя
+      // setTransitionDuration(delaysArray[i]);
+      // setAnimationDuration(delaysArray[i]); // Устанавливаем длительность анимации
 
       // Ждем время, указанное для текущего элемента в delaysArray
       await new Promise((resolve) => setTimeout(resolve, delaysArray[i]));
@@ -676,9 +698,13 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
    // Сначала всем героям добавляем класс selectable__random-not-involved
    markAllHeroesNotInvolved(heroesList);
 
-
-   // await runPhase(selectedHeroes, 5, 1, 250); // Фаза 1
-   // await runPhase(selectedHeroes, 3, 1, 300); // Фаза 1
+   // await runPhase(selectedHeroes, 32, 1, 60); // Фаза 1
+   // await runPhase(selectedHeroes, 16, 1, 80); // Фаза 1
+   // await runPhase(selectedHeroes, 8, 1, 100); // Фаза 1
+   // await runPhase(selectedHeroes, 8, 1, 120); // Фаза 1
+   // await runPhase(selectedHeroes, 8, 1, 140); // Фаза 1
+   // await runPhase(selectedHeroes, 8, 1, 160); // Фаза 1
+   // await runPhase(selectedHeroes, 4, 1, 180); // Фаза 1
    await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[0]);
    selectedHeroes = selectedHeroes.filter(
       (hero) => hero.name !== randomHeroes[0].name
@@ -757,7 +783,7 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
 
    // Вызываем функцию для поочередного скрытия героев из randomHeroes, кроме chosenHero
    // await hideHeroesRandomly(randomHeroes, 700, chosenHero, 1000);
-   const delaysArray = [700, 700, 700, 730, 770, 820, 900, 1000, 1200]; // для каждого героя своя задержка
+   const delaysArray = [800, 800, 800, 800, 800, 800, 1000, 1200, 1500]; // для каждого героя своя задержка
    const initialDelay = 800; // Начальная задержка перед началом скрытия героев
    await hideHeroesRandomly(
       randomHeroes,
@@ -767,7 +793,7 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
    );
 
    // Запуск финальной фазы с выбранным героем
-   await runFinalHero(chosenHero, 1000); // Длительность подсветки финального героя
+   await runFinalHero(chosenHero, 300); // Длительность подсветки финального героя
 
    hideOverlay(1000);
    makeDefaultPageElementsStyle();

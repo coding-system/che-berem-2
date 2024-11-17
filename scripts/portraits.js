@@ -279,7 +279,7 @@ function renderPortraits(heroes) {
    const banAllButton = portraitsList.querySelector(".ban-all");
    const saveMyBansButton = portraitsList.querySelector(".save-bans");
    const loadMyBansButton = portraitsList.querySelector(".load-bans");
-   const lightSpark = portraitsList.querySelector(".light-spark");
+   const lightSpark = document.querySelector(".light-spark");
 
    // Выбор всех героев
    selectAllButton.addEventListener("click", () => {

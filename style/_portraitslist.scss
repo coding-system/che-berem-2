@@ -1042,10 +1042,11 @@
          }
       }
       &-retired {
+         z-index: 8;
          pointer-events: none;
          user-select: none;
          // transform: scale(1) rotate(5deg);
-         transform: scale(0.8) rotate(5deg);
+         transform: scale(1.2) rotate(5deg) translateX(1em) translateY(-1em);
          transition: opacity
                var(--selectable-random-selectable-cards-transition-duration)
                ease-out,

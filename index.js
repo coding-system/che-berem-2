@@ -39,8 +39,11 @@ const helpBox = document.querySelector(".help");
 const songChanger = document.querySelector(".song-changer-checkbox");
 const songVolume = document.querySelector(".song-changer-volume");
 const rouletteSong = document.querySelector(".song");
+const clickSound = document.getElementById('click-sound');
+const poofSound = document.getElementById('poof-sound');
 const globalOverlay = document.querySelector(".global-overlay");
 const headerOfPage = document.querySelector(".header");
+const footerOfPage = document.querySelector(".footer");
 const lastHeroesBox = document.querySelector(".last-box");
 
 // Roulette
@@ -673,6 +676,9 @@ export {
    chooseButtonText,
    globalOverlay,
    headerOfPage,
+   footerOfPage,
    lastHeroesBox,
    portraitsListButtons,
+   clickSound,
+   poofSound
 };

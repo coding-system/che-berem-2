@@ -103,7 +103,8 @@ function getRandomElement(heroesArray) {
    setTimeout(() => addShowHeroData(), addShowHeroDataDelay);
    setTimeout(() => showHeroWindow(), showHeroWindowDelay);
    setTimeout(() => enableChooseButton(), enableChooseButtonDelay);
-   playAudio();
+   setTimeout(() => playAudio(), 500);
+   // playAudio();
 }
 
 function playAudio() {

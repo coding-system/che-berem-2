@@ -1,6 +1,6 @@
 {
    "peacock.color": "#2a4124",
-   "liveServer.settings.port": 5501,
+   "liveServer.settings.port": 5555,
    "workbench.colorCustomizations": {
       "activityBar.activeBackground": "#3f6236",
       "activityBar.background": "#3f6236",
