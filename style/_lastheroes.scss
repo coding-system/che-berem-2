@@ -202,11 +202,11 @@
    height: 1.6em;
    z-index: 4;
    // Amination
-   animation-name: last-hero-indicator-lightning;
-   animation-duration: 2s;
-   animation-iteration-count: infinite;
-   animation-timing-function: ease-in-out;
-   animation-direction: alternate;
+   // animation-name: last-hero-indicator-lightning;
+   // animation-duration: 2s;
+   // animation-iteration-count: infinite;
+   // animation-timing-function: ease-in-out;
+   // animation-direction: alternate;
    // &::before {
    //    opacity: 1;
    //    content: "";
@@ -293,11 +293,11 @@
    height: 1.6em;
    z-index: 4;
    // Amination
-   animation-name: last-hero-indicator-lightning;
-   animation-duration: 2s;
-   animation-iteration-count: infinite;
-   animation-timing-function: ease-in-out;
-   animation-direction: alternate;
+   // animation-name: last-hero-indicator-lightning;
+   // animation-duration: 2s;
+   // animation-iteration-count: infinite;
+   // animation-timing-function: ease-in-out;
+   // animation-direction: alternate;
    // transform-origin: center; /* Определяем точку трансформации */
    &::after {
       // mix-blend-mode: difference;
