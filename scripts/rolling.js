@@ -784,8 +784,8 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
 
    // Вызываем функцию для поочередного скрытия героев из randomHeroes, кроме chosenHero
    // await hideHeroesRandomly(randomHeroes, 700, chosenHero, 1000);
-   const delaysArray = [845, 845, 845, 845, 845, 845, 1650, 1650, 1650]; // для каждого героя своя задержка
-   const initialDelay = 850; // Начальная задержка перед началом скрытия героев
+   const delaysArray = [845, 845, 845, 845, 845, 845, 1690, 1690, 1690]; // для каждого героя своя задержка
+   const initialDelay = 845; // Начальная задержка перед началом скрытия героев
    await hideHeroesRandomly(
       randomHeroes,
       delaysArray,

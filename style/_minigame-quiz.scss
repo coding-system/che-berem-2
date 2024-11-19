@@ -81,7 +81,6 @@
       border-radius: 0.5em;
       background: #e8e8e8;
       cursor: pointer;
-      border: 1px solid #e8e8e8;
       transition: all 0.05s;
       box-shadow: 3px 3px 6px #c5c5c5, -3px -3px 6px #ffffff;
       cursor: pointer;
@@ -92,6 +91,17 @@
       &:active {
          color: #666;
          box-shadow: inset 2px 2px 8px #c5c5c5, inset -2px -2px 8px #ffffff;
+      }
+      &_chosen {
+         background: #cce2bf;
+         &:hover {
+            cursor: pointer;
+            box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #e6ffd7;
+         }
+         &:active {
+            color: #666;
+            box-shadow: inset 2px 2px 8px #c5c5c5, inset -2px -2px 8px #e6ffd7;
+         }
       }
    }
 }

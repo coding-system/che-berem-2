@@ -114,7 +114,10 @@
       background-image: linear-gradient(#67679e, #a88484);
    }
    &:has(.minigame-quiz) {
-      background-image: linear-gradient(#67679e, #a88484);
+      background-image: linear-gradient(#999999, #d1d1d1);
+   }
+   &:has(.minigame-gang) {
+      background-image: linear-gradient(#c48c8c, #c75f5f);
    }
    &:has(.portraits-list) {
       background-image: none;

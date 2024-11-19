@@ -30,7 +30,7 @@
       grid-template-rows: repeat(2, 1fr);
       grid-template-columns: repeat(2, 1fr);
       row-gap: 2.3em;
-      // column-gap: 3.5em;
+      column-gap: 2.3em;
       transition: transform 0.75s linear;
       // &::before {
       //    content: "";
@@ -309,7 +309,7 @@
    justify-content: center;
    align-items: center;
    cursor: pointer;
-   width: 6em;
+   // width: 6em;
    aspect-ratio: 0.588;
    &:hover {
       filter: grayscale(0); /* Убираем фильтр при наведении */

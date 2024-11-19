@@ -18,6 +18,7 @@
 @import "update.scss";
 @import "minigame-pairs.scss";
 @import "minigame-quiz.scss";
+@import "minigame-gang.scss";
 @import "loading.scss";
 
 // body {
@@ -183,7 +184,7 @@
       min-width: 100%;
    }
    &:has(.main) {
-      width: 1620px;
+      width: 85vw; //Было 1620px;
    }
    &:has(.footer) {
       min-width: 100%;

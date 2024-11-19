@@ -674,7 +674,10 @@ ol {
   background-image: linear-gradient(#67679e, #a88484);
 }
 .custom-border:has(.minigame-quiz) {
-  background-image: linear-gradient(#67679e, #a88484);
+  background-image: linear-gradient(#999999, #d1d1d1);
+}
+.custom-border:has(.minigame-gang) {
+  background-image: linear-gradient(#c48c8c, #c75f5f);
 }
 .custom-border:has(.portraits-list) {
   background-image: none;
@@ -2026,6 +2029,8 @@ ol {
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(2, 1fr);
   row-gap: 2.3em;
+  -moz-column-gap: 2.3em;
+       column-gap: 2.3em;
   transition: transform 0.75s linear;
 }
 .portraits-list__box__moved {
@@ -2257,7 +2262,6 @@ ol {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  width: 6em;
   aspect-ratio: 0.588;
 }
 .card-portrait-item:hover {
@@ -3524,7 +3528,6 @@ ol {
   border-radius: 0.5em;
   background: #e8e8e8;
   cursor: pointer;
-  border: 1px solid #e8e8e8;
   transition: all 0.05s;
   box-shadow: 3px 3px 6px #c5c5c5, -3px -3px 6px #ffffff;
   cursor: pointer;
@@ -3536,6 +3539,46 @@ ol {
 .minigame-quiz__button:active {
   color: #666;
   box-shadow: inset 2px 2px 8px #c5c5c5, inset -2px -2px 8px #ffffff;
+}
+.minigame-quiz__button_chosen {
+  background: #cce2bf;
+}
+.minigame-quiz__button_chosen:hover {
+  cursor: pointer;
+  box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #e6ffd7;
+}
+.minigame-quiz__button_chosen:active {
+  color: #666;
+  box-shadow: inset 2px 2px 8px #c5c5c5, inset -2px -2px 8px #e6ffd7;
+}
+
+.minigame-gang {
+  font-size: 10px;
+  border-radius: 1.6em;
+  overflow: hidden;
+  background-image: linear-gradient(#c5c5c5, #e8e8e8);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5em;
+  padding: 5em;
+}
+.minigame-gang__field {
+  position: relative;
+  min-width: 50vh;
+  min-height: 50vh;
+  background-color: #e68e8e;
+  border-radius: 6em;
+  box-shadow: inset 0 0 1.2em #494949;
+}
+.minigame-gang__target {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .loading {
@@ -3732,7 +3775,7 @@ ol {
   min-width: 100%;
 }
 .wrapper:has(.main) {
-  width: 1620px;
+  width: 85vw;
 }
 .wrapper:has(.footer) {
   min-width: 100%;
@@ -4034,9 +4077,6 @@ ol {
   }
   .hello-chat {
     font-size: 22px;
-  }
-  .wrapper:has(.main) {
-    width: 2250px;
   }
   .last-heroes {
     min-height: 52.73px;
