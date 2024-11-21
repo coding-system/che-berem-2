@@ -6,6 +6,7 @@ import {
    startHeroes,
    saveLastHeroesToLocalStorage,
    saveStartHeroesToLocalStorage,
+   saveChosenIndexToLocalStorage,
    showHeroBoxButtons,
    showHeroBackground,
 } from "../index.js";
@@ -55,6 +56,7 @@ export function acceptChosenHero() {
    updatePortraits(startHeroes);
    saveLastHeroesToLocalStorage();
    saveStartHeroesToLocalStorage();
+   saveChosenIndexToLocalStorage(chosenHero);
    closePopup(showHeroBox);
    console.log(startHeroes);
 }

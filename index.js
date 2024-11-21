@@ -39,8 +39,8 @@ const helpBox = document.querySelector(".help");
 const songChanger = document.querySelector(".song-changer-checkbox");
 const songVolume = document.querySelector(".song-changer-volume");
 const rouletteSong = document.querySelector(".song");
-const clickSound = document.getElementById('click-sound');
-const poofSound = document.getElementById('poof-sound');
+const clickSound = document.getElementById("click-sound");
+const poofSound = document.getElementById("poof-sound");
 const globalOverlay = document.querySelector(".global-overlay");
 const headerOfPage = document.querySelector(".header");
 const footerOfPage = document.querySelector(".footer");
@@ -264,7 +264,7 @@ updateRange();
 const promises = [
    preloadAll(), // Асинхронная функция загрузки
    // renderDefaultHeroesList(startHeroes), // Рендер списка героев
-   // loadChosenIndexFromLocalStorage(),
+   loadChosenIndexFromLocalStorage(),
    loadStartHeroesFromLocalStorage(),
    loadLastHeroesFromLocalStorage(),
    renderLastHeroesFromLocalStorage(),
@@ -347,6 +347,12 @@ function loadChosenIndexFromLocalStorage() {
       const chosenHeroImage = hero.image.replace(".jpg", "");
       const showHeroTitle = showHeroBox.querySelector(".show-hero__title");
       const showHeroVideo = showHeroBox.querySelector(".show-hero__video");
+
+      // Обновляем значение переменной CSS
+      document.documentElement.style.setProperty(
+         "--showhero-data-background",
+         `url("../assets/heroes/loadout/${hero.loadout}")`
+      );
 
       // Обновление заголовка с именем героя
       showHeroTitle.textContent = hero.name;
@@ -622,7 +628,7 @@ generateBoard();
 rangewww.addEventListener("input", updateHuy);
 
 // При загрузке страницы выводим сохраненный индекс героя
-// loadChosenIndexFromLocalStorage();
+loadChosenIndexFromLocalStorage();
 // loadStartHeroesFromLocalStorage();
 // loadLastHeroesFromLocalStorage();
 // renderLastHeroesFromLocalStorage();
@@ -680,5 +686,5 @@ export {
    lastHeroesBox,
    portraitsListButtons,
    clickSound,
-   poofSound
+   poofSound,
 };

@@ -93,7 +93,7 @@ function getRandomElement(heroesArray) {
 
    console.debug(`Имя выбранного финального героя`, randomHero.name);
 
-   saveChosenIndexToLocalStorage(randomHero);
+   // saveChosenIndexToLocalStorage(randomHero);
 
    // currentSelectableHeroes = selectableHeroes;
    chosenHero = randomHero; // Назначаем выбранного финального героя как chosenHero
