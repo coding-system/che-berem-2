@@ -209,10 +209,12 @@ export function clearHeroStyles() {
             "selectable__last-pre-final-image__sparking",
             "selectable__last-chosen-image",
             "selectable__last-final-image",
+            "selectable__last-final-image__sparking",
             "selectable__last-retired-image",
             "selectable__last-thinking-image",
             "selectable__last-chosen-image",
             "selectable__last-chosen-image__sparking"
+            
          );
       }
 
@@ -525,7 +527,7 @@ function clearRandomHeroes(heroesElements) {
             );
             imageBox.classList.add("selectable__last-final-image");
             // imageBox.classList.add('selectable__last-thinking__bang');
-            // imageBox.classList.add('selectable__last-thinking-image__sparking');
+            imageBox.classList.add('selectable__last-final-image__sparking');
          }
       }
    });
