@@ -27,8 +27,7 @@ import {
    getRandomHeroesElements,
    chooseFinalHero,
    runAllPhases,
-   filterSelectedHeroes,
-   findFinalHeroElement
+   filterSelectedHeroes
 } from "./rolling.js";
 import { addShowHeroData } from "./showhero.js";
 import { updatePortraits } from "./portraits.js";
@@ -70,9 +69,6 @@ export function deleteChosenHero(chosenHero) {
    }
 }
 
-export let selectedRandomHeroesElements;
-export let randomHeroElement;
-
 function getRandomElement(heroesArray) {
    disableChooseButton();
    stopAudio();
@@ -94,7 +90,7 @@ function getRandomElement(heroesArray) {
    }
 
    // Ищем HTML-элементы для выбранных героев
-   selectedRandomHeroesElements = getRandomHeroesElements(selectedRandomHeroes);
+   const selectedRandomHeroesElements = getRandomHeroesElements(selectedRandomHeroes);
 
    if (selectedRandomHeroesElements.length === 0) {
       console.log("Не удалось найти HTML элементы для выбранных героев.");
@@ -103,7 +99,6 @@ function getRandomElement(heroesArray) {
 
    // Теперь выбираем финального героя из этих 4
    const randomHero = chooseFinalHero(selectedRandomHeroes);
-   randomHeroElement = findFinalHeroElement(selectedRandomHeroesElements, randomHero);
 
    console.debug(`Имя выбранного финального героя`, randomHero.name);
 
