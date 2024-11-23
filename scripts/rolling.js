@@ -505,11 +505,8 @@ async function runPhaseBoth(
 //
 
 // Функция для очистки стилей у всех героев
-function clearRandomHeroes(heroes) {
-   heroes.forEach((hero) => {
-      const heroElement = document.querySelector(
-         `[data-hero-name="${hero.name}"]`
-      );
+function clearRandomHeroes(heroesElements) {
+   heroesElements.forEach((heroElement) => {
       if (heroElement) {
          const imageBox = heroElement.querySelector(".card-portrait-image-box");
 
@@ -533,6 +530,7 @@ function clearRandomHeroes(heroes) {
       }
    });
 }
+
 
 export async function runFinalPhase(
    cycles,
@@ -853,7 +851,7 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
       (hero) => hero.name !== selectedRandomHeroesElements[9].dataset.heroName
    );
 
-   clearRandomHeroes(randomHeroes);
+   clearRandomHeroes(selectedRandomHeroesElements);
 
    // Вызываем функцию для поочередного скрытия героев из randomHeroes, кроме chosenHero
    // await hideHeroesRandomly(randomHeroes, 700, chosenHero, 1000);

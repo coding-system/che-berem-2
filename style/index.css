@@ -2707,14 +2707,14 @@ ol {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  transform: scale(1.2) rotate(5deg) translateX(1em) translateY(-1em);
-  transition: opacity var(--selectable-random-selectable-cards-transition-duration) ease-out, transform calc(var(--selectable-random-selectable-cards-transition-duration) * 1) ease-out;
+  transform: scale(0.6) rotate(0deg) translateX(0em) translateY(0em);
+  transition: opacity calc(var(--selectable-random-selectable-cards-transition-duration) / 2) ease-in, transform calc(var(--selectable-random-selectable-cards-transition-duration) / 2) ease-in;
   z-index: 5;
   opacity: 0;
 }
 .selectable__last-retired-image {
   filter: contrast(1) grayscale(0.75) brightness(0.75);
-  transition: opacity calc(var(--selectable-random-selectable-cards-transition-duration) / 3) ease-in-out, filter calc(var(--selectable-random-selectable-cards-transition-duration) / 3) ease-in-out;
+  transition: opacity calc(var(--selectable-random-selectable-cards-transition-duration) * 1) ease-in, filter calc(var(--selectable-random-selectable-cards-transition-duration) * 1) ease-in;
 }
 .selectable__last-retired-image__sparking {
   animation: searched-image-sparking calc(var(--selectable-random-animation-duration) * 4) linear infinite alternate;

@@ -160,7 +160,7 @@
       backdrop-filter: blur(1em) brightness(1.5);
       border-radius: 0.7em;
       padding: 0.5em;
-      // background-color: rgba(0, 0, 0, 0.3); 
+      // background-color: rgba(0, 0, 0, 0.3);
       width: 100%;
       display: flex;
       justify-content: space-between;
@@ -875,8 +875,7 @@
                   0s,
                opacity
                   var(--selectable-random-selectable-cards-transition-duration);
-            animation: 1s
-                  searched-light-spinning linear infinite,
+            animation: 1s searched-light-spinning linear infinite,
                calc(var(--selectable-random-animation-duration) * 2)
                   pre-final-light-colors linear infinite alternate;
             background: conic-gradient(
@@ -952,8 +951,7 @@
                   var(--selectable-random-selectable-cards-transition-duration),
                background-color
                   var(--selectable-random-selectable-cards-transition-duration);
-            animation: 1s
-                  searched-light-spinning linear infinite,
+            animation: 1s searched-light-spinning linear infinite,
                calc(var(--selectable-random-animation-duration) * 2)
                   pre-final-light-colors linear infinite alternate;
             background: conic-gradient(
@@ -1047,16 +1045,19 @@
          pointer-events: none;
          user-select: none;
          // transform: scale(1) rotate(5deg);
-         transform: scale(1.2) rotate(5deg) translateX(1em) translateY(-1em);
+         transform: scale(0.6) rotate(0deg) translateX(0em) translateY(0em);
          transition: opacity
-               var(--selectable-random-selectable-cards-transition-duration)
-               ease-out,
+               calc(
+                  var(--selectable-random-selectable-cards-transition-duration) /
+                     2
+               )
+               ease-in,
             transform
                calc(
-                  var(--selectable-random-selectable-cards-transition-duration) *
-                     1
+                  var(--selectable-random-selectable-cards-transition-duration) /
+                     2
                )
-               ease-out;
+               ease-in;
          // transition: filter 0s 0s linear;
          // filter: grayscale(0) brightness(1.2);
          z-index: 5;
@@ -1067,16 +1068,16 @@
                   calc(
                      var(
                            --selectable-random-selectable-cards-transition-duration
-                        ) / 3
+                        ) * 1
                   )
-                  ease-in-out,
+                  ease-in,
                filter
                   calc(
                      var(
                            --selectable-random-selectable-cards-transition-duration
-                        ) / 3
+                        ) * 1
                   )
-                  ease-in-out;
+                  ease-in;
             &__sparking {
                animation: searched-image-sparking
                   calc(var(--selectable-random-animation-duration) * 4) linear
@@ -1094,8 +1095,7 @@
                   0s,
                opacity
                   var(--selectable-random-selectable-cards-transition-duration);
-            animation: 1s
-                  searched-light-spinning linear infinite,
+            animation: 1s searched-light-spinning linear infinite,
                calc(var(--selectable-random-animation-duration) * 2)
                   retired-light-colors linear infinite alternate;
             background: conic-gradient(
@@ -1191,17 +1191,16 @@
 //    }
 // }
 
-
 // /////
-// /// 
-// /// 
-// /// 
+// ///
+// ///
+// ///
 // .buttons-bar {
 //    font-size: 1.4em;
 //    backdrop-filter: blur(1em) brightness(1.5);
 //    border-radius: 0.7em;
 //    padding: 0.5em;
-//    background-color: #e8e8e8; 
+//    background-color: #e8e8e8;
 //    width: 100%;
 //    display: flex;
 //    justify-content: space-between;
