@@ -435,7 +435,7 @@ async function runPhase(
       heroPackages[heroPackages.length - 1] = [{ name: specialHeroName }];
    }
 
-   clickSound.volume = rouletteSong.volume / 2;
+   clickSound.volume = rouletteSong.volume / 4;
 
    for (let i = 0; i < packetCount; i++) {
       setTimeout(() => {
@@ -657,7 +657,7 @@ async function hideHeroesRandomly(
          remainingHeroesElements.splice(randomIndex, 1);
 
          // Воспроизводим звук клика для текущего героя
-         poofSound.volume = rouletteSong.volume / 2;
+         poofSound.volume = rouletteSong.volume / 4;
          poofSound.currentTime = 0; // Сброс времени для повторного проигрывания
          poofSound.play();
       } else {
