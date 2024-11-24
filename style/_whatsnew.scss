@@ -111,6 +111,7 @@
       font-size: 1em;
 
       &-heroes {
+         text-wrap: nowrap;
          letter-spacing: 0.03em;
          font-weight: bold;
          border-radius: 0.4em;
@@ -118,17 +119,51 @@
          transition: 0.2s ease;
          padding: 2px 1em;
          font-weight: 400;
-         color: #353535;
-         background-color: #cecece;
+         color: #7f7e83;
+         background-color: #17161d;
          border: #8f8f8f 2px solid;
       }
       &-reset {
+         text-wrap: nowrap;
          padding: 2px 12px;
          transition: color 0.1s, box-shadow 0.2s, background-color 0.2s ease;
          background-color: #fff;
          color: $minor-text;
          border-radius: 1em;
          font-weight: bold;
+      }
+      &-roll {
+         text-wrap: nowrap;
+         color: #c5c5c5;
+         font-family: "Roboto";
+         font-weight: 500;
+         border-radius: 0.3em;
+         padding: 0.2em 1em;
+         box-shadow: 0 0.2em 0 #ea00ff2d;
+         background-color: #ea00ff56;
+         font-weight: 500;
+      }
+      &-mybans {
+         text-wrap: nowrap;
+         color: #c5c5c5;
+         font-family: "Roboto";
+         font-weight: 500;
+         border-radius: 0.3em;
+         padding: 0.2em 1em;
+         box-shadow: 0 0.2em 0 #ff66002d;
+         background-color: #ff660056;
+         font-weight: 500;
+      }
+      &-savebans {
+         text-wrap: nowrap;
+         color: #c5c5c5;
+         font-family: "Roboto";
+         font-weight: 500;
+         border-radius: 0.3em;
+         padding: 0.2em 1em;
+         box-shadow: 0 0.2em 0 #51ff002d;
+         background-color: #51ff0056;
+         font-weight: 500;
       }
    }
 }
