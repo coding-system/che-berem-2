@@ -2055,9 +2055,10 @@ ol {
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(2, 1fr);
   row-gap: 2.3em;
-  -moz-column-gap: 2.3em;
-       column-gap: 2.3em;
+  -moz-column-gap: 4em;
+       column-gap: 4em;
   transition: transform 0.75s linear;
+  position: relative;
 }
 .portraits-list__box__moved {
   transform: scale(1.15) translateY(-5em);
@@ -2775,6 +2776,26 @@ ol {
 
 .hero-flipped {
   animation: 2s hero-flipped linear forwards;
+}
+
+.skip {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  transition: all 0.5s linear;
+}
+.skip__button {
+  font-size: 3em;
+  z-index: 1;
+  background: none;
+  border: 0.1em solid #fff;
+  box-shadow: 0.1em 0.1em #fff;
+}
+.skip__moved {
+  transform: translateY(-2.2em);
+  opacity: 1;
 }
 
 .go-last {

@@ -1,4 +1,8 @@
-import { chosenHero, selectedRandomHeroesElements, randomHeroElement } from "./random.js";
+import {
+   chosenHero,
+   selectedRandomHeroesElements,
+   randomHeroElement,
+} from "./random.js";
 import {
    windowList,
    windowHeroTemplate,
@@ -19,6 +23,8 @@ import {
    clickSound,
    poofSound,
    rouletteSong,
+   portraitsListSkip,
+   portraitsListSkipButton,
 } from "../index.js";
 import { showHeroBox } from "../index.js";
 import { openPopup, closePopup } from "./modal.js";
@@ -165,6 +171,7 @@ export function animateHeroSelection() {
    movePageElement(lastHeroesBox, "last-box__moved");
    movePageElement(portraitsListButtons, "buttons-bar__moved");
    movePageElement(portraitsListBox, "portraits-list__box__moved");
+   movePageElement(portraitsListSkip, "skip__moved");
    // Выбираем все элементы с классом .portraits-list__title
    const allTitles = portraitsListBox.querySelectorAll(
       ".portraits-list__title"
@@ -214,7 +221,6 @@ export function clearHeroStyles() {
             "selectable__last-thinking-image",
             "selectable__last-chosen-image",
             "selectable__last-chosen-image__sparking"
-            
          );
       }
 
@@ -272,6 +278,7 @@ export function makeDefaultPageElementsStyle() {
    returnPageElement(lastHeroesBox, "last-box__moved", 0);
    returnPageElement(portraitsListButtons, "buttons-bar__moved", 0);
    returnPageElement(portraitsListBox, "portraits-list__box__moved", 0);
+   returnPageElement(portraitsListSkip, "skip__moved", 0);
    const allTitles = portraitsListBox.querySelectorAll(
       ".portraits-list__title"
    );
@@ -527,12 +534,11 @@ function clearRandomHeroes(heroesElements) {
             );
             imageBox.classList.add("selectable__last-final-image");
             // imageBox.classList.add('selectable__last-thinking__bang');
-            imageBox.classList.add('selectable__last-final-image__sparking');
+            imageBox.classList.add("selectable__last-final-image__sparking");
          }
       }
    });
 }
-
 
 export async function runFinalPhase(
    cycles,
@@ -960,9 +966,11 @@ export function chooseFinalHero(selectedRandomHeroes) {
 
 export function findFinalHeroElement(selectedRandomHeroesElements, randomHero) {
    // Ищем HTML-элемент, где data-hero-name соответствует имени randomHero
-   return selectedRandomHeroesElements.find(
-      (heroElement) => heroElement.dataset.heroName === randomHero.name
-   ) || null; // Возвращаем null, если элемент не найден
+   return (
+      selectedRandomHeroesElements.find(
+         (heroElement) => heroElement.dataset.heroName === randomHero.name
+      ) || null
+   ); // Возвращаем null, если элемент не найден
 }
 
 function highlightHeroStyle(element, addSelector, removeSelector) {

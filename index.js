@@ -77,6 +77,8 @@ const heroesListGroup = document.querySelector(".heroes-list__group");
 // Portraits list Popup
 const portraitsList = document.querySelector(".popup__portraits-list");
 const portraitsListBox = document.querySelector(".portraits-list__box");
+const portraitsListSkip = portraitsListBox.querySelector(".skip");
+const portraitsListSkipButton = portraitsListBox.querySelector(".skip__button");
 const portraitsListGroup = document.querySelector(".portraits-list__group");
 const portraitsListButtons = portraitsList.querySelector(".buttons-bar");
 // const portraitsListButton = document.querySelector(".portraits-list-button");
@@ -687,4 +689,6 @@ export {
    portraitsListButtons,
    clickSound,
    poofSound,
+   portraitsListSkip,
+   portraitsListSkipButton,
 };

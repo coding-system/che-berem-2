@@ -33,6 +33,7 @@ import {
 import { addShowHeroData } from "./showhero.js";
 import { updatePortraits } from "./portraits.js";
 import { lastHeroes } from "./lastheroes.js";
+import { songslist } from "./songslist.js";
 
 // export let currentSelectableHeroes = []; // Глобальная переменная
 // export let chosenIndex;
@@ -73,6 +74,29 @@ export function deleteChosenHero(chosenHero) {
 export let selectedRandomHeroesElements;
 export let randomHeroElement;
 
+function selectRandomSong(songList, audioElementId) {
+   if (!songList || songList.length === 0) {
+       console.log("Список песен пуст");
+       return;
+   }
+
+   // Выбираем случайную песню
+   const randomIndex = Math.floor(Math.random() * songList.length);
+   const randomSong = songList[randomIndex].link;
+
+   // Находим аудио элемент
+   const audioElement = document.getElementById(audioElementId);
+   if (audioElement) {
+       const sourceElement = audioElement.querySelector("source");
+       if (sourceElement) {
+           sourceElement.src = `./assets/sounds/${randomSong}`;
+           audioElement.load();
+       }
+   }
+
+   console.debug(`Выбрана случайная песня: ${randomSong}`);
+}
+
 function getRandomElement(heroesArray) {
    disableChooseButton();
    stopAudio();
@@ -108,6 +132,11 @@ function getRandomElement(heroesArray) {
    console.debug(`Имя выбранного финального героя`, randomHero.name);
 
    // saveChosenIndexToLocalStorage(randomHero);
+
+   selectRandomSong(
+      songslist,
+      "myAudio"
+  );
 
    // currentSelectableHeroes = selectableHeroes;
    chosenHero = randomHero; // Назначаем выбранного финального героя как chosenHero
