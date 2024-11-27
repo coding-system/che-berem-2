@@ -436,8 +436,20 @@
                <div class="update__content">
                   <div class="update__group">
                      <h4 class="update__date update__date-new">
-                        12 ноября 2024
+                        27 ноября 2024
                      </h4>
+                     <div class="update__item">
+                        <h3 class="update__title">Небольшие изменения.</h3>
+                        <p class="update__text">
+                           Добавлена кнопка "Пропустить" во время анимации
+                           выбора героя. Будет полезно, если нужно быстро узнать
+                           выбранного героя.<br /><br />Для выбранного героя
+                           добавлен пьедестал, на котором он стоит.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="update__group">
+                     <h4 class="update__date">12 ноября 2024</h4>
                      <div class="update__item">
                         <h3 class="update__title">
                            Изменена анимация выбора гнероя.
@@ -629,18 +641,24 @@
                <div class="show-hero__background"></div>
                <p class="show-hero__hello">Your hero is</p>
                <h2 class="show-hero__title">Outworld Destroyer</h2>
-               <video
-                  class="show-hero__video"
-                  poster=""
-                  autoplay=""
-                  preload="auto"
-                  loop=""
-                  playsinline=""
-               >
-                  <source type='video/mp4; codecs="hvc1"' src="" />
-                  <source type="video/webm" src="" />
-                  <img src="" />
-               </video>
+               <div class="show-hero__video-box">
+                  <video
+                     class="show-hero__video"
+                     poster=""
+                     autoplay=""
+                     preload="auto"
+                     loop=""
+                     playsinline=""
+                  >
+                     <source type='video/mp4; codecs="hvc1"' src="" />
+                     <source type="video/webm" src="" />
+                     <img src="" />
+                  </video>
+                  <div class="show-hero__pedestal">
+                     <div class="show-hero__pedestal-circle"></div>
+                     <div class="show-hero__pedestal-base"></div>
+                  </div>
+               </div>
                <div class="buttons-bar">
                   <button class="button button-accept">Принять</button>
                   <button class="button button-retry">Reroll</button>

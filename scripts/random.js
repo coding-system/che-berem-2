@@ -141,7 +141,7 @@ function getRandomElement(heroesArray) {
 
    // currentSelectableHeroes = selectableHeroes;
    chosenHero = randomHero; // Назначаем выбранного финального героя как chosenHero
-
+   addShowHeroData();
    animateHeroSelection();
    setTimeout(async () => {
       try {
@@ -150,7 +150,7 @@ function getRandomElement(heroesArray) {
             selectableHeroes,
             selectedRandomHeroes
          );
-         addShowHeroData(); // Вместо setTimeout
+          // Вместо setTimeout
          showHeroWindow(); // Вызывается сразу после завершения runAllPhases
          enableChooseButton(); // Вместо setTimeout
       } catch (error) {
