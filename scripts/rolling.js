@@ -1003,7 +1003,7 @@ export function getRandomHeroesElements(heroes) {
    // Фильтруем null, если для некоторых героев элементы не найдены
    const validHeroElements = heroElements.filter((element) => element !== null);
 
-   console.log("HTML элементы выбранных героев:", validHeroElements);
+   console.debug("HTML элементы выбранных героев:", validHeroElements);
 
    return validHeroElements;
 }

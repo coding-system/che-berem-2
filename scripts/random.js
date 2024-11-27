@@ -133,7 +133,7 @@ function getRandomElement(heroesArray) {
       randomHero
    );
 
-   console.debug(`Имя выбранного финального героя`, randomHero.name);
+   console.log(`Имя выбранного финального героя`, randomHero.name);
 
    // saveChosenIndexToLocalStorage(randomHero);
 
