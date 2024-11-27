@@ -653,7 +653,7 @@ ol {
   opacity: 1;
 }
 .popup_is-opened .show-hero .show-hero__pedestal {
-  transition: transform 1s ease;
+  transition: transform 1.5s ease;
   transform: translateY(10%);
 }
 
