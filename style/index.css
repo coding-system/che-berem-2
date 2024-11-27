@@ -903,8 +903,8 @@ ol {
      -moz-user-select: none;
           user-select: none;
   pointer-events: none;
-  -webkit-mask-image: linear-gradient(to top, transparent 1%, black 20%);
-          mask-image: linear-gradient(to top, transparent 1%, black 20%);
+  -webkit-mask-image: linear-gradient(to top, transparent 1%, black 15%);
+          mask-image: linear-gradient(to top, transparent 1%, black 15%);
   width: 80%;
   margin-left: 10%;
   position: relative;
