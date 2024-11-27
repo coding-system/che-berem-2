@@ -874,13 +874,13 @@ ol {
   opacity: 0;
   transform: scale(1.2);
   padding: 0 0.5em;
-  mix-blend-mode: difference;
+  mix-blend-mode: color-dodge;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
   line-height: 1em;
   text-align: center;
-  color: #ffffff;
+  color: #727272;
   text-shadow: 4px 2px 2px #bebebe;
   white-space: wrap;
   font-size: 7.5em;
@@ -2790,11 +2790,11 @@ ol {
   font-size: 1.5em;
   color: #fafafa;
   text-transform: uppercase;
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: 2px solid #fafafa;
+  padding: 0.75em 3.4em;
+  border-radius: 0.75em;
+  border: 0.25em solid #fafafa;
   background: #252525;
-  box-shadow: 3px 3px #fafafa;
+  box-shadow: 0.15em 0.15em #fafafa;
   cursor: pointer;
 }
 .skip__button:active {

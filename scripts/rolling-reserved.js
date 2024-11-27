@@ -1,4 +1,8 @@
-import { chosenHero } from "./random.js";
+import {
+   chosenHero,
+   selectedRandomHeroesElements,
+   randomHeroElement,
+} from "./random.js";
 import {
    windowList,
    windowHeroTemplate,
@@ -18,7 +22,9 @@ import {
    portraitsListButtons,
    clickSound,
    poofSound,
-   rouletteSong
+   rouletteSong,
+   portraitsListSkip,
+   portraitsListSkipButton,
 } from "../index.js";
 import { showHeroBox } from "../index.js";
 import { openPopup, closePopup } from "./modal.js";
@@ -156,6 +162,7 @@ export function showHeroWindow() {
 
 export function animateHeroSelection() {
    clearHeroStyles();
+   // hideOverlay(0);
    showOverlay();
    markAllHeroesNotInvolved(startHeroes);
    // chooseFinalHero(startHeroes);
@@ -164,6 +171,7 @@ export function animateHeroSelection() {
    movePageElement(lastHeroesBox, "last-box__moved");
    movePageElement(portraitsListButtons, "buttons-bar__moved");
    movePageElement(portraitsListBox, "portraits-list__box__moved");
+   movePageElement(portraitsListSkip, "skip__moved");
    // Выбираем все элементы с классом .portraits-list__title
    const allTitles = portraitsListBox.querySelectorAll(
       ".portraits-list__title"
@@ -173,7 +181,6 @@ export function animateHeroSelection() {
    allTitles.forEach((title) => {
       movePageElement(title, "portraits-list__title__moved");
    });
-   
 }
 
 let totalDuration; // Глобальная переменная для общей длительности
@@ -209,6 +216,7 @@ export function clearHeroStyles() {
             "selectable__last-pre-final-image__sparking",
             "selectable__last-chosen-image",
             "selectable__last-final-image",
+            "selectable__last-final-image__sparking",
             "selectable__last-retired-image",
             "selectable__last-thinking-image",
             "selectable__last-chosen-image",
@@ -270,6 +278,7 @@ export function makeDefaultPageElementsStyle() {
    returnPageElement(lastHeroesBox, "last-box__moved", 0);
    returnPageElement(portraitsListButtons, "buttons-bar__moved", 0);
    returnPageElement(portraitsListBox, "portraits-list__box__moved", 0);
+   returnPageElement(portraitsListSkip, "skip__moved", 0);
    const allTitles = portraitsListBox.querySelectorAll(
       ".portraits-list__title"
    );
@@ -306,7 +315,7 @@ function setAnimationDuration(durationInSeconds) {
    const element = document.documentElement; // Применяем ко всему документу (если анимация глобальная)
    element.style.setProperty(
       "--selectable-random-animation-duration",
-      `${durationInSeconds/ 1}ms`
+      `${durationInSeconds / 1}ms`
    ); // Преобразуем миллисекунды в секунды
 }
 
@@ -323,20 +332,30 @@ function setTransitionDuration(durationInSeconds) {
 function highlightHeroPacket(
    heroPacket,
    highlightDuration,
-   specialHero = null
+   specialHeroElement = null
 ) {
    // Устанавливаем длительность анимации перед началом подсветки
    setAnimationDuration(highlightDuration);
    setTransitionDuration(highlightDuration);
 
    heroPacket.forEach((hero) => {
-      const heroElement = portraitsListBox.querySelector(
-         `[data-hero-name="${hero.name}"]`
-      );
+      let heroElement;
+      // Если это специальный герой, берем его сразу из specialHeroElement
+      if (
+         specialHeroElement &&
+         hero.name === specialHeroElement.dataset.heroName
+      ) {
+         heroElement = specialHeroElement;
+      } else {
+         // Иначе находим элемент через portraitsListBox
+         heroElement = portraitsListBox.querySelector(
+            `[data-hero-name="${hero.name}"]`
+         );
+      }
 
       if (heroElement) {
-         // Если это особый герой, применяем другие стили
-         if (specialHero && hero.name === specialHero.name) {
+         // Если это специальный герой, применяем уникальные стили
+         if (specialHeroElement && heroElement === specialHeroElement) {
             heroElement.classList.remove("selectable__random-not-involved");
             heroElement.classList.add("selectable__last-pre-final");
 
@@ -348,7 +367,9 @@ function highlightHeroPacket(
                   "selectable__random-not-involved-image"
                );
                imageBox.classList.add("selectable__last-pre-final-image");
-               imageBox.classList.add("selectable__last-pre-final-image__sparking");
+               imageBox.classList.add(
+                  "selectable__last-pre-final-image__sparking"
+               );
             }
          } else {
             // Обычные стили для обычных героев
@@ -375,7 +396,10 @@ function highlightHeroPacket(
             `[data-hero-name="${hero.name}"]`
          );
 
-         if (heroElement && (!specialHero || hero.name !== specialHero.name)) {
+         if (
+            heroElement &&
+            (!specialHeroElement || heroElement !== specialHeroElement)
+         ) {
             // Удаляем стили только для обычных героев
             heroElement.classList.add("selectable__random-not-involved");
             heroElement.classList.remove("selectable__random-involved");
@@ -399,7 +423,7 @@ async function runPhase(
    packetCount,
    phaseDuration,
    hasChosenHero = false, // Новый параметр
-   randomHero = null // Новый параметр (randomHeroes[i])
+   specialHeroElement = null // Новый параметр
 ) {
    let highlightDuration = phaseDuration / packetCount;
    const heroPackages = getRandomHeroPackages(
@@ -410,11 +434,15 @@ async function runPhase(
    const packetInterval = highlightDuration; // Время смены пакета
 
    // Если выбранный герой должен быть добавлен в последний пакет, то этот пакет должен содержать только его
-   if (hasChosenHero && randomHero) {
-      // Очищаем последний пакет и добавляем только randomHero
-      heroPackages[heroPackages.length - 1] = [randomHero];
+   if (hasChosenHero && specialHeroElement) {
+      // Получаем имя героя из specialHeroElement
+      const specialHeroName = specialHeroElement.dataset.heroName;
+
+      // Очищаем последний пакет и добавляем только этого героя
+      heroPackages[heroPackages.length - 1] = [{ name: specialHeroName }];
    }
-   clickSound.volume = rouletteSong.volume / 2;
+
+   clickSound.volume = rouletteSong.volume / 4;
 
    for (let i = 0; i < packetCount; i++) {
       setTimeout(() => {
@@ -422,23 +450,27 @@ async function runPhase(
          clickSound.currentTime = 0; // Сброс времени для повторного проигрывания
          clickSound.play();
 
-         highlightHeroPacket(heroPackages[i], highlightDuration, randomHero); // Передаем randomHero
-      }, i * packetInterval); // Каждый пакет через равные промежутки времени
-   }
-
-   for (let i = 0; i < packetCount; i++) {
-      setTimeout(() => {
-         highlightHeroPacket(heroPackages[i], highlightDuration, randomHero); // Передаем randomHero
+         highlightHeroPacket(
+            heroPackages[i],
+            highlightDuration,
+            specialHeroElement
+         ); // Передаем specialHeroElement
       }, i * packetInterval); // Каждый пакет через равные промежутки времени
    }
 
    await new Promise((resolve) => setTimeout(resolve, phaseDuration));
 
+   // Удаляем specialHeroElement из heroesList на основе data-hero-name
+   const specialHeroName = specialHeroElement.dataset.heroName;
+   const updatedHeroesList = heroesList.filter(
+      (hero) => hero.name !== specialHeroName
+   );
+
    // Добавляем длительность текущей фазы в глобальную переменную
    totalDuration += phaseDuration;
 
    // Возвращаем обновленный список героев
-   return heroesList;
+   return updatedHeroesList;
 }
 
 //
@@ -482,40 +514,51 @@ async function runPhaseBoth(
 //
 
 // Функция для очистки стилей у всех героев
-function clearRandomHeroes(heroes) {
-   heroes.forEach(hero => {
-      const heroElement = document.querySelector(`[data-hero-name="${hero.name}"]`);
+function clearRandomHeroes(heroesElements) {
+   heroesElements.forEach((heroElement) => {
       if (heroElement) {
-         const imageBox = heroElement.querySelector('.card-portrait-image-box');
+         const imageBox = heroElement.querySelector(".card-portrait-image-box");
 
          // Удаляем стили у героя и его изображения
-         if (heroElement.classList.contains('selectable__last-pre-final')) {
-            heroElement.classList.remove('selectable__last-pre-final');
-            heroElement.classList.add('selectable__last-final');
+         if (heroElement.classList.contains("selectable__last-pre-final")) {
+            heroElement.classList.remove("selectable__last-pre-final");
+            heroElement.classList.add("selectable__last-final");
          }
-         if (imageBox && imageBox.classList.contains('selectable__last-pre-final-image')) {
-            imageBox.classList.remove('selectable__last-pre-final-image');
-            imageBox.classList.remove('selectable__last-pre-final-image__sparking');
-            imageBox.classList.add('selectable__last-final-image');
+         if (
+            imageBox &&
+            imageBox.classList.contains("selectable__last-pre-final-image")
+         ) {
+            imageBox.classList.remove("selectable__last-pre-final-image");
+            imageBox.classList.remove(
+               "selectable__last-pre-final-image__sparking"
+            );
+            imageBox.classList.add("selectable__last-final-image");
             // imageBox.classList.add('selectable__last-thinking__bang');
-            // imageBox.classList.add('selectable__last-thinking-image__sparking');
+            imageBox.classList.add("selectable__last-final-image__sparking");
          }
       }
    });
 }
 
-export async function runFinalPhase(cycles, phaseDuration, remainingHeroes, heroToRemove, chosenHero) {
-
+export async function runFinalPhase(
+   cycles,
+   phaseDuration,
+   remainingHeroes,
+   heroToRemove,
+   chosenHero
+) {
    let highlightDuration = phaseDuration / cycles;
 
    // Проходим ровно cycles раз, при этом чередуем героев из оставшегося списка
    for (let i = 0; i < cycles; i++) {
       const hero = remainingHeroes[i % remainingHeroes.length]; // Выбираем героя по кругу
-      const heroElement = document.querySelector(`[data-hero-name="${hero.name}"]`);
+      const heroElement = document.querySelector(
+         `[data-hero-name="${hero.name}"]`
+      );
 
       // Проверяем, что элемент героя существует
       if (heroElement) {
-         const imageBox = heroElement.querySelector('.card-portrait-image-box');
+         const imageBox = heroElement.querySelector(".card-portrait-image-box");
 
          // Проверяем наличие imageBox перед применением классов
          if (imageBox) {
@@ -526,7 +569,9 @@ export async function runFinalPhase(cycles, phaseDuration, remainingHeroes, hero
             imageBox.classList.remove("selectable__last-final-image");
 
             // Ожидание завершения подсветки для текущего героя
-            await new Promise((resolve) => setTimeout(resolve, highlightDuration));
+            await new Promise((resolve) =>
+               setTimeout(resolve, highlightDuration)
+            );
 
             // Сброс подсветки
             // heroElement.classList.remove("selectable__last-thinking");
@@ -544,10 +589,14 @@ export async function runFinalPhase(cycles, phaseDuration, remainingHeroes, hero
    }
 
    // После завершения циклов помечаем героя для удаления
-   const heroElementToRemove = document.querySelector(`[data-hero-name="${heroToRemove.name}"]`);
+   const heroElementToRemove = document.querySelector(
+      `[data-hero-name="${heroToRemove.name}"]`
+   );
    if (heroElementToRemove && heroToRemove.name !== chosenHero.name) {
-      const imageBoxToRemove = heroElementToRemove.querySelector('.card-portrait-image-box');
-      
+      const imageBoxToRemove = heroElementToRemove.querySelector(
+         ".card-portrait-image-box"
+      );
+
       if (imageBoxToRemove) {
          // Применяем стили удаления для heroToRemove
          heroElementToRemove.classList.add("selectable__last-retired");
@@ -555,34 +604,38 @@ export async function runFinalPhase(cycles, phaseDuration, remainingHeroes, hero
          heroElementToRemove.classList.remove("selectable__last-final");
          imageBoxToRemove.classList.add("selectable__last-retired-image");
          imageBoxToRemove.classList.remove("selectable__last-pre-fanal-image");
-         imageBoxToRemove.classList.remove("selectable__last-pre-final-image__sparking");
+         imageBoxToRemove.classList.remove(
+            "selectable__last-pre-final-image__sparking"
+         );
          imageBoxToRemove.classList.remove("selectable__last-fanal-image");
       } else {
-         console.warn(`Image box not found for hero to remove: ${heroToRemove.name}`);
+         console.warn(
+            `Image box not found for hero to remove: ${heroToRemove.name}`
+         );
       }
    }
 
    // Возвращаем массив героев, исключая удалённого
-   return remainingHeroes.filter(hero => hero.name !== heroToRemove.name);
+   return remainingHeroes.filter((hero) => hero.name !== heroToRemove.name);
 }
 
 // Функция для поочередного скрытия случайных элементов из массива, кроме chosenHero
 async function hideHeroesRandomly(
-   heroesArray,
+   heroesElementsArray, // Массив HTML-элементов
    delaysArray,
-   chosenHero,
+   chosenHeroElement, // Выбранный герой как HTML-элемент
    initialDelay
 ) {
    // Ждем начальную задержку перед началом скрытия
    await new Promise((resolve) => setTimeout(resolve, initialDelay));
 
-   // Копируем массив и отфильтровываем выбранного героя, чтобы он не скрывался
-   let remainingHeroes = heroesArray.filter(
-      (hero) => hero.name !== chosenHero.name
+   // Фильтруем массив, чтобы исключить выбранного героя
+   let remainingHeroesElements = heroesElementsArray.filter(
+      (heroElement) => heroElement !== chosenHeroElement
    );
 
    // Проверяем, что длина delaysArray соответствует количеству оставшихся героев
-   if (delaysArray.length !== remainingHeroes.length) {
+   if (delaysArray.length !== remainingHeroesElements.length) {
       console.warn(
          "Количество задержек не совпадает с количеством оставшихся героев."
       );
@@ -590,39 +643,34 @@ async function hideHeroesRandomly(
 
    let i = 0; // Счетчик для индекса задержки
 
-   while (remainingHeroes.length > 0 && i < delaysArray.length) {
+   while (remainingHeroesElements.length > 0 && i < delaysArray.length) {
       // Случайный индекс для выбора героя
-      const randomIndex = Math.floor(Math.random() * remainingHeroes.length);
-      const hero = remainingHeroes[randomIndex];
-
-      // Находим элементы героя и imageBox на странице
-      const heroElement = portraitsListBox.querySelector(
-         `[data-hero-name="${hero.name}"]`
+      const randomIndex = Math.floor(
+         Math.random() * remainingHeroesElements.length
       );
-      const imageBox = heroElement?.querySelector(".card-portrait-image-box");
+      const heroElement = remainingHeroesElements[randomIndex];
 
-      // Проверяем, что элементы найдены
+      // Находим imageBox внутри текущего HTML-элемента
+      const imageBox = heroElement.querySelector(".card-portrait-image-box");
+
+      // Проверяем, что элемент найден
       if (heroElement && imageBox) {
-         // Добавляем классы для скрытия героя и imageBox
+         // Добавляем классы для скрытия героя и его imageBox
          heroElement.classList.add("selectable__last-retired");
          imageBox.classList.add("selectable__last-retired-image");
 
          // Убираем текущего героя из массива, чтобы он больше не скрывался
-         remainingHeroes.splice(randomIndex, 1);
+         remainingHeroesElements.splice(randomIndex, 1);
 
          // Воспроизводим звук клика для текущего героя
-         poofSound.volume = rouletteSong.volume / 2;
+         poofSound.volume = rouletteSong.volume / 4;
          poofSound.currentTime = 0; // Сброс времени для повторного проигрывания
          poofSound.play();
       } else {
          console.warn(
-            `Hero element or image box not found for hero: ${hero.name}`
+            `Hero element or image box not found for hero element at index: ${randomIndex}`
          );
       }
-
-      // // Изменяем длительность transition для текущего героя
-      // setTransitionDuration(delaysArray[i]);
-      // setAnimationDuration(delaysArray[i]); // Устанавливаем длительность анимации
 
       // Ждем время, указанное для текущего элемента в delaysArray
       await new Promise((resolve) => setTimeout(resolve, delaysArray[i]));
@@ -632,12 +680,6 @@ async function hideHeroesRandomly(
    }
 }
 // dsfsdf
-
-
-
-
-
-
 
 // Функция запуска финальной фазы с выбранным героем
 async function runFinalHero(chosenHero, highlightDuration) {
@@ -706,64 +748,136 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
    // await runPhase(selectedHeroes, 8, 1, 140); // Фаза 1
    // await runPhase(selectedHeroes, 8, 1, 160); // Фаза 1
    // await runPhase(selectedHeroes, 4, 1, 180); // Фаза 1
-   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[0]);
-   selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== randomHeroes[0].name
+   await runPhase(
+      selectedHeroes,
+      1,
+      1,
+      200,
+      true,
+      selectedRandomHeroesElements[0]
    );
-   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[1]);
    selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== randomHeroes[1].name
+      (hero) => hero.name !== selectedRandomHeroesElements[0].dataset.heroName
    );
-   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[2]);
-   selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== randomHeroes[2].name
+   await runPhase(
+      selectedHeroes,
+      1,
+      1,
+      200,
+      true,
+      selectedRandomHeroesElements[1]
    );
-   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[3]);
    selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== randomHeroes[3].name
+      (hero) => hero.name !== selectedRandomHeroesElements[1].dataset.heroName
    );
-   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[4]);
-   selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== randomHeroes[4].name
+   await runPhase(
+      selectedHeroes,
+      1,
+      1,
+      200,
+      true,
+      selectedRandomHeroesElements[2]
    );
-   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[5]);
    selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== randomHeroes[5].name
+      (hero) => hero.name !== selectedRandomHeroesElements[2].dataset.heroName
    );
-   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[6]);
-   selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== randomHeroes[6].name
+   await runPhase(
+      selectedHeroes,
+      1,
+      1,
+      200,
+      true,
+      selectedRandomHeroesElements[3]
    );
-   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[7]);
    selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== randomHeroes[7].name
+      (hero) => hero.name !== selectedRandomHeroesElements[3].dataset.heroName
    );
-   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[8]);
-   selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== randomHeroes[8].name
+   await runPhase(
+      selectedHeroes,
+      1,
+      1,
+      200,
+      true,
+      selectedRandomHeroesElements[4]
    );
-   await runPhase(selectedHeroes, 1, 1, 200, true, randomHeroes[9]);
    selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== randomHeroes[9].name
+      (hero) => hero.name !== selectedRandomHeroesElements[4].dataset.heroName
+   );
+   await runPhase(
+      selectedHeroes,
+      1,
+      1,
+      200,
+      true,
+      selectedRandomHeroesElements[5]
+   );
+   selectedHeroes = selectedHeroes.filter(
+      (hero) => hero.name !== selectedRandomHeroesElements[5].dataset.heroName
+   );
+   await runPhase(
+      selectedHeroes,
+      1,
+      1,
+      200,
+      true,
+      selectedRandomHeroesElements[6]
+   );
+   selectedHeroes = selectedHeroes.filter(
+      (hero) => hero.name !== selectedRandomHeroesElements[6].dataset.heroName
+   );
+   await runPhase(
+      selectedHeroes,
+      1,
+      1,
+      200,
+      true,
+      selectedRandomHeroesElements[7]
+   );
+   selectedHeroes = selectedHeroes.filter(
+      (hero) => hero.name !== selectedRandomHeroesElements[7].dataset.heroName
+   );
+   await runPhase(
+      selectedHeroes,
+      1,
+      1,
+      200,
+      true,
+      selectedRandomHeroesElements[8]
+   );
+   selectedHeroes = selectedHeroes.filter(
+      (hero) => hero.name !== selectedRandomHeroesElements[8].dataset.heroName
+   );
+   await runPhase(
+      selectedHeroes,
+      1,
+      1,
+      200,
+      true,
+      selectedRandomHeroesElements[9]
+   );
+   selectedHeroes = selectedHeroes.filter(
+      (hero) => hero.name !== selectedRandomHeroesElements[9].dataset.heroName
    );
 
-   clearRandomHeroes(randomHeroes);
+   clearRandomHeroes(selectedRandomHeroesElements);
 
    // Вызываем функцию для поочередного скрытия героев из randomHeroes, кроме chosenHero
    // await hideHeroesRandomly(randomHeroes, 700, chosenHero, 1000);
    const delaysArray = [845, 845, 845, 845, 845, 845, 1690, 1690, 1690]; // для каждого героя своя задержка
    const initialDelay = 845; // Начальная задержка перед началом скрытия героев
+
+   // Передаем selectedRandomHeroesElements и выбранного героя
    await hideHeroesRandomly(
-      randomHeroes,
+      selectedRandomHeroesElements, // массив HTML-элементов
       delaysArray,
-      chosenHero,
+      randomHeroElement, // выбранный герой
       initialDelay
    );
 
    // Запуск финальной фазы с выбранным героем
    await runFinalHero(chosenHero, 300); // Длительность подсветки финального героя
 
-   hideOverlay(1000);
+   hideOverlay(0);
    makeDefaultPageElementsStyle();
    clearHeroStyles();
 
@@ -848,6 +962,15 @@ export function chooseFinalHero(selectedRandomHeroes) {
 
    console.debug("Финальный герой:", finalHero.name);
    return finalHero; // Возвращаем финального героя
+}
+
+export function findFinalHeroElement(selectedRandomHeroesElements, randomHero) {
+   // Ищем HTML-элемент, где data-hero-name соответствует имени randomHero
+   return (
+      selectedRandomHeroesElements.find(
+         (heroElement) => heroElement.dataset.heroName === randomHero.name
+      ) || null
+   ); // Возвращаем null, если элемент не найден
 }
 
 function highlightHeroStyle(element, addSelector, removeSelector) {

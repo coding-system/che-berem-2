@@ -27,11 +27,13 @@ import {
    getRandomHeroesElements,
    chooseFinalHero,
    runAllPhases,
-   filterSelectedHeroes
+   filterSelectedHeroes,
+   findFinalHeroElement
 } from "./rolling.js";
 import { addShowHeroData } from "./showhero.js";
 import { updatePortraits } from "./portraits.js";
 import { lastHeroes } from "./lastheroes.js";
+import { songslist } from "./songslist.js";
 
 // export let currentSelectableHeroes = []; // Глобальная переменная
 // export let chosenIndex;
@@ -69,9 +71,36 @@ export function deleteChosenHero(chosenHero) {
    }
 }
 
+export let selectedRandomHeroesElements;
+export let randomHeroElement;
+
+function selectRandomSong(songList, audioElementId) {
+   if (!songList || songList.length === 0) {
+       console.log("Список песен пуст");
+       return;
+   }
+
+   // Выбираем случайную песню
+   const randomIndex = Math.floor(Math.random() * songList.length);
+   const randomSong = songList[randomIndex].link;
+
+   // Находим аудио элемент
+   const audioElement = document.getElementById(audioElementId);
+   if (audioElement) {
+       const sourceElement = audioElement.querySelector("source");
+       if (sourceElement) {
+           sourceElement.src = `./assets/sounds/${randomSong}`;
+           audioElement.load();
+       }
+   }
+
+   console.debug(`Выбрана случайная песня: ${randomSong}`);
+}
+
 function getRandomElement(heroesArray) {
    disableChooseButton();
    stopAudio();
+   setTimeout(() => playAudio(rouletteSong), 500);
 
    const selectableHeroes = filterSelectedHeroes(heroesArray); // Фильтруем сразу
 
@@ -90,7 +119,7 @@ function getRandomElement(heroesArray) {
    }
 
    // Ищем HTML-элементы для выбранных героев
-   const selectedRandomHeroesElements = getRandomHeroesElements(selectedRandomHeroes);
+   selectedRandomHeroesElements = getRandomHeroesElements(selectedRandomHeroes);
 
    if (selectedRandomHeroesElements.length === 0) {
       console.log("Не удалось найти HTML элементы для выбранных героев.");
@@ -99,32 +128,36 @@ function getRandomElement(heroesArray) {
 
    // Теперь выбираем финального героя из этих 4
    const randomHero = chooseFinalHero(selectedRandomHeroes);
+   randomHeroElement = findFinalHeroElement(selectedRandomHeroesElements, randomHero);
 
    console.debug(`Имя выбранного финального героя`, randomHero.name);
 
    // saveChosenIndexToLocalStorage(randomHero);
 
+   selectRandomSong(
+      songslist,
+      "myAudio"
+  );
+
    // currentSelectableHeroes = selectableHeroes;
    chosenHero = randomHero; // Назначаем выбранного финального героя как chosenHero
 
    animateHeroSelection();
-   setTimeout(() => runAllPhases(heroesArray, selectableHeroes, selectedRandomHeroes), 850); // Передаем heroesArray и отфильтрованных героев
-   setTimeout(() => addShowHeroData(), addShowHeroDataDelay);
-   setTimeout(() => showHeroWindow(), showHeroWindowDelay);
-   setTimeout(() => enableChooseButton(), enableChooseButtonDelay);
-   setTimeout(() => playAudio(), 500);
-   // playAudio();
+   setTimeout(async () => {
+      try {
+         await runAllPhases(heroesArray, selectableHeroes, selectedRandomHeroes);
+         addShowHeroData(); // Вместо setTimeout
+         showHeroWindow(); // Вызывается сразу после завершения runAllPhases
+         enableChooseButton(); // Вместо setTimeout
+      } catch (error) {
+         console.error("Ошибка при выполнении фаз:", error);
+      }
+   }, 500);
 }
-// sdfsdfs
-function playAudio() {
-   // if (songChanger.checked) {
-   //    rouletteSong.volume = 0.5;
-   //    // songChangerStatus = true;
-   // } else {
-   //    rouletteSong.volume = 0;
-   //    // songChangerStatus = false;
-   // }
-   rouletteSong.play();
+
+function playAudio(songElement) {
+
+   songElement.play();
 }
 
 function stopAudio() {

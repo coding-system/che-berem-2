@@ -153,6 +153,10 @@ const resetButton = document.querySelector(".reset-button");
 // });
 
 // Обработчики
+portraitsListSkipButton.addEventListener("click", () => {
+   
+});
+
 chooseButton.addEventListener("click", () => getRandomElement(startHeroes));
 // confirmAccept.addEventListener("click", () => resetHeroes(startHeroes));
 // confirmCancel.addEventListener("click", () => resetHeroes(startHeroes));

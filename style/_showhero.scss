@@ -50,12 +50,12 @@
       opacity: 0;
       transform: scale(1.2);
       padding: 0 0.5em;
-      mix-blend-mode: difference;
+      mix-blend-mode: color-dodge;
       // mask-image: linear-gradient(to top, transparent 0%, black 90%);
       user-select: none;
       line-height: 1em;
       text-align: center;
-      color: #ffffff;
+      color: #727272;
       text-shadow: 4px 2px 2px #bebebe;
       // background-image: linear-gradient(to top, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
       // color: transparent;

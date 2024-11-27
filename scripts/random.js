@@ -28,7 +28,7 @@ import {
    chooseFinalHero,
    runAllPhases,
    filterSelectedHeroes,
-   findFinalHeroElement
+   findFinalHeroElement,
 } from "./rolling.js";
 import { addShowHeroData } from "./showhero.js";
 import { updatePortraits } from "./portraits.js";
@@ -76,8 +76,8 @@ export let randomHeroElement;
 
 function selectRandomSong(songList, audioElementId) {
    if (!songList || songList.length === 0) {
-       console.log("Список песен пуст");
-       return;
+      console.log("Список песен пуст");
+      return;
    }
 
    // Выбираем случайную песню
@@ -87,11 +87,11 @@ function selectRandomSong(songList, audioElementId) {
    // Находим аудио элемент
    const audioElement = document.getElementById(audioElementId);
    if (audioElement) {
-       const sourceElement = audioElement.querySelector("source");
-       if (sourceElement) {
-           sourceElement.src = `./assets/sounds/${randomSong}`;
-           audioElement.load();
-       }
+      const sourceElement = audioElement.querySelector("source");
+      if (sourceElement) {
+         sourceElement.src = `./assets/sounds/${randomSong}`;
+         audioElement.load();
+      }
    }
 
    console.debug(`Выбрана случайная песня: ${randomSong}`);
@@ -128,16 +128,16 @@ function getRandomElement(heroesArray) {
 
    // Теперь выбираем финального героя из этих 4
    const randomHero = chooseFinalHero(selectedRandomHeroes);
-   randomHeroElement = findFinalHeroElement(selectedRandomHeroesElements, randomHero);
+   randomHeroElement = findFinalHeroElement(
+      selectedRandomHeroesElements,
+      randomHero
+   );
 
    console.debug(`Имя выбранного финального героя`, randomHero.name);
 
    // saveChosenIndexToLocalStorage(randomHero);
 
-   selectRandomSong(
-      songslist,
-      "myAudio"
-  );
+   selectRandomSong(songslist, "myAudio");
 
    // currentSelectableHeroes = selectableHeroes;
    chosenHero = randomHero; // Назначаем выбранного финального героя как chosenHero
@@ -145,7 +145,11 @@ function getRandomElement(heroesArray) {
    animateHeroSelection();
    setTimeout(async () => {
       try {
-         await runAllPhases(heroesArray, selectableHeroes, selectedRandomHeroes);
+         await runAllPhases(
+            heroesArray,
+            selectableHeroes,
+            selectedRandomHeroes
+         );
          addShowHeroData(); // Вместо setTimeout
          showHeroWindow(); // Вызывается сразу после завершения runAllPhases
          enableChooseButton(); // Вместо setTimeout
@@ -156,11 +160,10 @@ function getRandomElement(heroesArray) {
 }
 
 function playAudio(songElement) {
-
    songElement.play();
 }
 
-function stopAudio() {
+export function stopAudio() {
    rouletteSong.pause();
    rouletteSong.currentTime = 0;
 }

@@ -2,6 +2,7 @@ import {
    chosenHero,
    selectedRandomHeroesElements,
    randomHeroElement,
+   stopAudio,
 } from "./random.js";
 import {
    windowList,
@@ -422,54 +423,54 @@ async function runPhase(
    heroesPerPacket,
    packetCount,
    phaseDuration,
-   hasChosenHero = false, // Новый параметр
-   specialHeroElement = null // Новый параметр
+   hasChosenHero = false,
+   specialHeroElement = null,
+   abortSignal // Новый параметр
 ) {
    let highlightDuration = phaseDuration / packetCount;
    const heroPackages = getRandomHeroPackages(
       heroesList,
       heroesPerPacket,
       packetCount
-   ); // Получаем пакеты героев
-   const packetInterval = highlightDuration; // Время смены пакета
+   );
 
-   // Если выбранный герой должен быть добавлен в последний пакет, то этот пакет должен содержать только его
    if (hasChosenHero && specialHeroElement) {
-      // Получаем имя героя из specialHeroElement
       const specialHeroName = specialHeroElement.dataset.heroName;
-
-      // Очищаем последний пакет и добавляем только этого героя
       heroPackages[heroPackages.length - 1] = [{ name: specialHeroName }];
    }
 
    clickSound.volume = rouletteSong.volume / 4;
 
    for (let i = 0; i < packetCount; i++) {
-      setTimeout(() => {
-         // Воспроизведение звука
-         clickSound.currentTime = 0; // Сброс времени для повторного проигрывания
-         clickSound.play();
+      if (abortSignal.aborted) throw new Error("Phase aborted");
 
-         highlightHeroPacket(
-            heroPackages[i],
-            highlightDuration,
-            specialHeroElement
-         ); // Передаем specialHeroElement
-      }, i * packetInterval); // Каждый пакет через равные промежутки времени
+      setTimeout(() => {
+         if (!abortSignal.aborted) {
+            clickSound.currentTime = 0;
+            clickSound.play();
+            highlightHeroPacket(
+               heroPackages[i],
+               highlightDuration,
+               specialHeroElement
+            );
+         }
+      }, i * highlightDuration);
    }
 
-   await new Promise((resolve) => setTimeout(resolve, phaseDuration));
+   await new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => resolve(), phaseDuration);
+      abortSignal.addEventListener("abort", () => {
+         clearTimeout(timeout);
+         reject(new Error("Phase aborted"));
+      });
+   });
 
-   // Удаляем specialHeroElement из heroesList на основе data-hero-name
    const specialHeroName = specialHeroElement.dataset.heroName;
    const updatedHeroesList = heroesList.filter(
       (hero) => hero.name !== specialHeroName
    );
 
-   // Добавляем длительность текущей фазы в глобальную переменную
    totalDuration += phaseDuration;
-
-   // Возвращаем обновленный список героев
    return updatedHeroesList;
 }
 
@@ -624,10 +625,17 @@ async function hideHeroesRandomly(
    heroesElementsArray, // Массив HTML-элементов
    delaysArray,
    chosenHeroElement, // Выбранный герой как HTML-элемент
-   initialDelay
+   initialDelay,
+   abortSignal // Новый параметр
 ) {
    // Ждем начальную задержку перед началом скрытия
-   await new Promise((resolve) => setTimeout(resolve, initialDelay));
+   await new Promise((resolve, reject) => {
+      const timeout = setTimeout(resolve, initialDelay);
+      abortSignal.addEventListener("abort", () => {
+         clearTimeout(timeout);
+         reject(new Error("Hiding heroes aborted"));
+      });
+   });
 
    // Фильтруем массив, чтобы исключить выбранного героя
    let remainingHeroesElements = heroesElementsArray.filter(
@@ -644,6 +652,9 @@ async function hideHeroesRandomly(
    let i = 0; // Счетчик для индекса задержки
 
    while (remainingHeroesElements.length > 0 && i < delaysArray.length) {
+      // Проверяем, был ли процесс прерван
+      if (abortSignal.aborted) throw new Error("Hiding heroes aborted");
+
       // Случайный индекс для выбора героя
       const randomIndex = Math.floor(
          Math.random() * remainingHeroesElements.length
@@ -673,12 +684,19 @@ async function hideHeroesRandomly(
       }
 
       // Ждем время, указанное для текущего элемента в delaysArray
-      await new Promise((resolve) => setTimeout(resolve, delaysArray[i]));
+      await new Promise((resolve, reject) => {
+         const timeout = setTimeout(resolve, delaysArray[i]);
+         abortSignal.addEventListener("abort", () => {
+            clearTimeout(timeout);
+            reject(new Error("Hiding heroes aborted"));
+         });
+      });
 
       // Увеличиваем счетчик для задержек
       i++;
    }
 }
+
 // dsfsdf
 
 // Функция запуска финальной фазы с выбранным героем
@@ -738,148 +756,190 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
    // Очищаем все стили перед началом
    // clearHeroStyles();
 
-   // Сначала всем героям добавляем класс selectable__random-not-involved
-   markAllHeroesNotInvolved(heroesList);
+   // Создаем AbortController для управления отменой
+   const abortController = new AbortController();
+   const abortSignal = abortController.signal;
 
-   // await runPhase(selectedHeroes, 32, 1, 60); // Фаза 1
-   // await runPhase(selectedHeroes, 16, 1, 80); // Фаза 1
-   // await runPhase(selectedHeroes, 8, 1, 100); // Фаза 1
-   // await runPhase(selectedHeroes, 8, 1, 120); // Фаза 1
-   // await runPhase(selectedHeroes, 8, 1, 140); // Фаза 1
-   // await runPhase(selectedHeroes, 8, 1, 160); // Фаза 1
-   // await runPhase(selectedHeroes, 4, 1, 180); // Фаза 1
-   await runPhase(
-      selectedHeroes,
-      1,
-      1,
-      200,
-      true,
-      selectedRandomHeroesElements[0]
-   );
-   selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== selectedRandomHeroesElements[0].dataset.heroName
-   );
-   await runPhase(
-      selectedHeroes,
-      1,
-      1,
-      200,
-      true,
-      selectedRandomHeroesElements[1]
-   );
-   selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== selectedRandomHeroesElements[1].dataset.heroName
-   );
-   await runPhase(
-      selectedHeroes,
-      1,
-      1,
-      200,
-      true,
-      selectedRandomHeroesElements[2]
-   );
-   selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== selectedRandomHeroesElements[2].dataset.heroName
-   );
-   await runPhase(
-      selectedHeroes,
-      1,
-      1,
-      200,
-      true,
-      selectedRandomHeroesElements[3]
-   );
-   selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== selectedRandomHeroesElements[3].dataset.heroName
-   );
-   await runPhase(
-      selectedHeroes,
-      1,
-      1,
-      200,
-      true,
-      selectedRandomHeroesElements[4]
-   );
-   selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== selectedRandomHeroesElements[4].dataset.heroName
-   );
-   await runPhase(
-      selectedHeroes,
-      1,
-      1,
-      200,
-      true,
-      selectedRandomHeroesElements[5]
-   );
-   selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== selectedRandomHeroesElements[5].dataset.heroName
-   );
-   await runPhase(
-      selectedHeroes,
-      1,
-      1,
-      200,
-      true,
-      selectedRandomHeroesElements[6]
-   );
-   selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== selectedRandomHeroesElements[6].dataset.heroName
-   );
-   await runPhase(
-      selectedHeroes,
-      1,
-      1,
-      200,
-      true,
-      selectedRandomHeroesElements[7]
-   );
-   selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== selectedRandomHeroesElements[7].dataset.heroName
-   );
-   await runPhase(
-      selectedHeroes,
-      1,
-      1,
-      200,
-      true,
-      selectedRandomHeroesElements[8]
-   );
-   selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== selectedRandomHeroesElements[8].dataset.heroName
-   );
-   await runPhase(
-      selectedHeroes,
-      1,
-      1,
-      200,
-      true,
-      selectedRandomHeroesElements[9]
-   );
-   selectedHeroes = selectedHeroes.filter(
-      (hero) => hero.name !== selectedRandomHeroesElements[9].dataset.heroName
-   );
+   // Привязываем кнопку для пропуска фаз
+   portraitsListSkipButton.addEventListener("click", () => {
+      abortController.abort(); // Отменяем все фазы
+      stopAudio();
+   });
 
-   clearRandomHeroes(selectedRandomHeroesElements);
+   try {
+      // Сначала всем героям добавляем класс selectable__random-not-involved
+      markAllHeroesNotInvolved(heroesList);
 
-   // Вызываем функцию для поочередного скрытия героев из randomHeroes, кроме chosenHero
-   // await hideHeroesRandomly(randomHeroes, 700, chosenHero, 1000);
-   const delaysArray = [845, 845, 845, 845, 845, 845, 1690, 1690, 1690]; // для каждого героя своя задержка
-   const initialDelay = 845; // Начальная задержка перед началом скрытия героев
+      // await runPhase(selectedHeroes, 32, 1, 60); // Фаза 1
+      // await runPhase(selectedHeroes, 16, 1, 80); // Фаза 1
+      // await runPhase(selectedHeroes, 8, 1, 100); // Фаза 1
+      // await runPhase(selectedHeroes, 8, 1, 120); // Фаза 1
+      // await runPhase(selectedHeroes, 8, 1, 140); // Фаза 1
+      // await runPhase(selectedHeroes, 8, 1, 160); // Фаза 1
+      // await runPhase(selectedHeroes, 4, 1, 180); // Фаза 1
+      await runPhase(
+         selectedHeroes,
+         1,
+         1,
+         200,
+         true,
+         selectedRandomHeroesElements[0],
+         abortSignal
+      );
+      selectedHeroes = selectedHeroes.filter(
+         (hero) =>
+            hero.name !== selectedRandomHeroesElements[0].dataset.heroName
+      );
+      await runPhase(
+         selectedHeroes,
+         1,
+         1,
+         200,
+         true,
+         selectedRandomHeroesElements[1],
+         abortSignal
+      );
+      selectedHeroes = selectedHeroes.filter(
+         (hero) =>
+            hero.name !== selectedRandomHeroesElements[1].dataset.heroName
+      );
+      await runPhase(
+         selectedHeroes,
+         1,
+         1,
+         200,
+         true,
+         selectedRandomHeroesElements[2],
+         abortSignal
+      );
+      selectedHeroes = selectedHeroes.filter(
+         (hero) =>
+            hero.name !== selectedRandomHeroesElements[2].dataset.heroName
+      );
+      await runPhase(
+         selectedHeroes,
+         1,
+         1,
+         200,
+         true,
+         selectedRandomHeroesElements[3],
+         abortSignal
+      );
+      selectedHeroes = selectedHeroes.filter(
+         (hero) =>
+            hero.name !== selectedRandomHeroesElements[3].dataset.heroName
+      );
+      await runPhase(
+         selectedHeroes,
+         1,
+         1,
+         200,
+         true,
+         selectedRandomHeroesElements[4],
+         abortSignal
+      );
+      selectedHeroes = selectedHeroes.filter(
+         (hero) =>
+            hero.name !== selectedRandomHeroesElements[4].dataset.heroName
+      );
+      await runPhase(
+         selectedHeroes,
+         1,
+         1,
+         200,
+         true,
+         selectedRandomHeroesElements[5],
+         abortSignal
+      );
+      selectedHeroes = selectedHeroes.filter(
+         (hero) =>
+            hero.name !== selectedRandomHeroesElements[5].dataset.heroName
+      );
+      await runPhase(
+         selectedHeroes,
+         1,
+         1,
+         200,
+         true,
+         selectedRandomHeroesElements[6],
+         abortSignal
+      );
+      selectedHeroes = selectedHeroes.filter(
+         (hero) =>
+            hero.name !== selectedRandomHeroesElements[6].dataset.heroName
+      );
+      await runPhase(
+         selectedHeroes,
+         1,
+         1,
+         200,
+         true,
+         selectedRandomHeroesElements[7],
+         abortSignal
+      );
+      selectedHeroes = selectedHeroes.filter(
+         (hero) =>
+            hero.name !== selectedRandomHeroesElements[7].dataset.heroName
+      );
+      await runPhase(
+         selectedHeroes,
+         1,
+         1,
+         200,
+         true,
+         selectedRandomHeroesElements[8],
+         abortSignal
+      );
+      selectedHeroes = selectedHeroes.filter(
+         (hero) =>
+            hero.name !== selectedRandomHeroesElements[8].dataset.heroName
+      );
+      await runPhase(
+         selectedHeroes,
+         1,
+         1,
+         200,
+         true,
+         selectedRandomHeroesElements[9],
+         abortSignal
+      );
+      selectedHeroes = selectedHeroes.filter(
+         (hero) =>
+            hero.name !== selectedRandomHeroesElements[9].dataset.heroName
+      );
 
-   // Передаем selectedRandomHeroesElements и выбранного героя
-   await hideHeroesRandomly(
-      selectedRandomHeroesElements, // массив HTML-элементов
-      delaysArray,
-      randomHeroElement, // выбранный герой
-      initialDelay
-   );
+      clearRandomHeroes(selectedRandomHeroesElements);
 
-   // Запуск финальной фазы с выбранным героем
-   await runFinalHero(chosenHero, 300); // Длительность подсветки финального героя
+      // Запускаем анимацию скрытия героев
+      const delaysArray = [845, 845, 845, 845, 845, 845, 1690, 1690, 1690];
+      const initialDelay = 845;
 
-   hideOverlay(0);
-   makeDefaultPageElementsStyle();
-   clearHeroStyles();
+      await hideHeroesRandomly(
+         selectedRandomHeroesElements,
+         delaysArray,
+         randomHeroElement,
+         initialDelay,
+         abortSignal
+      );
+
+      // Запускаем финальную фазу с выбранным героем
+      await runFinalHero(chosenHero, 300);
+
+      // Приводим страницу в изначальное состояние
+      hideOverlay(0);
+      makeDefaultPageElementsStyle();
+      clearHeroStyles();
+   } catch (e) {
+      if (abortSignal.aborted) {
+         console.debug("Фазы были пропущены пользователем.");
+         // В случае пропуска фаз очищаем состояние
+         hideOverlay(0);
+         makeDefaultPageElementsStyle();
+         clearHeroStyles();
+      } else {
+         console.error("Ошибка в процессе выполнения фаз:", e);
+      }
+   }
 
    console.debug("Общая длительность всех фаз: ", totalDuration);
 }
