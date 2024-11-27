@@ -100,6 +100,7 @@ function selectRandomSong(songList, audioElementId) {
 function getRandomElement(heroesArray) {
    disableChooseButton();
    stopAudio();
+   setTimeout(() => playAudio(rouletteSong), 500);
 
    const selectableHeroes = filterSelectedHeroes(heroesArray); // Фильтруем сразу
 
@@ -142,23 +143,21 @@ function getRandomElement(heroesArray) {
    chosenHero = randomHero; // Назначаем выбранного финального героя как chosenHero
 
    animateHeroSelection();
-   setTimeout(() => runAllPhases(heroesArray, selectableHeroes, selectedRandomHeroes), 850); // Передаем heroesArray и отфильтрованных героев
-   setTimeout(() => addShowHeroData(), addShowHeroDataDelay);
-   setTimeout(() => showHeroWindow(), showHeroWindowDelay);
-   setTimeout(() => enableChooseButton(), enableChooseButtonDelay);
-   setTimeout(() => playAudio(), 500);
-   // playAudio();
+   setTimeout(async () => {
+      try {
+         await runAllPhases(heroesArray, selectableHeroes, selectedRandomHeroes);
+         addShowHeroData(); // Вместо setTimeout
+         showHeroWindow(); // Вызывается сразу после завершения runAllPhases
+         enableChooseButton(); // Вместо setTimeout
+      } catch (error) {
+         console.error("Ошибка при выполнении фаз:", error);
+      }
+   }, 500);
 }
-// sdfsdfs
-function playAudio() {
-   // if (songChanger.checked) {
-   //    rouletteSong.volume = 0.5;
-   //    // songChangerStatus = true;
-   // } else {
-   //    rouletteSong.volume = 0;
-   //    // songChangerStatus = false;
-   // }
-   rouletteSong.play();
+
+function playAudio(songElement) {
+
+   songElement.play();
 }
 
 function stopAudio() {

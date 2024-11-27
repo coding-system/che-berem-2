@@ -2054,9 +2054,9 @@ ol {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(2, 1fr);
-  row-gap: 2.3em;
-  -moz-column-gap: 4em;
-       column-gap: 4em;
+  row-gap: 0.5em;
+  -moz-column-gap: 3.2em;
+       column-gap: 3.2em;
   transition: transform 0.75s linear;
   position: relative;
 }
@@ -2401,7 +2401,7 @@ ol {
   border: 2px solid #000;
   position: absolute;
   top: -50%;
-  left: -73%;
+  left: -63%;
   width: 14em;
   aspect-ratio: 0.75;
   background-color: #fff;
@@ -2779,22 +2779,33 @@ ol {
 }
 
 .skip {
-  display: none;
+  display: block;
   position: absolute;
   top: 0;
   right: 0;
   opacity: 0;
-  transition: all 0.5s linear;
+  transition: transform 0.5s linear, opacity 0.1s linear;
 }
 .skip__button {
-  font-size: 3em;
-  z-index: 1;
-  background: none;
-  border: 0.1em solid #fff;
-  box-shadow: 0.1em 0.1em #fff;
+  font-size: 1.5em;
+  color: #fafafa;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid #fafafa;
+  background: #252525;
+  box-shadow: 3px 3px #fafafa;
+  cursor: pointer;
+}
+.skip__button:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
 }
 .skip__moved {
-  transform: translateY(-2.2em);
+  transform: translateY(-2.5em);
+  opacity: 0.25;
+}
+.skip__moved:hover {
   opacity: 1;
 }
 
