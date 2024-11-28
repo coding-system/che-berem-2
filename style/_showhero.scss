@@ -110,6 +110,7 @@
       z-index: 2;
    }
    &__pedestal {
+      position: relative;
       transform: translateY(18em);
       z-index: auto;
       &-circle {
@@ -177,6 +178,15 @@
             height: 100%;
             // backdrop-filter: blur(0.5em);
          }
+      }
+   }
+   &__tree {
+      z-index: 1;
+      position: absolute;
+      top: -34em;
+      left: 5em;
+      &-content {
+         height: 30em;
       }
    }
 

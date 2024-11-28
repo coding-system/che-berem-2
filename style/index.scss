@@ -554,12 +554,11 @@
 //    background-color: rgba(0, 0, 0, 0.5);
 //    z-index: 0;
 // }
-body {
-   height: 100vh;
-   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-   overflow: hidden;
-   filter: drop-shadow(0 0 10px white);
- }
+// body {
+//    // height: 100vh;
+//    // overflow: hidden;
+//    // filter: drop-shadow(0 0 10px white);
+//  }
  
  @function random_range($min, $max) {
    $rand: random();
@@ -577,9 +576,22 @@ body {
    position: absolute;
    width: 1em;
    height: 1em;
-   background: white;
+   background: rgb(255, 255, 255);
    border-radius: 50%;
    z-index: 100;
+   box-shadow: 0 0 2em #fff;
+   border: 0.2em solid rgb(217, 217, 255);
+   // &::before {
+   //    content: "";
+   //    background-color: #ffffff;
+   //    position: absolute;
+   //    top: 50%;
+   //    left: 50%;
+   //    width: 80%;
+   //    height: 80%;
+   //    transform: translate(-50%, -50%);
+   //    border-radius: 50%;
+   // }
  
    @for $i from 1 through $total {
      $random-x: random(1000000) * 0.0001vw;

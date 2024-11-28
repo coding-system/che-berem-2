@@ -766,7 +766,6 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
    portraitsListSkipButton.addEventListener("click", () => {
       abortController.abort(); // Отменяем все фазы
       fadeOutAudio(rouletteSong, 1000, stopAudio);
-      console.log(initialVolume)
    });
 
    try {
