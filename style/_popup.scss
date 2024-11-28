@@ -95,6 +95,11 @@
          // transition-delay: 1s;
          transform: translateY(10%);
       }
+      & .show-hero__tree {
+         transition: opacity 1s ease;
+         transition-delay: 2s;
+         opacity: 1;
+      }
    }
 }
 

@@ -186,6 +186,7 @@
       position: absolute;
       top: -34em;
       left: 5em;
+      opacity: 0;
       &-content {
          filter: brightness(0.8) contrast(0.8) drop-shadow(0em 3em 0.5em #00000083);
          height: 30em;
