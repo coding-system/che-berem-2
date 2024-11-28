@@ -99,11 +99,11 @@
       align-items: center;
       // transform: scale(2);
       opacity: 0;
-      // filter: drop-shadow(1.5em 1em 1.5em #000000);
+      filter: drop-shadow(0em 3em 0.5em #00000083);
       // margin-bottom: 2em;
       user-select: none;
       pointer-events: none;
-      mask-image: linear-gradient(to top, transparent 1%, black 15%);
+      mask-image: linear-gradient(to top, transparent 1%, black 8%);
       width: 80%;
       margin-left: 10%;
       position: relative;
@@ -163,6 +163,7 @@
          height: 20em;
          background-image: url("../assets/images/red.jpg");
          z-index: 0;
+         // border: 2em solid #0000005b;
          &::before {
             content: "";
             position: absolute;
@@ -186,6 +187,7 @@
       top: -34em;
       left: 5em;
       &-content {
+         filter: brightness(0.8) contrast(0.8) drop-shadow(0em 3em 0.5em #00000083);
          height: 30em;
       }
    }

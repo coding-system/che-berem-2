@@ -565,7 +565,7 @@
    $random_range: $min + floor($rand * (($max - $min) + 1));
    @return $random_range;
  }
- .shows {
+ .snows {
    position: absolute;
    height: 100%;
    width: 100%;
