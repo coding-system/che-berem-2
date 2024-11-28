@@ -14,6 +14,7 @@ import {
    chooseButtonText,
    btnTop,
    btnBottom,
+   initialVolume
    // getInitialHeroes,
    // reloadStartHeroes
 } from "../index.js";
@@ -99,7 +100,7 @@ function selectRandomSong(songList, audioElementId) {
 
 function getRandomElement(heroesArray) {
    disableChooseButton();
-   stopAudio();
+   stopAudio(rouletteSong);
    setTimeout(() => playAudio(rouletteSong), 500);
 
    const selectableHeroes = filterSelectedHeroes(heroesArray); // Фильтруем сразу
@@ -163,9 +164,22 @@ function playAudio(songElement) {
    songElement.play();
 }
 
-export function stopAudio() {
-   rouletteSong.pause();
-   rouletteSong.currentTime = 0;
+export function stopAudio(songElement) {
+   songElement.pause();
+   songElement.currentTime = 0;
+}
+
+export function fadeOutAudio(songElement, duration, callback) {
+   let volumeStep = songElement.volume / (duration / 50); // шаг изменения громкости
+   let interval = setInterval(() => {
+       if (songElement.volume > 0) {
+           songElement.volume = Math.max(0, songElement.volume - volumeStep); // уменьшаем громкость
+       } else {
+           clearInterval(interval); // прекращаем цикл
+           songElement.volume = initialVolume / 100; // восстанавливаем громкость для будущего использования
+           callback(songElement); // вызываем переданный колбэк, например stopAudio
+       }
+   }, 50); // обновление каждые 50 миллисекунд
 }
 
 function resetHeroes(heroesArray) {

@@ -3,6 +3,7 @@ import {
    selectedRandomHeroesElements,
    randomHeroElement,
    stopAudio,
+   fadeOutAudio
 } from "./random.js";
 import {
    windowList,
@@ -26,6 +27,7 @@ import {
    rouletteSong,
    portraitsListSkip,
    portraitsListSkipButton,
+   initialVolume
 } from "../index.js";
 import { showHeroBox } from "../index.js";
 import { openPopup, closePopup } from "./modal.js";
@@ -763,7 +765,8 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
    // Привязываем кнопку для пропуска фаз
    portraitsListSkipButton.addEventListener("click", () => {
       abortController.abort(); // Отменяем все фазы
-      stopAudio();
+      fadeOutAudio(rouletteSong, 1000, stopAudio);
+      console.log(initialVolume)
    });
 
    try {

@@ -31,6 +31,7 @@ import { generateBoard } from "./scripts/minigame_pairs.js";
 const startHeroes = JSON.parse(JSON.stringify(initialHeroes));
 const currentLastHeroes = JSON.parse(JSON.stringify(lastHeroes));
 let songChangerStatus;
+let initialVolume;
 
 // Help
 const helpBox = document.querySelector(".help");
@@ -322,6 +323,7 @@ songChanger.addEventListener("change", () => {
 // Обработчик изменения значения ползунка
 songVolume.addEventListener("input", function () {
    const volumeValue = songVolume.value;
+   initialVolume = songVolume.value;
    rouletteSong.volume = volumeValue / 100;
    songChanger.checked = volumeValue > 0;
    saveVolumeToLocalStorage(volumeValue);
@@ -329,7 +331,7 @@ songVolume.addEventListener("input", function () {
 
 // Устанавливаем громкость при загрузке страницы
 document.addEventListener("DOMContentLoaded", () => {
-   const initialVolume = loadVolumeFromLocalStorage();
+   initialVolume = loadVolumeFromLocalStorage();
    songVolume.value = initialVolume;
    rouletteSong.volume = initialVolume / 100;
    songChanger.checked = initialVolume > 0;
@@ -695,4 +697,5 @@ export {
    poofSound,
    portraitsListSkip,
    portraitsListSkipButton,
+   initialVolume
 };
