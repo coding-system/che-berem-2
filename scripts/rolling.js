@@ -913,7 +913,7 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
       clearRandomHeroes(selectedRandomHeroesElements);
 
       // Запускаем анимацию скрытия героев
-      const delaysArray = [845, 845, 845, 845, 845, 845, 1690, 1690, 1690];
+      const delaysArray = [845, 845, 845, 845, 845, 845, 1690, 1690, 0];
       const initialDelay = 845;
 
       await hideHeroesRandomly(
@@ -925,7 +925,7 @@ export async function runAllPhases(heroesList, selectedHeroes, randomHeroes) {
       );
 
       // Запускаем финальную фазу с выбранным героем
-      await runFinalHero(chosenHero, 300);
+      await runFinalHero(chosenHero, 845);
 
       // Приводим страницу в изначальное состояние
       hideOverlay(0);
