@@ -183,7 +183,7 @@ export function fadeOutAudio(songElement, duration, callback) {
 }
 
 function resetHeroes(heroesArray) {
-   stopAudio();
+   stopAudio(rouletteSong);
 
    // Сбрасываем массив startHeroes, копируя заново массив initialHeroes
    heroesArray.length = 0;
