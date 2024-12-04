@@ -921,6 +921,15 @@
                <div class="close__button-cross"></div>
             </button>
             <div class="minigame-gang">
+               <div class="minigame-gang__settings"></div>
+               <div class="minigame-gang__header">
+                  <div class="minigame-gang__title">
+                     <h2 class="minigame-gang__title-text">Защищай кора</h2>
+                  </div>
+                  <div class="minigame-gang__steps">
+                     <span class="minigame-gang__steps-text">0</span>
+                  </div>
+               </div>
                <div class="minigame-gang__field">
                   <div class="minigame-gang__target">
                      <img
@@ -930,6 +939,7 @@
                   </div>
                   <ul class="minigame-gang__enemy"></ul>
                </div>
+               <button class="minigame-gang__reset-button">RESET</button>
             </div>
          </div>
       </div>
@@ -982,7 +992,11 @@
                      <div class="show-hero__pedestal-circle"></div>
                      <div class="show-hero__pedestal-base"></div>
                      <div class="show-hero__tree">
-                        <img src="./assets/images/christmasstree.gif" alt="" class="show-hero__tree-content">
+                        <img
+                           src="./assets/images/christmasstree.gif"
+                           alt=""
+                           class="show-hero__tree-content"
+                        />
                      </div>
                   </div>
                </div>
@@ -1162,7 +1176,12 @@
          </li>
       </template>
       <template id="minigame-gang__enemy">
-         <li class="minigame-gang__enemy-item"></li>
+         <li class="minigame-gang__enemy-item">
+            <img
+               src="./assets/heroes/minimap_icons/Lina_minimap_icon.webp"
+               alt="Иконка нашего подзащитного"
+            />
+         </li>
       </template>
    </body>
 </html>
