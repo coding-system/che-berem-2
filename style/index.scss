@@ -16,6 +16,7 @@
 @import "portraitslist.scss";
 @import "golast.scss";
 @import "update.scss";
+@import "minigames.scss";
 @import "minigame-pairs.scss";
 @import "minigame-quiz.scss";
 @import "minigame-gang.scss";
@@ -24,6 +25,10 @@
 
 // body {
 
+// }
+
+// * {
+//    outline: 1px solid #fff;
 // }
 
 :root {
@@ -98,35 +103,6 @@
    }
 }
 
-.minigames {
-   display: none;
-   position: absolute;
-   left: 0;
-   top: 50%;
-   transform: translate(-100%, -50%);
-   &__box {
-      position: relative;
-      min-height: 50vh;
-      width: 15em;
-      background-color: #fff;
-      border-top-right-radius: 2em;
-      border-bottom-right-radius: 2em;
-   }
-   &__button {
-      aspect-ratio: 1;
-      height: 2em;
-      // width: 2em;
-      position: absolute;
-      top: 50%;
-      right: 0;
-      transform: translate(100%, -50%);
-      transform-origin: center;
-      // padding: 1em;
-      background: #000;
-      font-size: 2em;
-   }
-}
-
 .new-option {
    &__button {
       background: none;
@@ -155,6 +131,7 @@
       height: calc(100% + 4em);
       transform: translate(-2em, -2em);
       z-index: -1;
+      pointer-events: none;
       background-image: url("../assets/images/dashboard_backround.jpg");
       background-position: center;
       background-repeat: no-repeat;
@@ -163,6 +140,7 @@
       object-position: center;
    }
    &::after {
+      pointer-events: none;
       content: "";
       position: absolute;
       top: 0;
@@ -306,8 +284,8 @@
 }
 
 .update__button {
-   position: absolute;
-   right: 1em;
+   // position: absolute;
+   // right: 1em;
    background: none;
 }
 
@@ -559,18 +537,20 @@
 //    // overflow: hidden;
 //    // filter: drop-shadow(0 0 10px white);
 //  }
- 
- @function random_range($min, $max) {
+
+@function random_range($min, $max) {
    $rand: random();
    $random_range: $min + floor($rand * (($max - $min) + 1));
    @return $random_range;
- }
- .snows {
+}
+.snows {
+   pointer-events: none;
+   user-select: none;
    position: absolute;
    height: 100%;
    width: 100%;
- }
- .snow {
+}
+.snow {
    font-size: 1em;
    $total: 300;
    position: absolute;
@@ -592,34 +572,35 @@
    //    transform: translate(-50%, -50%);
    //    border-radius: 50%;
    // }
- 
+
    @for $i from 1 through $total {
-     $random-x: random(1000000) * 0.0001vw;
-     $random-offset: random_range(-100000, 100000) * 0.0001vw;
-     $random-x-end: $random-x + $random-offset;
-     $random-x-end-yoyo: $random-x + ($random-offset / 2);
-     $random-yoyo-time: random_range(30000, 80000) / 100000;
-     $random-yoyo-y: $random-yoyo-time * 100vh;
-     $random-scale: random(10000) * 0.0001;
-     $fall-duration: random_range(20, 40) * 1s;
-     $fall-delay: random(30) * -1s;
- 
-     &:nth-child(#{$i}) {
-       opacity: random(10000) * 0.0001;
-       transform: translate($random-x, -10px) scale($random-scale);
-       animation: fall-#{$i} $fall-duration $fall-delay linear infinite;
-     }
- 
-     @keyframes fall-#{$i} {
-       #{percentage($random-yoyo-time)} {
-         transform: translate($random-x-end, $random-yoyo-y) scale($random-scale);
-       }
- 
-       to {
-         transform: translate($random-x-end-yoyo, 100vh) scale($random-scale);
-       }
-     }
+      $random-x: random(1000000) * 0.0001vw;
+      $random-offset: random_range(-100000, 100000) * 0.0001vw;
+      $random-x-end: $random-x + $random-offset;
+      $random-x-end-yoyo: $random-x + ($random-offset / 2);
+      $random-yoyo-time: random_range(30000, 80000) / 100000;
+      $random-yoyo-y: $random-yoyo-time * 100vh;
+      $random-scale: random(10000) * 0.0001;
+      $fall-duration: random_range(20, 40) * 1s;
+      $fall-delay: random(30) * -1s;
+
+      &:nth-child(#{$i}) {
+         opacity: random(10000) * 0.0001;
+         transform: translate($random-x, -10px) scale($random-scale);
+         animation: fall-#{$i} $fall-duration $fall-delay linear infinite;
+      }
+
+      @keyframes fall-#{$i} {
+         #{percentage($random-yoyo-time)} {
+            transform: translate($random-x-end, $random-yoyo-y)
+               scale($random-scale);
+         }
+
+         to {
+            transform: translate($random-x-end-yoyo, 100vh) scale($random-scale);
+         }
+      }
    }
- }
+}
 
 @import "media.scss";

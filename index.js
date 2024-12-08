@@ -26,6 +26,7 @@ import {
 } from "./scripts/showhero.js";
 
 import { generateBoard } from "./scripts/minigame_pairs.js";
+import { startGame, updateBestScoreDisplay } from "./scripts/minigame_gang.js";
 
 // Create a deep copy of initialHeroes to work with
 const startHeroes = JSON.parse(JSON.stringify(initialHeroes));
@@ -42,6 +43,7 @@ const songVolume = document.querySelector(".song-changer-volume");
 const rouletteSong = document.querySelector(".song");
 const clickSound = document.getElementById("click-sound");
 const poofSound = document.getElementById("poof-sound");
+const minigameGangDefeatSound = document.getElementById("gang-defeat-sound");
 const globalOverlay = document.querySelector(".global-overlay");
 const headerOfPage = document.querySelector(".header");
 const footerOfPage = document.querySelector(".footer");
@@ -113,8 +115,10 @@ const goLastPopup = document.querySelector(".popup__go-last");
 const goLastButton = document.querySelector(".go-last-button");
 
 // Minigames
-const minigamePairs = document.querySelector(".popup__minigame-pairs");
-const newOptionButton = document.querySelector(".new-option__button");
+const minigamePairsPopup = document.querySelector(".popup__minigame-pairs");
+const minigameGangPopup = document.querySelector(".popup__minigame-gang");
+const minigamePairsButton = document.querySelector(".minigame-pairs-button");
+const minigameGangButton = document.querySelector(".minigame-gang-button");
 
 // Группы атрибутов
 const strengthList = document.querySelector("#heroes-strength");
@@ -182,8 +186,12 @@ showHeroRertyButton.addEventListener("click", () => {
 //    openPopup(heroesList);
 // });
 
-newOptionButton.addEventListener("click", () => {
-   openPopup(minigamePairs);
+minigamePairsButton.addEventListener("click", () => {
+   openPopup(minigamePairsPopup);
+});
+
+minigameGangButton.addEventListener("click", () => {
+   openPopup(minigameGangPopup);
 });
 
 // portraitsListButton.addEventListener("click", () => {
@@ -276,6 +284,10 @@ const promises = [
    loadLastHeroesFromLocalStorage(),
    renderLastHeroesFromLocalStorage(),
    renderPortraits(startHeroes),
+   loadChosenIndexFromLocalStorage(),
+   document.addEventListener("DOMContentLoaded", () => {
+      updateBestScoreDisplay();
+   })
 ];
 
 Promise.all(promises)
@@ -632,11 +644,15 @@ export function updateHuy() {
 // updateHuy();
 
 generateBoard();
+const startGangButton = document.querySelector('.minigame-gang__reset-button');
+startGangButton.addEventListener("click", () => {
+   startGame();
+});
 
 rangewww.addEventListener("input", updateHuy);
 
 // При загрузке страницы выводим сохраненный индекс героя
-loadChosenIndexFromLocalStorage();
+// loadChosenIndexFromLocalStorage();
 // loadStartHeroesFromLocalStorage();
 // loadLastHeroesFromLocalStorage();
 // renderLastHeroesFromLocalStorage();
@@ -695,6 +711,7 @@ export {
    portraitsListButtons,
    clickSound,
    poofSound,
+   minigameGangDefeatSound,
    portraitsListSkip,
    portraitsListSkipButton,
    initialVolume

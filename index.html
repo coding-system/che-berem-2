@@ -327,11 +327,15 @@
       <!-- <div class="hello-chat">
          <p class="hello-chat-text">Здарова, работяги!</p>
       </div> -->
-      <div class="minigames">
+      <!-- <div class="minigames">
          <div class="minigames__box">
+            <ul class="minigames__list">
+               <li class="minigames__item"></li>
+               <li class="minigames__item"></li>
+            </ul>
             <button class="minigames__button"></button>
          </div>
-      </div>
+      </div> -->
       <div class="wrapper">
          <header class="header">
             <nav class="nav">
@@ -341,13 +345,22 @@
                   <li class="nav__item show-hero-button">Последний герой</li>
                   <li class="nav__item whats-new-button">Как пользоваться</li>
                   <li class="nav__item go-last-button">GO LAST</li>
-                  <button class="nav__item new-option__button">
-                     Мини-игра
-                  </button>
-                  <button type="button" class="nav__item reset-button">
+                  <li class="nav__item games">Мини-игры
+                     <ul class="games__list">
+                        <li class="games__item minigame-pairs-button">Pairs Game</li>
+                        <li class="games__item minigame-gang-button">Gank Band</li>
+                     </ul>
+                  </li>
+                  <!-- <li class="nav__item minigame-pairs-button">
+                     Pairs Game
+                  </li>
+                  <li class="nav__item minigame-gang-button">
+                     Gank Band
+                  </li> -->
+                  <li type="button" class="nav__item reset-button">
                      Сбросить всё
-                  </button>
-                  <button class="nav__item update__button">Patch notes</button>
+                  </li>
+                  <li class="nav__item update__button">Patch notes</li>
 
                   <li class="song-changer">
                      <label class="container">
@@ -407,6 +420,14 @@
             <audio
                id="poof-sound"
                src="./assets/sounds/rolling_poof.m4a"
+            ></audio>
+            <audio
+               id="gang-attack-sound"
+               src="./assets/sounds/gang_attack.ogg"
+            ></audio>
+            <audio
+               id="gang-defeat-sound"
+               src="./assets/sounds/gang_defeat.ogg"
             ></audio>
             <div class="popup__portraits-list">
                <div class="portraits-list">
@@ -864,11 +885,17 @@
             <div class="minigame-pairs">
                <div class="minigame-pairs__settings"></div>
                <div class="minigame-pairs__header">
+                  <div class="minigame-pairs__best-score">
+                     <p class="minigame-pairs__best-score_text">
+                        Лучший счет:
+                        <span class="minigame-pairs__best-score_result">0</span>
+                     </p>
+                  </div>
                   <div class="minigame-pairs__title">
                      <h2 class="minigame-pairs__title-text">Найди все пары</h2>
                   </div>
-                  <div class="minigame-pairs__steps">
-                     <span class="minigame-pairs__steps-text">0</span>
+                  <div class="minigame-pairs__timer">
+                     <span class="minigame-pairs__timer-text">0</span>
                   </div>
                </div>
                <div class="minigame-pairs__board">
@@ -921,8 +948,15 @@
                <div class="close__button-cross"></div>
             </button>
             <div class="minigame-gang">
+               <!-- <div class="minigame-gang__playing-visible"> -->
                <div class="minigame-gang__settings"></div>
                <div class="minigame-gang__header">
+                  <div class="minigame-gang__best-score">
+                     <p class="minigame-gang__best-score_text">
+                        Лучший счет:
+                        <span class="minigame-gang__best-score_result">0</span>
+                     </p>
+                  </div>
                   <div class="minigame-gang__title">
                      <h2 class="minigame-gang__title-text">Защищай кора</h2>
                   </div>
@@ -932,14 +966,21 @@
                </div>
                <div class="minigame-gang__field">
                   <div class="minigame-gang__target">
-                     <img
-                        src="./assets/heroes/minimap_icons/Anti-Mage_minimap_icon.webp"
-                        alt="Иконка нашего подзащитного"
-                     />
+                     <!-- <img
+                           src="./assets/heroes/minimap_icons/Anti-Mage_minimap_icon.webp"
+                           alt="Иконка нашего подзащитного"
+                        /> -->
                   </div>
-                  <ul class="minigame-gang__enemy"></ul>
+                  <div class="minigame-gang__enemy"></div>
                </div>
                <button class="minigame-gang__reset-button">RESET</button>
+               <!-- </div> -->
+               <!-- <div class="minigame-gang__intro-invisible">
+                  <p class="minigame-gang__intro-text">
+                     О нет. Посмотри! Что это? Это же бустер на мипо трахнул нашего мидера и теперь он хочет тразхнуть твоего кора. Не дай ему этого сделать!
+                  </p>
+                  <button class="minigame-gang__start-button">START</button>
+               </div> -->
             </div>
          </div>
       </div>
@@ -1176,12 +1217,12 @@
          </li>
       </template>
       <template id="minigame-gang__enemy">
-         <li class="minigame-gang__enemy-item">
-            <img
+         <div class="minigame-gang__enemy-item">
+            <!-- <img
                src="./assets/heroes/minimap_icons/Lina_minimap_icon.webp"
                alt="Иконка нашего подзащитного"
-            />
-         </li>
+            /> -->
+         </div>
       </template>
    </body>
 </html>

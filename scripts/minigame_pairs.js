@@ -1,3 +1,4 @@
+// Функция перемешивания массива
 function shuffleArray(array) {
    for (let i = array.length - 1; i > 0; i--) {
      const j = Math.floor(Math.random() * (i + 1));
@@ -6,16 +7,70 @@ function shuffleArray(array) {
    return array;
  }
  
- // Функция для выбора случайных 18 уникальных героев
+ // Функция для выбора случайных героев
  function getRandomHeroes(images, count) {
-   const shuffledImages = shuffleArray([...images]); // Перемешиваем копию массива
-   return shuffledImages.slice(0, count); // Берем первые 8 элементов
+   const shuffledImages = shuffleArray([...images]);
+   return shuffledImages.slice(0, count);
  }
  
- // Переменные для отслеживания состояния игры
+ // Переменные для состояния игры
  let hasFlippedCard = false;
  let firstCard, secondCard;
  let flipTimeout = null; // Таймер для автозакрытия карточек
+ let timerStarted = false; // Флаг, чтобы не запускать таймер повторно
+ 
+ // Переменные для таймера
+ let timerId = null;
+ let elapsedTime = 0; // Храним время в секундах
+ 
+ // Функция для обновления и отображения таймера
+ function updateTimer() {
+   elapsedTime++;
+   const timerElement = document.querySelector('.minigame-pairs__timer-text');
+   timerElement.textContent = elapsedTime; // Обновляем текст таймера
+ }
+ 
+ // Сброс таймера
+ function resetTimer() {
+   clearInterval(timerId); // Останавливаем текущий таймер
+   elapsedTime = 0; // Сбрасываем время
+   const timerElement = document.querySelector('.minigame-pairs__timer-text');
+   timerElement.textContent = elapsedTime; // Устанавливаем таймер на 0
+   timerStarted = false; // Сбрасываем флаг
+ }
+ 
+ // Запуск таймера
+ function startTimer() {
+   if (!timerStarted) {
+     timerStarted = true;
+     timerId = setInterval(updateTimer, 1000); // Запускаем обновление каждую секунду
+   }
+ }
+ 
+ // Функция для сохранения лучшего результата в localStorage
+ function saveBestScore(score) {
+   localStorage.setItem("minigameBestScore", score);
+ }
+ 
+ // Функция для получения лучшего результата из localStorage
+ function getBestScore() {
+   return parseInt(localStorage.getItem("minigameBestScore")) || Infinity;
+ }
+ 
+ // Функция обновления отображения лучшего результата
+ function updateBestScoreDisplay() {
+   const bestScore = getBestScore();
+   const bestScoreElement = document.querySelector('.minigame-pairs__best-score_result');
+   bestScoreElement.textContent = bestScore === Infinity ? 'N/A' : bestScore;
+ }
+ 
+ // Функция проверки и обновления лучшего результата
+ function checkAndUpdateBestScore() {
+   if (elapsedTime < getBestScore()) {
+     saveBestScore(elapsedTime);
+     updateBestScoreDisplay();
+   }
+ }
  
  // Функция для генерации игрового поля
  export function generateBoard() {
@@ -51,7 +106,13 @@ function shuffleArray(array) {
      './assets/heroes/minimap_icons/Sven_minimap_icon.webp',
      './assets/heroes/minimap_icons/Dazzle_minimap_icon.webp',
      './assets/heroes/minimap_icons/Enigma_minimap_icon.webp',
-     './assets/heroes/minimap_icons/Invoker_minimap_icon.webp'
+     './assets/heroes/minimap_icons/Meepo_minimap_icon.webp',
+     './assets/heroes/minimap_icons/Invoker_minimap_icon.webp',
+     './assets/heroes/minimap_icons/Broodmother_minimap_icon.webp',
+     './assets/heroes/minimap_icons/Huskar_minimap_icon.webp',
+     './assets/heroes/minimap_icons/Phantom_Assassin_minimap_icon.webp',
+     './assets/heroes/minimap_icons/Troll_Warlord_minimap_icon.webp',
+     './assets/heroes/minimap_icons/Crystal_Maiden_minimap_icon.webp',
    ];
  
    // Выбираем 8 случайных уникальных героев
@@ -65,61 +126,41 @@ function shuffleArray(array) {
  
    // Создаем карточки с использованием шаблона
    shuffledImages.forEach((imgSrc) => {
-     // Клонируем содержимое шаблона
      const clone = document.importNode(template.content, true);
  
-     // Устанавливаем изображение для лицевой стороны
      const imgElement = clone.querySelector('.minigame-pairs__board-image');
      imgElement.src = imgSrc;
  
-     // Добавляем обработчик на карточку
      const cardElement = clone.querySelector('.card');
      cardElement.addEventListener('click', flipCard);
  
-     // Вставляем клонированный элемент в доску
      boardElement.appendChild(clone);
    });
- }
- 
- // Переменная для подсчета количества открытий
- let moveCount = 0;
- 
- // Функция для обновления и отображения количества ходов
- function updateMoveCount() {
-   moveCount++;
-   const moveCountElement = document.querySelector('.minigame-pairs__steps-text');
-   moveCountElement.textContent = moveCount; // Обновляем текст счетчика
- }
- 
- // Сброс количества ходов
- function resetMoveCount() {
-   moveCount = 0;
-   const moveCountElement = document.querySelector('.minigame-pairs__steps-text');
-   moveCountElement.textContent = moveCount; // Сбрасываем текст счетчика
  }
  
  // Функция переворота карточки
  function flipCard() {
    if (this.classList.contains('is-flipped')) return; // Игнорируем уже перевернутые карточки
  
+   // Если это первый клик, запускаем таймер
+   if (!timerStarted) {
+     startTimer();
+   }
+ 
    // Если уже есть открытые карточки, закроем их перед новой парой
    if (flipTimeout) {
-     clearTimeout(flipTimeout); // Останавливаем таймер
-     unflipCards(); // Закрываем предыдущую пару
+     clearTimeout(flipTimeout);
+     unflipCards();
    }
  
    this.classList.add('is-flipped');
  
-   updateMoveCount();
- 
    if (!hasFlippedCard) {
-     // Первая карточка
      hasFlippedCard = true;
      firstCard = this;
      return;
    }
  
-   // Вторая карточка
    secondCard = this;
  
    checkForMatch();
@@ -137,12 +178,17 @@ function shuffleArray(array) {
    firstCard.removeEventListener('click', flipCard);
    secondCard.removeEventListener('click', flipCard);
  
+   if (document.querySelectorAll('.card:not(.is-flipped)').length === 0) {
+     clearInterval(timerId); // Остановить таймер
+     checkAndUpdateBestScore();
+   }
+ 
    resetBoard();
  }
  
- // Запуск таймера для автоматического закрытия карточек, если они не совпали
+ // Таймер для закрытия карточек, если они не совпали
  function startUnflipTimer() {
-   flipTimeout = setTimeout(unflipCards, 1000); // Таймер на 1.5 секунды
+   flipTimeout = setTimeout(unflipCards, 1000);
  }
  
  // Если карточки не совпали
@@ -163,24 +209,24 @@ function shuffleArray(array) {
  function flipAllCards() {
    const cards = document.querySelectorAll('.card');
    cards.forEach((card) => {
-     card.classList.remove('is-flipped'); // Убираем класс, который переворачивает карточку
+     card.classList.remove('is-flipped');
    });
  
-   // Сброс состояния игры
-   resetBoard(); // Убедимся, что состояние также сбрасывается
+   resetBoard();
  }
  
  // Инициализация игры при загрузке страницы
  document.addEventListener('DOMContentLoaded', () => {
    generateBoard();
-   resetMoveCount(); // Сбрасываем счетчик при загрузке
+   resetTimer(); // Таймер сбрасывается при загрузке
+   updateBestScoreDisplay(); // Обновляем лучший результат при загрузке
  });
  
  // Обработчик для кнопки "RESET"
  const resetButton = document.querySelector('.minigame-pairs__reset-button');
  resetButton.addEventListener('click', () => {
-   flipAllCards(); // Переворачиваем все карточки рубашкой вверх
-   resetMoveCount(); // Сбрасываем счетчик
-   generateBoard(); // Генерируем новую доску
+   flipAllCards();
+   resetTimer(); // Сбрасываем и перезапускаем таймер
+   generateBoard();
  });
  

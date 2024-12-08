@@ -1,18 +1,22 @@
 .minigame-pairs {
-   font-size: 10px;
+   user-select: none;
+   font-size: 1em;
    border-radius: 1.6em;
    overflow: hidden;
    background: linear-gradient(66deg, #06522e, #0f5458, #122857);
-   // width: 500px;
-   // height: 500px;
+   height: 100%;
+   width: 100%;
    display: flex;
    flex-direction: column;
-   justify-content: center;
+   justify-content: space-between;
    align-items: center;
    gap: 2em;
    padding: 2em;
+   position: relative;
+   &-button {
+      background: none;
+   }
    &__header {
-      // font-size: 3em;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -20,9 +24,16 @@
       align-items: center;
       gap: 0em;
    }
-   &__steps {
-      &-text {
-         font-size: 5em;
+   &__best-score {
+      position: absolute;
+      top: 0.5em;
+      right: 0.5em;
+      padding: 0.4em;
+      font-size: 1em;
+      border-radius: 1.1em;
+      background-color: #ffffff18;
+      &_text {
+         font-size: 1.5em;
       }
    }
    &__title {
@@ -30,9 +41,9 @@
          font-size: 3em;
       }
    }
-   &__best {
+   &__timer {
       &-text {
-         font-size: 3em;
+         font-size: 5em;
       }
    }
    &__board {

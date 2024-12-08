@@ -1,8 +1,9 @@
 .minigame-gang {
-   font-size: 10px;
+   user-select: none;
+   font-size: 1em;
    border-radius: 1.6em;
    overflow: hidden;
-   background-image: linear-gradient(#c5c5c5, #e8e8e8);
+   background-image: linear-gradient(#3E3E3E, #393939);
    // min-width: 40vw;
    // min-height: 50vh;
    height: 100%;
@@ -13,37 +14,198 @@
    align-items: center;
    gap: 2em;
    padding: 2em;
+   position: relative;
+   &-button {
+      background: none;
+   }
+   &__playing {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      opacity: 0;
+      pointer-events: none;
+      user-select: none;
+      visibility: hidden;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2em;
+      &-visible {
+         opacity: 1;
+         pointer-events: all;
+         user-select: all;
+         visibility: visible;
+      }
+   }
+   &__intro {
+      display: flex;
+      opacity: 1;
+      pointer-events: all;
+      user-select: all;
+      visibility: visible;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2em;
+      &-invisible {
+         opacity: 0;
+         pointer-events: none;
+         user-select: none;
+         visibility: hidden;
+      }
+   }
+   &__header {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0em;
+   }
+   &__best-score {
+      position: absolute;
+      top: 0.5em;
+      right: 0.5em;
+      padding: 0.4em;
+      font-size: 1em;
+      border-radius: 1.1em;
+      background-color: #ffffff18;
+      &_text {
+         font-size: 1.5em;
+      }
+   }
+   &__title {
+      &-text {
+         font-size: 3em;
+      }
+   }
+   &__steps {
+      &-text {
+         font-size: 5em;
+      }
+   }
    &__field {
+      user-select: none;
       overflow: hidden;
       position: relative;
       min-width: 50vh;
       min-height: 50vh;
-      background-color: #e68e8e;
+      background-color: #f3f3f3;
       border-radius: 6em;
       box-shadow: inset 0 0 1.2em #494949;
+      cursor: crosshair;
+      transition: background-color 0.3s ease;
+      &-defeat {
+         background-color: #af5b5b;
+      }
    }
    &__target {
       position: absolute;
       top: 50%;
       left: 50%;
+      width: 4em;
+      height: 4em;
       transform: translate(-50%, -50%);
+      background-color: #dde0ee;
+      background-image: url("../assets/heroes/minimap_icons/Anti-Mage_minimap_icon.webp");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: auto;
+      object-fit: cover;
+      object-position: center;
+      z-index: 2;
+      border-radius: 50%;
+      padding: 2em;
+      border: 0.2em solid #002fff;
    }
    &__enemy {
       &-item {
+         user-select: none;
          position: absolute;
-         width: 60px;
-         height: 60px;
+         will-change: left, top; /* Оптимизация */
+         top: 0;
+         left: 0;
+         width: 4em;
+         height: 4em;
          border-radius: 50%;
-         cursor: pointer;
+         padding: 2.2em;
          transition: all 0.1s linear;
-         img {
-            width: 100%;
-            height: 100%;
+         background-color: #000000;
+         background-image: url("");
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: auto;
+         object-fit: cover;
+         object-position: center;
+         box-shadow: 0 0 0.9em #0bdd1cc0;
+         // border: 0.2em solid #ff0000;
+         // img {
+         //    user-select: none;
+         //    position: absolute;
+         //    top: 50%;
+         //    left: 50%;
+         //    transform: translate(-50%, -50%);
+         //    padding: 0.3em;
+         //    width: 80%;
+         //    height: 80%;
+         // }
+         &__levelup-mid {
+            box-shadow: 0 0 1.9em #ff8800;
+            width: 4.2em;
+            height: 4.2em;
+         }
+         &__levelup-hard {
+            box-shadow: 0 0 1.9em #ff0000;
+            width: 4.8em;
+            height: 4.8em;
+         }
+         &__destroyed {
+            opacity: 0;
+            scale: 0.5;
+            transition: all 0.3s ease;
+         }
+         &__killer {
+            box-shadow: 0 0 1.9em #ff0000;
          }
       }
    }
    &__reset-button {
-      font-size: 2em;
+      padding: 0.3em 0.5em;
+      background-color: #000;
+      font-family: "Tiny5";
+      transition: 0.1s ease;
+      cursor: pointer;
+      // height: 2em;
+      font-size: 2.6em;
+      font-weight: 600;
+      border-radius: 0.55em;
+      padding: 0.3em 0.5em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      text-transform: uppercase;
+      background-color: #00b7ff;
+      // box-shadow: inset 0 0 1.3em #0000007c, 0 -0.2em 0.6em rgba(0, 0, 0, 0.8);
+      box-shadow: 0 0.2em 0 #1d6781;
+      display: flex;
+      z-index: 3;
+      color: #000000;
+      &:hover {
+         background-color: #00a2ff;
+         color: rgb(0, 0, 0);
+      }
+      &:active {
+         transform: translateY(0.2em);
+         box-shadow: 0 0 0 #1d6781;
+         background-color: #00a2ff;
+         color: rgb(0, 0, 0);
+      }
+   }
+   &__start-button {
       padding: 0.3em 0.5em;
       background-color: #000;
       font-family: "Tiny5";
