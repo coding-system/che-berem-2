@@ -25,7 +25,7 @@ import {
    // acceptAndDelChosenHero,
 } from "./scripts/showhero.js";
 
-import { generateBoard } from "./scripts/minigame_pairs.js";
+import { generateBoard, updateBestScoreDisplayGame} from "./scripts/minigame_pairs.js";
 import { startGame, updateBestScoreDisplay } from "./scripts/minigame_gang.js";
 
 // Create a deep copy of initialHeroes to work with
@@ -287,6 +287,9 @@ const promises = [
    loadChosenIndexFromLocalStorage(),
    document.addEventListener("DOMContentLoaded", () => {
       updateBestScoreDisplay();
+   }),
+   document.addEventListener("DOMContentLoaded", () => {
+      updateBestScoreDisplayGame();
    })
 ];
 

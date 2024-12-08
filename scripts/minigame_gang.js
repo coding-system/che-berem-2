@@ -56,12 +56,12 @@ function updateSteps() {
 
 // Функция получения лучшего счета из localStorage
 function getBestScore() {
-   return parseInt(localStorage.getItem("minigameBestScore")) || 0;
+   return parseInt(localStorage.getItem("minigameGangBestScore")) || 0;
 }
 
 // Функция сохранения лучшего счета в localStorage
 function saveBestScore(score) {
-   localStorage.setItem("minigameBestScore", score);
+   localStorage.setItem("minigameGangBestScore", score);
 }
 
 // Функция обновления отображения лучшего счета

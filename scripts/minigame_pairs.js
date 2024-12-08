@@ -49,26 +49,26 @@ function shuffleArray(array) {
  
  // Функция для сохранения лучшего результата в localStorage
  function saveBestScore(score) {
-   localStorage.setItem("minigameBestScore", score);
+   localStorage.setItem("minigamePairsBestScore", score);
  }
  
  // Функция для получения лучшего результата из localStorage
  function getBestScore() {
-   return parseInt(localStorage.getItem("minigameBestScore")) || Infinity;
+   return parseInt(localStorage.getItem("minigamePairsBestScore")) || Infinity;
  }
  
  // Функция обновления отображения лучшего результата
- function updateBestScoreDisplay() {
+ export function updateBestScoreDisplayGame() {
    const bestScore = getBestScore();
    const bestScoreElement = document.querySelector('.minigame-pairs__best-score_result');
-   bestScoreElement.textContent = bestScore === Infinity ? 'N/A' : bestScore;
+   bestScoreElement.textContent = bestScore === Infinity ? '0' : bestScore;
  }
  
  // Функция проверки и обновления лучшего результата
  function checkAndUpdateBestScore() {
    if (elapsedTime < getBestScore()) {
      saveBestScore(elapsedTime);
-     updateBestScoreDisplay();
+     updateBestScoreDisplayGame();
    }
  }
  
@@ -219,7 +219,7 @@ function shuffleArray(array) {
  document.addEventListener('DOMContentLoaded', () => {
    generateBoard();
    resetTimer(); // Таймер сбрасывается при загрузке
-   updateBestScoreDisplay(); // Обновляем лучший результат при загрузке
+   updateBestScoreDisplayGame(); // Обновляем лучший результат при загрузке
  });
  
  // Обработчик для кнопки "RESET"
