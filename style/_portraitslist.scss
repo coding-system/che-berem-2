@@ -11,6 +11,17 @@
    font-family: "Roboto";
    font-weight: 700;
    z-index: 0;
+   // &::before {
+   //    content: "";
+   //    position: absolute;
+   //    top: 0;left: 0;
+   //    width: calc(100% + 1em);
+   //    height: calc(100% + 1em);
+   //    transform: translate(-0.5em, -0.5em);
+   //    background-color: #ffffff05;
+   //    border-radius: 1.6em;
+   //    z-index: -1;
+   // }
 
    &__main-title {
       color: rgba(255, 251, 0, 0.5);
@@ -155,10 +166,10 @@
    }
    .buttons-bar {
       font-size: 1.4em;
-      // backdrop-filter: blur(1em) brightness(1.5);
+      backdrop-filter: blur(1em) brightness(1.3);
       border-radius: 0.7em;
       padding: 0.5em;
-      background-color: rgba(0, 0, 0, 0.3);
+      // background-color: rgba(0, 0, 0, 0.3); 
       width: 100%;
       display: flex;
       justify-content: space-between;

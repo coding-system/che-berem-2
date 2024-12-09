@@ -22,6 +22,7 @@ let spawnTimeout;
 let enemies = [];
 let isGameOver = false;
 let steps = 0; // Счетчик шагов
+let lastEdge = -1; // Переменная для отслеживания последней стороны появления
 
 // Функция обновления счетчика
 // Функция обновления счетчика
@@ -34,25 +35,14 @@ function updateSteps() {
       settings.spawnAcceleration = 6.5;
       settings.speedAcceleration = 0.18;
       settings.maxSpawnInterval = 225;
-
-      // Изменяем стиль врагов
-      enemies.forEach((enemy) => {
-         enemy.classList.remove("minigame-gang__enemy-item__levelup-hard");
-         enemy.classList.add("minigame-gang__enemy-item__levelup-mid");
-      });
    } else if (steps >= 100) {
       settings.maxEnemySpeed = 15;
       settings.spawnAcceleration = 7;
       settings.speedAcceleration = 0.2;
       settings.maxSpawnInterval = 200;
-
-      // Изменяем стиль врагов
-      enemies.forEach((enemy) => {
-         enemy.classList.remove("minigame-gang__enemy-item__levelup-mid");
-         enemy.classList.add("minigame-gang__enemy-item__levelup-hard");
-      });
    }
 }
+
 
 // Функция получения лучшего счета из localStorage
 function getBestScore() {
@@ -96,24 +86,35 @@ function createEnemy() {
       enemyBackgrounds[Math.floor(Math.random() * enemyBackgrounds.length)];
    enemy.style.backgroundImage = `url("${randomBackground}")`;
 
+   // Устанавливаем стиль врага в зависимости от сложности
+   if (steps >= 100) {
+      enemy.classList.add("minigame-gang__enemy-item__levelup-hard");
+   } else if (steps >= 60) {
+      enemy.classList.add("minigame-gang__enemy-item__levelup-mid");
+   }
+
+   // Генерируем доступные стороны
+   const possibleEdges = [0, 1, 2, 3].filter(edge => edge !== lastEdge);
+   const edge = possibleEdges[Math.floor(Math.random() * possibleEdges.length)];
+   lastEdge = edge; // Сохраняем сторону для следующего вызова
+
    // Устанавливаем случайную начальную позицию
-   const edge = Math.floor(Math.random() * 4);
    const size = field.offsetWidth;
    switch (edge) {
       case 0: // сверху
          enemy.style.left = `${Math.random() * size}px`;
-         enemy.style.top = `-30px`;
+         enemy.style.top = `-60px`;
          break;
       case 1: // справа
-         enemy.style.left = `${size + 30}px`;
+         enemy.style.left = `${size + 60}px`;
          enemy.style.top = `${Math.random() * size}px`;
          break;
       case 2: // снизу
          enemy.style.left = `${Math.random() * size}px`;
-         enemy.style.top = `${size + 30}px`;
+         enemy.style.top = `${size + 60}px`;
          break;
       case 3: // слева
-         enemy.style.left = `-30px`;
+         enemy.style.left = `-60px`;
          enemy.style.top = `${Math.random() * size}px`;
          break;
    }
@@ -129,6 +130,7 @@ function createEnemy() {
    field.appendChild(enemy);
    enemies.push(enemy);
 }
+
 
 // Делегирование события уничтожения врага
 field.addEventListener("mouseover", (event) => {

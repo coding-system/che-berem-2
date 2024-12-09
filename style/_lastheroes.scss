@@ -1,4 +1,10 @@
 .last-box {
+   // transform: translateY(-90px);
+   // box-shadow: inset 0 0 1em #ffffff17;
+   border-radius: 0.9em;
+   padding: 0.2em;
+   // background-color: #ffffff04;
+   backdrop-filter: blur(1em) brightness(1.3);
    font-size: 1.4em;
 
    // max-width: 100%;
@@ -14,7 +20,6 @@
 .last-heroes {
    // background-color: rgba(255, 255, 255, 0.05);
    // background-color: rgba(0, 0, 0, 0.2);
-
    // box-shadow: inset 0 0 2.5em rgba(255, 255, 255, 0.1);
    border-radius: 0.7em;
    overflow: hidden;
