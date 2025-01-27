@@ -200,6 +200,9 @@ function addHeroAlternativeNames(heroName) {
 }
 
 function renderPortraits(heroes) {
+   // Сортируем массив героев по имени в алфавитном порядке
+   heroes.sort((a, b) => a.name.localeCompare(b.name));
+   
    // Очищаем списки перед добавлением новых элементов
    portraitsstrengthList.innerHTML = "";
    portraitsagilityList.innerHTML = "";
